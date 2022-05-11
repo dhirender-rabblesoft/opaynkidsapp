@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.opaynkidsapp">
+
+    <application
+        android:name=".applications.KidsApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.OpaynKidsApp">
+        <activity
+            android:name=".ui.FillBlankActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DrawPractice"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LearnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MCQActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SubjectSelectionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_subject_selection"
+            android:theme="@style/Theme.OpaynKidsApp.NoActionBar" />
+        <activity
+            android:name=".ui.SelectionScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CommonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.HomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.GenderSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CongratulationScreen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.OTPVerify"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Signup"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

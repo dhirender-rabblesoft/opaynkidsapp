@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="main_color">#FCF5F3</color>
+    <color name="main_color_button">#D97254</color>
+    <color name="background_blur">#80FCF5F3</color>
+    <color name="button_color">#EBA049</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="orange">#FB6D2A</color>
+    <color name="black">#FF000000</color>
+
+    <color name="black_1">#80000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white_blur">#8CB5B1B1</color>
+    <color name="offwhite">#FBFDFF</color>
+    <color name="light_pink">#FFD6E0</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#E8E8E8</color>
+
+    <color name="light_pink2">#FF8DA7</color>
+    <color name="pink2">#FFCBD7</color>
+    <color name="pink3">#F987A6</color>
+    <color name="pink5">#F9678F</color>
+    <color name="shimmer_placeholder">#dddddd</color>
+    <color name="pink">#F6265F</color>
+    <color name="pink4">#F6265F</color>
+
+    <color name="light_grey">#FAFDFF</color>
+
+    <color name="pinktranparent2">#FFF5F7</color>
+    <color name="pinktranparent3">#FFFBFC </color>
+    <color name="editextcolor">#222537</color>
+    <color name="black_2">#65728A</color>
+    <color name="black_3">#707070</color>
+    <color name="black_4">#222537</color>
+    <color name="black_5">#3D405B</color>
+    <color name="black_7">#626A75</color>
+    <color name="black_8">#A5A5A5</color>
+    <color name="black_6">#2B2D42</color>
+    <color name="black_9">#151526</color>
+    <color name="black_30">#4D030303</color>
+
+    <color name="black_15">#26000000</color>
+
+    <color name="grey">#4DE2E2E2</color>
+    <color name="grey_1">#D8D8D8</color>
+    <color name="grey_4">#98A7C2</color>
+    <color name="grey_5">#C7C7C7</color>
+    <color name="grey_6">#E8E8E8</color>
+    <color name="grey_7">#BCBCBC</color>
+    <color name="grey_8">#F5F7FB</color>
+    <color name="grey_9">#EBEBEB</color>
+    <color name="grey_10">#65728A4D</color>
+    <color name="grey_11">#F5F5F5</color>
+    <color name="grey_12">#E0E0E0</color>
+    <color name="grey_13">#99AAC4</color>
+    <color name="grey_14">#8D8D8D</color>
+    <color name="grey_15">#222537DE</color>
+    <color name="grey17">#ABABAB</color>
+    <color name="grey18">#F9F9F9</color>
+    <color name="grey20">#e1e1e1</color>
+    <color name="grey21">#CC5E5E5E</color>
+    <color name="grey22">#E6AAAAAA</color>
+    <color name="grey23">#D5D5D5</color>
+    <color name="grey24">#EFEFEF</color>
+    <color name="grey25">#757575</color>
+    <color name="grey26">#E5E5E5</color>
+    <color name="grey_27">#CC65728A</color>
+    <color name="colorOverlay">#78ffffff</color>
+
+    <color name="red">#F6265F</color>
+    <color name="red_2">#ff0000</color>
+    <color name="cyan">#1DB2B2</color>
+    <!-- Light UI colors -->
+    <color name="lt_yellow">#fce18a</color>
+    <color name="lt_orange">#ff726d</color>
+    <color name="lt_purple">#b48def</color>
+    <color name="lt_pink">#f4306d</color>
+    <color name="dk_cyan">#3aaab8</color>
+    <color name="dk_green">#38ba9e</color>
+
+
+
+
+
+</resources>

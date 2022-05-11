@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+
+    <style name="regularfont">
+        <item name="android:includeFontPadding">false</item>
+
+        <item name="fontFamily">@font/asap_regular</item>
+        <item name="android:textColor">@color/black_9</item>
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@android:color/white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_8sdp</item>
+    </style>
+    <style name="mediumfont">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/asap_medium</item>
+    </style>
+
+    <style name="semiboldfont">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/asapsemibold</item>
+        <item name="android:textColor">@color/black_9</item>
+    </style>
+
+    <style name="boldfont">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/asapbold</item>
+        <item name="android:textColor">@color/black_9</item>
+    </style>
+
+    <style name="boldseguoifont">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/segoeuib</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="hedertitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_semibold</item>
+        <item name="android:textColor">@color/black_9</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+    <style name="bottom_menu_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_regular</item>
+        <item name="android:textSize">@dimen/_8sdp</item>
+    </style>
+
+    <style name="hedersubtitle_medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_medium</item>
+        <item name="android:textColor">@color/black_4</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+    <style name="hedertitle_semibold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_semibold</item>
+        <item name="android:textColor">@color/black_4</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+    <style name="edittextlogintitle_regular">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_regular</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/editextcolor</item>
+        <item name="android:textColorHint">@color/grey_13</item>
+        <item name="android:background">@drawable/pink_white_rounded</item>
+        <item name="android:padding">@dimen/_12sdp</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+    <style name="edittextlogintitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_medium</item>
+        <item name="android:textColorHint">@color/grey_13</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/editextcolor</item>
+        <item name="android:padding">@dimen/_13sdp</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+    <style name="edittextlogintitlewithoutborder">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_medium</item>
+        <item name="android:textColorHint">@color/grey_13</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/editextcolor</item>
+        <item name="android:background">@drawable/edittext_white_rounded</item>
+        <item name="android:padding">@dimen/_13sdp</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+    <style name="edittextlogintitleforipad">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_medium</item>
+        <item name="android:textColorHint">@color/grey_13</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/editextcolor</item>
+        <item name="android:padding">@dimen/_8sdp</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+    <style name="materialStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextColor">@color/black_2</item>
+        <item name="errorTextColor">@color/red_2</item>
+        <item name="boxStrokeErrorColor">@color/red_2</item>
+        <item name="hintAnimationEnabled">false</item>
+        <item name="hintEnabled">false</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">@dimen/_1sdp</item>
+        <item name="boxStrokeColor">@color/main_color</item>
+        <item name="layout_goneMarginEnd">@dimen/_32sdp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/_5sdp</item>
+        <item name="errorIconTint">@color/white</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/_5sdp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/_5sdp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/_5sdp</item>
+        <item name="layout_goneMarginStart">@dimen/_32sdp</item>
+    </style>
+    <style name="materialStyle_after_login" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextColor">@color/black_2</item>
+        <item name="errorTextColor">@color/red_2</item>
+        <item name="boxStrokeErrorColor">@color/red_2</item>
+        <item name="hintAnimationEnabled">false</item>
+        <item name="hintEnabled">false</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">@dimen/_1sdp</item>
+        <item name="boxStrokeColor">@color/grey_6</item>
+        <item name="errorIconTint">@color/white</item>
+
+        <item name="layout_goneMarginEnd">@dimen/_32sdp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/_5sdp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/_5sdp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/_5sdp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/_5sdp</item>
+        <item name="layout_goneMarginStart">@dimen/_32sdp</item>
+    </style>
+    //Filter
+    <style name="customToastStyle">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Salon.CustomToast</item>
+        <item name="cardElevation">8dp</item>
+        <item name="contentPadding">10dp</item>
+        <item name="cardBackgroundColor">@color/red</item>
+    </style>
+
+    <style name="edittextlogintitle2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_medium</item>
+        <item name="android:textColorHint">@color/grey_13</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/editextcolor</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+    <!-- Alert Dialog -->
+    <style name="customAlertheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+    <style name="PositiveButtonStyle" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!--    &lt;!&ndash; Popup Style &ndash;&gt;-->
+    <!--    <style name="MyPopupStyle" parent="Theme.AppCompat.Light.Dialog.Alert">-->
+    <!--        &lt;!&ndash; Used for the buttons &ndash;&gt;-->
+    <!--        <item name="colorAccent">@color/colorPrimary</item>-->
+    <!--        &lt;!&ndash; Used for the title and text &ndash;&gt;-->
+    <!--        <item name="android:textColorPrimary">@android:color/black</item>-->
+    <!--        &lt;!&ndash; Used for the background &ndash;&gt;-->
+    <!--        <item name="android:background">@android:color/white</item>-->
+    <!--    </style>-->
+
+
+    <style name="mainbutton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_35sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/asapsemibold</item>
+        <item name="android:background">@drawable/color_round</item>
+        <item name="singleLine">true</item>
+        <item name="android:textSize">@dimen/_13sdp</item>
+    </style>
+    <style name="mainbutton2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_35sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/asapsemibold</item>
+        <item name="android:background">@drawable/color_round2</item>
+        <item name="singleLine">true</item>
+        <item name="android:textSize">@dimen/_13sdp</item>
+    </style>
+
+<!--    <style name="greybutton">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">@dimen/_35sdp</item>-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--        <item name="fontFamily">@font/asapsemibold</item>-->
+<!--        <item name="android:background">@drawable/grey_rounded</item>-->
+<!--        <item name="singleLine">true</item>-->
+<!--        <item name="android:textSize">@dimen/_13sdp</item>-->
+<!--    </style>-->
+<!--    <style name="mainbuttonforipad">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">@dimen/_30sdp</item>-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--        <item name="fontFamily">@font/asapsemibold</item>-->
+<!--        <item name="android:background">@drawable/pink_rounded</item>-->
+<!--        <item name="singleLine">true</item>-->
+<!--        <item name="android:textSize">@dimen/_13sdp</item>-->
+<!--    </style>-->
+<!--    &lt;!&ndash;    <style name="MySeekBar" parent="Widget.AppCompat.SeekBar">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <item name="android:progressBackgroundTint">@color/grey</item>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <item name="android:progressTint">@color/colorPrimary</item>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <item name="android:colorControlActivated">@color/colorPrimary</item>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </style>&ndash;&gt;-->
+<!--    <style name="spinner_style2">-->
+<!--        <item name="android:textSize">@dimen/_10sdp</item>-->
+
+<!--        <item name="android:background">@drawable/gradient_spinner2</item>-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--    </style>-->
+
+<!--    <style name="transparent_dialog_borderless" parent="Theme.MaterialComponents.Dialog">-->
+<!--        <item name="android:windowFrame">@null</item>-->
+<!--        <item name="android:windowBackground">@null</item>-->
+<!--        <item name="android:backgroundDimEnabled">true</item>-->
+<!--    </style>-->
+
+    <style name="ShapeAppearance.Salon.CustomToast" parent="ShapeAppearance.MaterialComponents">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+    </style>
+
+
+    <style name="transparent_dialog_borderless" parent="Theme.MaterialComponents.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+
+</resources>
