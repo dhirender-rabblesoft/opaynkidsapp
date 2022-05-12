@@ -2,19 +2,14 @@ package com.app.opaynkidsapp.viewmodel
 
 import android.app.Application
 import android.content.Context
-import androidx.recyclerview.widget.ItemTouchHelper
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.FillBlankTestAdapter
 import com.app.opaynkidsapp.adapter.MCQButtonAdapter
 import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.KotlinBaseActivity
-import com.app.opaynkidsapp.databinding.ActivityForgotPasswordBinding
 import com.app.opaynkidsapp.databinding.ActivityMcqactivityBinding
-import com.app.opaynkidsapp.extensions.hideKeyboard
-import com.app.opaynkidsapp.extensions.isEmailValid
-import com.app.opaynkidsapp.extensions.isNull
+
 import com.app.opaynkidsapp.extensions.visible
-import com.app.opaynkidsapp.ui.OTPVerify
 
 
 class MCQViewModel(application: Application) : AppViewModel(application) {
@@ -32,9 +27,6 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
         setclicks()
         settoolbar()
         setAdapter()
-
-
-
     }
 
     private fun settoolbar() {
@@ -63,7 +55,6 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
         }
         mcqAdapter.addNewList(listofarray)
         binder.rvMcqButton.adapter = mcqAdapter
-
 
     }
 

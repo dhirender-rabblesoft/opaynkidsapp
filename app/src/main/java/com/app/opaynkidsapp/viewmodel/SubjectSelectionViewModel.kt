@@ -14,6 +14,7 @@ import com.app.opaynkidsapp.model.LevelModel
 import com.app.opaynkidsapp.ui.DrawPractice
 import com.app.opaynkidsapp.ui.LearnActivity
 import com.app.opaynkidsapp.ui.MCQActivity
+import com.app.opaynkidsapp.ui.MatchQAActivity
 import com.app.opaynkidsapp.utils.Keys
 
 class SubjectSelectionViewModel(application: Application) : AppViewModel(application) {
@@ -91,6 +92,8 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
                 R.drawable.`object`
             )
         )
+
+
         levelList.add(
             LevelModel(
                 "Testing",
@@ -99,22 +102,31 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             )
         )
 
+        levelList.add(
+            LevelModel(
+                "Match Test",
+                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+                R.drawable.`object`
+            )
+        )
+
         val topicAdapter = TopicAdapter(baseActivity) {
+
+
             val bundle = Bundle()
             bundle.getString(Keys.FROM, keyword)
-            if (levelList[it].title.equals("Draw Practice")){
+            if (levelList[it].title.equals("Draw Practice")) {
                 baseActivity.openA(DrawPractice::class)
 
-            } else if(levelList[it].title.equals("Testing"))
-            {
+            } else if (levelList[it].title.equals("Testing")) {
                 baseActivity.openA(MCQActivity::class)
-            }
-            else {
+            } else if (levelList[it].title.equals("Match Test")) {
+                baseActivity.openA(MatchQAActivity::class)
+            } else {
                 val bundle2 = Bundle()
-                bundle2.putString(Keys.FROM,levelList[it].title)
-                baseActivity.openA(LearnActivity::class,bundle2)
+                bundle2.putString(Keys.FROM, levelList[it].title)
+                baseActivity.openA(LearnActivity::class, bundle2)
             }
-
 
 
             //for specfic study

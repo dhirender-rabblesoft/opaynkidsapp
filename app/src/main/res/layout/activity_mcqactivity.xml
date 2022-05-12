@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,9 +11,7 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.MCQActivity">
@@ -44,7 +44,7 @@
                     android:textSize="@dimen/_16sdp"
                     app:layout_constraintEnd_toStartOf="@+id/speakerlotties"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -91,8 +91,8 @@
                     app:layout_constraintBottom_toTopOf="@+id/loginbutton"
                     app:layout_constraintTop_toBottomOf="@+id/rvFillBlankButton"
                     app:spanCount="4"
+                    tools:layout_editor_absoluteX="0dp"
                     tools:listitem="@layout/item_mcq_button" />
-
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/loginbutton"

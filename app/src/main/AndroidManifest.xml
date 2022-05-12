@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpaynKidsApp">
         <activity
+            android:name=".ui.MatchQAActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.FillBlankActivity"
             android:exported="false" />
         <activity

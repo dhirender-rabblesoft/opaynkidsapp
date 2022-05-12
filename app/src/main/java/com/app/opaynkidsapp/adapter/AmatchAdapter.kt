@@ -3,11 +3,11 @@ package com.app.opaynkidsapp.adapter
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.BaseAdapter
 import com.app.opaynkidsapp.base.KotlinBaseActivity
-import kotlinx.android.synthetic.main.item_mcq_button.view.*
+import kotlinx.android.synthetic.main.item_match.view.*
 
 
-class MCQButtonAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
-    BaseAdapter<String>(R.layout.item_mcq_button) {
+class AmatchAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
+    BaseAdapter<String>(R.layout.item_match) {
 
     var isSelect = false
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
@@ -31,7 +31,19 @@ class MCQButtonAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int
 
     }
 
+    fun swapItems(fromPosition: Int, toPosition: Int) {
+        if (fromPosition < toPosition) {
+            for (i in fromPosition..toPosition - 1) {
+                list.set(i, list.set(i+1, list.get(i)));
+            }
+        } else {
+            for (i in fromPosition..toPosition + 1) {
+                list.set(i, list.set(i-1, list.get(i)));
+            }
+        }
 
+        notifyItemMoved(fromPosition, toPosition)
+    }
 
 
 }
