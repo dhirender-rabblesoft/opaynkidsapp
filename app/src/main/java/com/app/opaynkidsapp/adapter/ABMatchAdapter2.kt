@@ -50,7 +50,6 @@ internal class ABMatchAdapter2(
             Handler(Looper.getMainLooper()).postDelayed({
                 holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.main_color))
             }, 500)
-            holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.red))
 
         }
     }

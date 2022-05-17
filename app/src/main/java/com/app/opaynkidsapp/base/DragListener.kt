@@ -17,7 +17,7 @@ class DragListener internal constructor(listener: Listener, val context: Context
     View.OnDragListener {
     private var isDropped = false
     private val listener: Listener = listener
-
+    var targetid = -1
     override fun onDrag(v: View, event: DragEvent): Boolean {
         when (event.action) {
             DragEvent.ACTION_DROP -> {
@@ -28,16 +28,19 @@ class DragListener internal constructor(listener: Listener, val context: Context
                 val flItem: Int = R.id.frame_layout_item
                 val rvTop: Int = R.id.rvAmatcher
                 val rvBottom: Int = R.id.rvBMatcher
+                val cryanimation: Int = R.id.crylottiesanim
+
                 when (viewId) {
-                    flItem, rvTop, rvBottom -> {
+                    flItem, rvTop, rvBottom,cryanimation -> {
                         var target: RecyclerView
+
                         when (viewId) {
                             rvTop -> target = v.getRootView().findViewById(rvTop)
-                            rvBottom -> target =
-                                v.getRootView().findViewById(rvBottom)
+
                             else -> {
 
                                 target = v.getParent() as RecyclerView
+                                targetid = target.id
                                 positionTarget = v.getTag() as Int
                             }
                         }
@@ -46,14 +49,17 @@ class DragListener internal constructor(listener: Listener, val context: Context
                             val adapterSource: ABMatchAdapter? = source.adapter as ABMatchAdapter?
                             val positionSource = viewSource.getTag() as Int
                             val sourceId = source.id
+                            Log.e("positionSource",sourceId.toString())
 
                             val list: MatchListingModel = adapterSource?.list?.get(positionSource)!!
                             val listSource: ArrayList<MatchListingModel> =
                                 adapterSource.list as ArrayList<MatchListingModel>
-                            listSource.removeAt(positionSource)
-                            adapterSource.updateList(listSource)
-                            Log.e("adaptersource-- ", adapterSource.toString())
-                            adapterSource.notifyDataSetChanged()
+                            listSource[positionSource].isdrag = false
+                            adapterSource.notifyDataSetChanged() //notifiy left adapter that item is selected or not and then change color
+                            if (sourceId == targetid){
+                                listSource[positionSource].isdrag = true
+                                return false
+                            }
 
                             val adapterTarget: ABMatchAdapter2? = target.adapter as ABMatchAdapter2?
                             val customListTarget: MutableList<MatchListingModel> =
@@ -62,152 +68,80 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                 when (list.name) {
                                     'A' -> {
                                         if (positionTarget.equals(0)) {
-                                            val toast = Toast.makeText(
-                                                context,
-                                                "Hello Javatpoint",
-                                                Toast.LENGTH_LONG
-                                            )
+                                            val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
+                                            toast.show()
+                                            listSource[positionSource].isdrag = false
+                                            customListTarget[positionTarget].isclick = true
+                                        } else {
+                                            listSource[positionSource].isdrag = false
+                                            adapterSource.updateList(listSource)
+                                            val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
                                             toast.show()
                                         }
 
                                     }
-
                                     'B' -> {
                                         if (positionTarget.equals(1)) {
-                                            val toast = Toast.makeText(
-                                                context,
-                                                "Hello Javatpoint",
-                                                Toast.LENGTH_LONG
-                                            )
+                                            val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
-//                                               customListTarget.add(positionTarget, list)
+                                            listSource[positionSource].isdrag = false
+
+                                            customListTarget[positionTarget].isclick = true
+
+                                        } else {
+                                            listSource[positionSource].isdrag = false
+                                            adapterSource.updateList(listSource)
+                                            val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
+                                            toast.show()
+
                                         }
 
                                     }
 
                                     'C' -> {
                                         if (positionTarget.equals(2)) {
-                                            val toast = Toast.makeText(
-                                                context,
-                                                "Hello Javatpoint",
-                                                Toast.LENGTH_LONG
-                                            )
+                                            val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
-//                                               customListTarget.add(positionTarget, list)
+                                            listSource[positionSource].isdrag = false
+
+                                            customListTarget[positionTarget].isclick = true
+
+                                        } else {
+                                            listSource[positionSource].isdrag = false
+                                            adapterSource.updateList(listSource)
+                                            val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
+                                            toast.show()
+
                                         }
 
                                     }
                                     'D' -> {
                                         if (positionTarget.equals(3)) {
-                                            val toast = Toast.makeText(
-                                                context,
-                                                "Hello Javatpoint",
-                                                Toast.LENGTH_LONG
-                                            )
+                                            val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
+                                            toast.show()
+                                            listSource[positionSource].isdrag = false
+
+                                            customListTarget[positionTarget].isclick = true
+
+                                        } else {
+                                            listSource[positionSource].isdrag = false
+                                            adapterSource.updateList(listSource)
+                                            val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
                                             toast.show()
 
-                                            if (positionTarget != positionSource){
-                                                listSource.add(list)
-                                                adapterSource.updateList(listSource)
-
-
-                                            } else{
-                                                listSource.add(list)
-                                                adapterSource.updateList(listSource)
-                                                customListTarget[positionTarget].isclick = true
-                                            }
-
-//                                               customListTarget.add(positionTarget, list)
-                                        } else {
-                                            listSource.add(list)
-                                            adapterSource.updateList(listSource)
-                                            listener.setpostion(true)
-                                            if (positionTarget != positionSource){
-                                                customListTarget[positionTarget].isclick = false
-
-                                            }else{
-                                                listSource.add(list)
-                                                adapterSource.updateList(listSource)
-                                            }
-
-
-                                            Log.e(
-                                                "cutomlisttart-- ",
-                                                "erererewrwerewrwerwfcewfdsfds"
-                                            )
-
-                                        }
-
-                                    }
-                                    else -> {
-
-                                        listSource.add(list)
-                                        adapterSource.updateList(listSource)
-                                        Log.e("cutomlisttart-- ", "erererewrwerewrwerwfcewfdsfds")
-                                    }
-                                }
-
-//                                if (positionTarget.equals(2)){
-//                                    Log.e("doublcatevalue-- ","rrrrrrrrrr")
-//                                    customListTarget.add(positionTarget, list)
-//                                } else{
-//                                    Log.e("doublcatevalue-- ","fffffff")
-//                                }
-
-                                if (positionSource.equals(positionTarget)) {
-                                    customListTarget.forEach {
-
-                                        if (it.equals(list)) {
-
-                                            Log.e("doublcatevalue-- ", customListTarget.toString())
-                                        } else {
-                                            Log.e(
-                                                "doublcatevalueNOT-- ",
-                                                customListTarget.toString()
-                                            )
                                         }
                                     }
-
-
                                 }
-
-
-                                Log.e("customlisttarget-- ", customListTarget.toString())
                             } else {
-
-
-                                customListTarget.forEach {
-
-
-                                    if (it.equals(list)) {
-
-                                        Log.e("doublcatevalue-- ", customListTarget.toString())
-                                    } else {
-                                        Log.e("doublcatevalueNOT-- ", customListTarget.toString())
-                                    }
-                                }
-
                                 customListTarget.add(list)
-                                Log.e("cutomlisttart-- ", customListTarget.toString())
                             }
                             adapterTarget.updateList(customListTarget)
                             adapterTarget.notifyDataSetChanged()
 
-
-
-
                             if (sourceId == rvBottom && adapterSource.getItemCount() < 1) {
                                 listener.setEmptyListBottom(true)
                             }
-//                            if (viewId == tvEmptyListBottom) {
-//                                listener.setEmptyListBottom(false)
-//                            }
-//                            if (sourceId == rvTop && adapterSource.getItemCount() < 1) {
-//                                listener.setEmptyListTop(true)
-//                            }
-//                            if (viewId == tvEmptyListTop) {
-//                                listener.setEmptyListTop(false)
-//                            }
+
                         }
                     }
                 }

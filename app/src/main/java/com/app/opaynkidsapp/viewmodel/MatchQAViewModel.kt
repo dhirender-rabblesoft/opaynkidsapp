@@ -10,6 +10,7 @@ import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.CanvasDraw2
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivityMatchQaactivityBinding
+import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.listner.Listener
 
 
@@ -53,7 +54,9 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         leftlist.add(MatchListingModel('B'))
         leftlist.add(MatchListingModel('C'))
         leftlist.add(MatchListingModel('D'))
-        val topListAdapter = ABMatchAdapter(leftlist, this, baseActivity)
+        val topListAdapter = ABMatchAdapter(leftlist, this, baseActivity){
+
+        }
         binder.rvAmatcher!!.adapter = topListAdapter
 
         binder.rvAmatcher!!.setOnDragListener(topListAdapter.dragInstance)

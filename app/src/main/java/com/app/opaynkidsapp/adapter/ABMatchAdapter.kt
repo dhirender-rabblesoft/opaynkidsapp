@@ -25,7 +25,9 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
 internal class ABMatchAdapter(
     var list: List<MatchListingModel>,
     private val listener: Listener?,
-    val context: Context
+    val context: Context,
+    val itemClick: (Int) -> Unit
+
 ) :
     RecyclerView.Adapter<ABMatchAdapter.ListViewHolder>(), View.OnTouchListener {
     var ischeck = false
@@ -44,13 +46,18 @@ internal class ABMatchAdapter(
 
         if (list[position].isclick) {
             holder.frameLayout!!.setBackgroundColor(Color.GREEN)
+//            itemClick(position)
 
         } else {
-
+            itemClick(position)
             Handler(Looper.getMainLooper()).postDelayed({
-                holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.main_color))
+                if (!list[position].isdrag){
+                    holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
+                }else {
+                    holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.main_color))
+                }
+
             }, 500)
-            holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.red))
 
         }
     }
@@ -60,18 +67,19 @@ internal class ABMatchAdapter(
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-
-
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                val data = ClipData.newPlainText("", "")
-                val shadowBuilder = View.DragShadowBuilder(v)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    v.startDragAndDrop(data, shadowBuilder, v, 0)
-                } else {
-                    v.startDrag(data, shadowBuilder, v, 0)
+    val tag = v.tag
+        if (list[tag as Int].isdrag) {
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    val data = ClipData.newPlainText("", "")
+                    val shadowBuilder = View.DragShadowBuilder(v)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        v.startDragAndDrop(data, shadowBuilder, v, 0)
+                    } else {
+                        v.startDrag(data, shadowBuilder, v, 0)
+                    }
+                    return true
                 }
-                return true
             }
         }
         return false
@@ -95,6 +103,7 @@ internal class ABMatchAdapter(
 
 
         var frameLayout: ConstraintLayout? = itemView?.findViewById(R.id.frame_layout_item)
+        var llcontainer: ConstraintLayout? = itemView?.findViewById(R.id.llcontainer)
 
     }
 
