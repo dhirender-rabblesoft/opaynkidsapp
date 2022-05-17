@@ -2,21 +2,18 @@ package com.app.opaynkidsapp.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.opaynkidsapp.adapter.AmatchAdapter
-import com.app.opaynkidsapp.adapter.BmatchAdapter
+import com.app.opaynkidsapp.adapter.ABMatchAdapter
+import com.app.opaynkidsapp.adapter.ABMatchAdapter2
 import com.app.opaynkidsapp.base.AppViewModel
-import com.app.opaynkidsapp.base.CanvasDraw
 import com.app.opaynkidsapp.base.CanvasDraw2
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivityMatchQaactivityBinding
-import com.app.opaynkidsapp.listner.CanvasListner
-import com.app.opaynkidsapp.utils.Keys
-import kotlinx.android.synthetic.main.activity_draw_practice.*
+import com.app.opaynkidsapp.listner.Listener
 
 
-class MatchQAViewModel(application: Application) : AppViewModel(application) {
+class MatchQAViewModel(application: Application) : AppViewModel(application), Listener {
     private lateinit var binder: ActivityMatchQaactivityBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
@@ -30,9 +27,13 @@ class MatchQAViewModel(application: Application) : AppViewModel(application) {
         this.baseActivity = baseActivity
         this.binder.viewModel = this
 
-        setAadapter()
-        setBadapter()
+        initLeftRecyclerView()
+        initRightRecyclerView()
         setcanas()
+        settoolbar()
+    }
+    private fun settoolbar(){
+        binder.toolbar.tvtitle.setText("Drag and Drop")
     }
 
     private fun setcanas() {
@@ -42,52 +43,36 @@ class MatchQAViewModel(application: Application) : AppViewModel(application) {
         binder.drawcanavs.addView(canvasView)
     }
 
-    private fun setAadapter() {
-        val list = ArrayList<String>()
-        list.add("Apple")
-        list.add("Egg")
-        list.add("Orange")
-        list.add("Banana")
-        val manager = LinearLayoutManager(baseActivity)
-        binder.rvAmatcher.layoutManager = manager
 
-        val aMatchAdapter = AmatchAdapter(baseActivity) {
-            val a = list[it]
-            canvasView.startTouch(Keys.startx, Keys.starty)
-            Log.e("dfsdfsdfdsfsd", a.toString())
-        }
+    private fun initLeftRecyclerView() {
+        binder.rvAmatcher!!.layoutManager = LinearLayoutManager(
+            baseActivity, LinearLayoutManager.VERTICAL, false
+        )
+        val leftlist: MutableList<MatchListingModel> = ArrayList()
+        leftlist.add(MatchListingModel('A'))
+        leftlist.add(MatchListingModel('B'))
+        leftlist.add(MatchListingModel('C'))
+        leftlist.add(MatchListingModel('D'))
+        val topListAdapter = ABMatchAdapter(leftlist, this, baseActivity)
+        binder.rvAmatcher!!.adapter = topListAdapter
 
-        aMatchAdapter.addNewList(list)
-        binder.rvAmatcher.adapter = aMatchAdapter
-        val r = binder.rvAmatcher.findChildViewUnder(0.5f, 1.2844f)
-        Log.e("eeeeeeeeeeeerrrrr", r.toString())
-
-
+        binder.rvAmatcher!!.setOnDragListener(topListAdapter.dragInstance)
     }
 
-    private fun setBadapter() {
-        val list = ArrayList<String>()
-        list.add("Apple")
-        list.add("Egg")
-        list.add("Orange")
-        list.add("Banana")
+    private fun initRightRecyclerView() {
+        binder.rvBMatcher!!.layoutManager = LinearLayoutManager(
+            baseActivity, LinearLayoutManager.VERTICAL, false
+        )
+        val rightList: MutableList<MatchListingModel> = ArrayList()
+        rightList.add(MatchListingModel('A'))
+        rightList.add(MatchListingModel('B'))
+        rightList.add(MatchListingModel('C'))
+        rightList.add(MatchListingModel('D'))
 
-        val manager = LinearLayoutManager(baseActivity)
-        binder.rvBMatcher.layoutManager = manager
-
-        val bMatchAdapter = BmatchAdapter(baseActivity) {
-            val b = list[it]
-            canvasView.addtargetline(Keys.endx, Keys.endy)
-            Log.e("d55555555555", b.toString())
-        }
-
-        bMatchAdapter.addNewList(list)
-        binder.rvBMatcher.adapter = bMatchAdapter
-
-
+        val bottomListAdapter = ABMatchAdapter2(rightList, this, baseActivity)
+        binder.rvBMatcher.adapter = bottomListAdapter
+//        binder.rvBMatcher.setOnDragListener(bottomListAdapter.dragInstance)
     }
-
-
 
 
     companion object {
@@ -95,6 +80,19 @@ class MatchQAViewModel(application: Application) : AppViewModel(application) {
         var starty = null;
         var endx = null;
         var endy = null;
+    }
+
+    override fun setEmptyListTop(visibility: Boolean) {
+         binder.rvAmatcher?.setVisibility(if (visibility) View.GONE else View.VISIBLE)
+
+    }
+
+    override fun setEmptyListBottom(visibility: Boolean) {
+        binder.rvBMatcher?.setVisibility(if (visibility) View.GONE else View.VISIBLE)
+
+    }
+
+    override fun setpostion(position: Boolean) {
     }
 
 }
