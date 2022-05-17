@@ -16,11 +16,33 @@
         tools:context=".ui.MatchQAActivity">
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rvAmatcher"
-            tools:listitem="@layout/item_match"/>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAmatcher"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/item_match" />
+                <FrameLayout
+                    android:id="@+id/drawcanavs"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toEndOf="@+id/rvAmatcher"
+                    app:layout_constraintEnd_toStartOf="@+id/rvBMatcher"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBMatcher"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:listitem="@layout/item_match" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

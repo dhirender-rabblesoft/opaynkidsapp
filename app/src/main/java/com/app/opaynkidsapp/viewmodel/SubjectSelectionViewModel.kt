@@ -110,6 +110,7 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             )
         )
 
+
         val topicAdapter = TopicAdapter(baseActivity) {
 
 

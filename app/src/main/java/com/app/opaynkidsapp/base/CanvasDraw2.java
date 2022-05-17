@@ -9,7 +9,11 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class CanvasDraw extends View {
+import com.app.opaynkidsapp.listner.CanvasListner;
+import com.app.opaynkidsapp.utils.Keys;
+
+
+public class CanvasDraw2  extends View {
 
     private static final float TOLERANCE = 5;
     public int width;
@@ -21,10 +25,10 @@ public class CanvasDraw extends View {
     private Paint mPaint;
     private float mX, mY;
 
-    public CanvasDraw(Context c) {
+
+    public CanvasDraw2(Context c) {
         super(c);
         context = c;
-
         // we set a new Path
         mPath = new Path();
 
@@ -34,7 +38,8 @@ public class CanvasDraw extends View {
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeWidth(20f);
+        mPaint.setStrokeWidth(10f);
+
     }
 
     // override onSizeChanged
@@ -56,10 +61,12 @@ public class CanvasDraw extends View {
     }
 
     // when ACTION_DOWN start touch according to the x,y values
-    private void startTouch(float x, float y) {
+   public void startTouch(float x, float y) {
         mPath.moveTo(x, y);
         mX = x;
         mY = y;
+
+
     }
 
     // when ACTION_MOVE move touch according to the x,y values
@@ -67,7 +74,8 @@ public class CanvasDraw extends View {
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
         if (dx >= TOLERANCE || dy >= TOLERANCE) {
-            mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+//            mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+//            mPath.lineTo(x, y);
             mX = x;
             mY = y;
         }
@@ -81,6 +89,13 @@ public class CanvasDraw extends View {
     // when ACTION_UP stop touch
     private void upTouch() {
         mPath.lineTo(mX, mY);
+
+    }
+    public void addtargetline(float x, float y) {
+        mX = x;
+        mY = y;
+        mPath.lineTo(x, y);
+
     }
 
     //override the onTouchEvent
@@ -92,6 +107,7 @@ public class CanvasDraw extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 startTouch(x, y);
+
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -99,7 +115,8 @@ public class CanvasDraw extends View {
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                upTouch();
+//                upTouch();
+                addtargetline(x,y);
                 invalidate();
                 break;
         }

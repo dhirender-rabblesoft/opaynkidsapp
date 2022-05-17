@@ -2,6 +2,10 @@ package com.app.opaynkidsapp.utils
 object Keys
 {
 
+      var startx: Float = 0.0f
+    var starty: Float = 0.0f
+    var endx: Float = 0.0f
+    var endy: Float = 0.0f
     val LIVECLASS: String = "LIVECLASS"
     //http://5f91-210-89-39-70.ngrok.io/opaynly-api/public/api/app-info
 //    const val  BASEURL="https://d077-210-89-39-190.ngrok.io/ielts-app/public/api/"
