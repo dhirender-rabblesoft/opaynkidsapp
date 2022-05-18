@@ -19,10 +19,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.DragListener
 import com.app.opaynkidsapp.listner.Listener
+import com.app.opaynkidsapp.utils.Keys
 import com.app.opaynkidsapp.viewmodel.MatchListingModel
 
 
-internal class ABMatchAdapter2(
+  class ABMatchAdapter2(
     var list: List<MatchListingModel>,
     private val listener: Listener?,
     val context: Context
@@ -43,12 +44,24 @@ internal class ABMatchAdapter2(
         holder.frameLayout!!.setOnDragListener(DragListener(listener!!, context))
 
         if (list[position].isclick) {
-            holder.frameLayout!!.setBackgroundColor(Color.GREEN)
+            if (Keys.isSubmit){
+                holder.frameLayout!!.setBackgroundColor(Color.GREEN)
+            }
+            holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
 
         } else {
+            if (Keys.isSubmit){
+                if (!list[position].isclick){
+                    holder.frameLayout!!.setBackgroundColor(Color.RED)
+                }
 
+            }
             Handler(Looper.getMainLooper()).postDelayed({
-                holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.main_color))
+                if (!list[position].isenable){
+                    holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
+                }else {
+                    holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.main_color))
+                }
             }, 500)
 
         }
@@ -88,9 +101,10 @@ internal class ABMatchAdapter2(
             null
         }
 
-    internal inner class ListViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+    inner class ListViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
         var text: TextView? = itemView?.findViewById(R.id.tvButtontext)
+        var llcontainer: ConstraintLayout? = itemView?.findViewById(R.id.llcontainer)
 
 
         var frameLayout: ConstraintLayout? = itemView?.findViewById(R.id.frame_layout_item)

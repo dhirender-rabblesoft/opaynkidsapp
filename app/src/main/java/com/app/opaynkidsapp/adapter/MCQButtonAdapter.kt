@@ -7,13 +7,13 @@ import kotlinx.android.synthetic.main.item_mcq_button.view.*
 
 
 class MCQButtonAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
-    BaseAdapter<String>(R.layout.item_mcq_button) {
+    BaseAdapter<Char>(R.layout.item_mcq_button) {
 
     var isSelect = false
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
 
-            tvButtontext.setText(list[position])
+            tvButtontext.setText(list[position].toString())
 
             mainlayout.setOnClickListener {
                 itemClick(position)

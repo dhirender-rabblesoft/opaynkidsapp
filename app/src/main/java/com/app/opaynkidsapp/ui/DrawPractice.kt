@@ -1,11 +1,14 @@
 package com.app.opaynkidsapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.CanvasDraw
 import com.app.opaynkidsapp.extensions.visible
 import kotlinx.android.synthetic.main.activity_draw_practice.*
+import kotlinx.android.synthetic.main.activity_otpverify.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 class DrawPractice : AppCompatActivity() {
@@ -18,9 +21,20 @@ class DrawPractice : AppCompatActivity() {
         canvasView.width = 50
         canvasView.height = 50
         parentView.addView(canvasView)
+
+        setanimation()
+        drawWord.visible()
+
+
+
         button.setOnClickListener {
             canvasView.clearCanvas()
         }
+    }
+
+    private fun setanimation() {
+
+        drawWord.animate().translationXBy(400f).translationY(100f).duration = 1000
     }
 
     private fun setToolbar() {
@@ -34,4 +48,6 @@ class DrawPractice : AppCompatActivity() {
             onBackPressed()
         }
     }
+
+
 }

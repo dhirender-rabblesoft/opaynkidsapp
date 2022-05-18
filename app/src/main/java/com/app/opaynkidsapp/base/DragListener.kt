@@ -38,7 +38,6 @@ class DragListener internal constructor(listener: Listener, val context: Context
                             rvTop -> target = v.getRootView().findViewById(rvTop)
 
                             else -> {
-
                                 target = v.getParent() as RecyclerView
                                 targetid = target.id
                                 positionTarget = v.getTag() as Int
@@ -49,6 +48,7 @@ class DragListener internal constructor(listener: Listener, val context: Context
                             val adapterSource: ABMatchAdapter? = source.adapter as ABMatchAdapter?
                             val positionSource = viewSource.getTag() as Int
                             val sourceId = source.id
+
                             Log.e("positionSource",sourceId.toString())
 
                             val list: MatchListingModel = adapterSource?.list?.get(positionSource)!!
@@ -58,6 +58,7 @@ class DragListener internal constructor(listener: Listener, val context: Context
                             adapterSource.notifyDataSetChanged() //notifiy left adapter that item is selected or not and then change color
                             if (sourceId == targetid){
                                 listSource[positionSource].isdrag = true
+
                                 return false
                             }
 
@@ -71,9 +72,15 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
                                             listSource[positionSource].isdrag = false
+                                            listSource[positionSource].isclick = true
+                                            listSource[positionSource].ans = 1
                                             customListTarget[positionTarget].isclick = true
+                                            customListTarget[positionTarget].isenable = false
+
                                         } else {
                                             listSource[positionSource].isdrag = false
+                                            customListTarget[positionTarget].isenable = false
+                                            listSource[positionSource].ans = 0
                                             adapterSource.updateList(listSource)
                                             val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
                                             toast.show()
@@ -85,11 +92,15 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
                                             listSource[positionSource].isdrag = false
-
+                                            listSource[positionSource].isclick = true
+                                            customListTarget[positionTarget].isenable = false
+                                            listSource[positionSource].ans = 1
                                             customListTarget[positionTarget].isclick = true
 
                                         } else {
                                             listSource[positionSource].isdrag = false
+                                            customListTarget[positionTarget].isenable = false
+                                            listSource[positionSource].ans = 0
                                             adapterSource.updateList(listSource)
                                             val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
                                             toast.show()
@@ -103,11 +114,15 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
                                             listSource[positionSource].isdrag = false
-
+                                            listSource[positionSource].isclick = true
+                                            customListTarget[positionTarget].isenable = false
+                                            listSource[positionSource].ans = 1
                                             customListTarget[positionTarget].isclick = true
 
                                         } else {
                                             listSource[positionSource].isdrag = false
+                                            customListTarget[positionTarget].isenable = false
+                                            listSource[positionSource].ans = 0
                                             adapterSource.updateList(listSource)
                                             val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
                                             toast.show()
@@ -120,11 +135,15 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
                                             listSource[positionSource].isdrag = false
-
+                                            listSource[positionSource].isclick = true
+                                            customListTarget[positionTarget].isenable = false
+                                            listSource[positionSource].ans = 1
                                             customListTarget[positionTarget].isclick = true
 
                                         } else {
                                             listSource[positionSource].isdrag = false
+                                            customListTarget[positionTarget].isenable = false
+                                            listSource[positionSource].ans = 0
                                             adapterSource.updateList(listSource)
                                             val toast = Toast.makeText(context,"Wrong Match",Toast.LENGTH_LONG)
                                             toast.show()

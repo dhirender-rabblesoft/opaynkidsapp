@@ -16,8 +16,7 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
     private lateinit var binder: ActivityMcqactivityBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
-    var fillbankAdapter: FillBlankTestAdapter? = null
-    val addlistarrray = ArrayList<String>()
+
 
     fun setBinder(binder: ActivityMcqactivityBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
@@ -37,20 +36,17 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
 
     private fun setAdapter() {
 
-        val listofarray = ArrayList<String>()
-        listofarray.add("A")
-        listofarray.add("B")
-        listofarray.add("C")
-        listofarray.add("D")
-        listofarray.add("E")
-        listofarray.add("F")
-        listofarray.add("G")
+        val listofarray = ArrayList<Char>()
+        listofarray.add('A')
+        listofarray.add('B')
+        listofarray.add('C')
+        listofarray.add('D')
+        listofarray.add('E')
+        listofarray.add('F')
+        listofarray.add('G')
 
         val mcqAdapter = MCQButtonAdapter(baseActivity) {
-            val getWord = listofarray[it]
-            addlistarrray.add(getWord)
-            setFillBlankAdapter()
-            fillbankAdapter?.notifyDataSetChanged()
+
 
         }
         mcqAdapter.addNewList(listofarray)
@@ -58,17 +54,6 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
 
     }
 
-    private fun setFillBlankAdapter() {
-
-        fillbankAdapter = FillBlankTestAdapter(baseActivity) {
-
-
-        }
-
-        fillbankAdapter?.addNewList(addlistarrray)
-        binder.rvFillBlankButton.adapter = fillbankAdapter
-
-    }
 
     private fun setclicks() {
 
@@ -82,9 +67,8 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
             binder.speakerlotties.playAnimation()
         }
         binder.loginbutton.setOnClickListener {
-            addlistarrray.clear()
-            setFillBlankAdapter()
-            fillbankAdapter?.notifyDataSetChanged()
+
+
             binder.toolbar.tvtitle.setText("Fill In The Blank")
             binder.tvquestion.setText("Select Right Word")
 

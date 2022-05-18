@@ -2,7 +2,8 @@ package com.app.opaynkidsapp.utils
 object Keys
 {
 
-      var startx: Float = 0.0f
+    var isSubmit: Boolean = false
+    var startx: Float = 0.0f
     var starty: Float = 0.0f
     var endx: Float = 0.0f
     var endy: Float = 0.0f

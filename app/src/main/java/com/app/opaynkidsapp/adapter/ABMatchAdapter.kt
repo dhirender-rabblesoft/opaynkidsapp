@@ -14,17 +14,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.DragListener
 import com.app.opaynkidsapp.listner.Listener
+import com.app.opaynkidsapp.utils.Keys
 import com.app.opaynkidsapp.viewmodel.MatchListingModel
 
 
-internal class ABMatchAdapter(
+     class ABMatchAdapter(
     var list: List<MatchListingModel>,
-    private val listener: Listener?,
+      val listener: Listener?,
     val context: Context,
     val itemClick: (Int) -> Unit
 
@@ -45,11 +47,26 @@ internal class ABMatchAdapter(
         holder.frameLayout!!.setOnDragListener(DragListener(listener!!, context))
 
         if (list[position].isclick) {
-            holder.frameLayout!!.setBackgroundColor(Color.GREEN)
-//            itemClick(position)
+            if (Keys.isSubmit){
+                if (list[position].isclick){
+                    holder.frameLayout!!.setBackgroundColor(Color.GREEN)
+                }
 
+            }
+            holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
+//            itemClick(position)
         } else {
-            itemClick(position)
+
+            if (Keys.isSubmit){
+                if (!list[position].isclick){
+                    holder.frameLayout!!.setBackgroundColor(Color.RED)
+                }
+
+            }
+            if (list[position].ans.equals(0)){
+                itemClick(position)
+            }
+
             Handler(Looper.getMainLooper()).postDelayed({
                 if (!list[position].isdrag){
                     holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
@@ -75,6 +92,7 @@ internal class ABMatchAdapter(
                     val shadowBuilder = View.DragShadowBuilder(v)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         v.startDragAndDrop(data, shadowBuilder, v, 0)
+
                     } else {
                         v.startDrag(data, shadowBuilder, v, 0)
                     }
@@ -97,7 +115,7 @@ internal class ABMatchAdapter(
             null
         }
 
-    internal inner class ListViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+    inner class ListViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 
         var text: TextView? = itemView?.findViewById(R.id.tvButtontext)
 

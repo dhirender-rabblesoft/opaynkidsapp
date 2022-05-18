@@ -11,10 +11,7 @@ import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivitySubjectSelectionBinding
 import com.app.opaynkidsapp.extensions.putStrings
 import com.app.opaynkidsapp.model.LevelModel
-import com.app.opaynkidsapp.ui.DrawPractice
-import com.app.opaynkidsapp.ui.LearnActivity
-import com.app.opaynkidsapp.ui.MCQActivity
-import com.app.opaynkidsapp.ui.MatchQAActivity
+import com.app.opaynkidsapp.ui.*
 import com.app.opaynkidsapp.utils.Keys
 
 class SubjectSelectionViewModel(application: Application) : AppViewModel(application) {
@@ -101,6 +98,13 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
                 R.drawable.`object`
             )
         )
+        levelList.add(
+            LevelModel(
+                "Fill Blanks",
+                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+                R.drawable.`object`
+            )
+        )
 
         levelList.add(
             LevelModel(
@@ -121,7 +125,10 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
 
             } else if (levelList[it].title.equals("Testing")) {
                 baseActivity.openA(MCQActivity::class)
-            } else if (levelList[it].title.equals("Match Test")) {
+            } else if (levelList[it].title.equals("Fill Blanks")) {
+                baseActivity.openA(FillBlankActivity::class)
+            }
+            else if (levelList[it].title.equals("Match Test")) {
                 baseActivity.openA(MatchQAActivity::class)
             } else {
                 val bundle2 = Bundle()
