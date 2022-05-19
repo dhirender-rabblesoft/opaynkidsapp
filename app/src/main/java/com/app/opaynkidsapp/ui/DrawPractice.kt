@@ -29,7 +29,7 @@ class DrawPractice : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw_practice)
-        setToolbar()
+
         setClick()
         initTextToSpeach()
         val canvasView = CanvasDraw(this)
@@ -82,22 +82,17 @@ class DrawPractice : AppCompatActivity() {
 
     private fun setanimation() {
 
-        drawWord.animate().translationXBy(400f).translationY(100f).duration = 1000
+        drawWord.animate().translationXBy(300f).translationY(50f).duration = 1000
     }
 
-    private fun setToolbar() {
-        toolbar.tvtitle.setText("Draw Practice")
-        toolbar.icmenu2.visible()
-        toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
-    }
+
 
     private fun setClick() {
-        toolbar.icmenu2.setOnClickListener {
+        backbutton.setOnClickListener {
             onBackPressed()
         }
-
         speakerlotties.setOnClickListener {
-//            speakerlotties.playAnimation()
+            speakerlotties.playAnimation()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 textToSpeech?.speak("A", TextToSpeech.QUEUE_FLUSH, null, null)
 
