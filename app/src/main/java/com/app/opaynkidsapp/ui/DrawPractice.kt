@@ -92,7 +92,7 @@ class DrawPractice : AppCompatActivity() {
             onBackPressed()
         }
         speakerlotties.setOnClickListener {
-            speakerlotties.playAnimation()
+//            speakerlotties.playAnimation()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 textToSpeech?.speak("A", TextToSpeech.QUEUE_FLUSH, null, null)
 
