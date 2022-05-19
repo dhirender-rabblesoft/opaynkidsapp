@@ -26,7 +26,7 @@
             android:id="@+id/clObjectContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/loginbutton"
+            app:layout_constraintBottom_toTopOf="@+id/common_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -47,34 +47,24 @@
                 android:id="@+id/resetImg"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:padding="@dimen/_10sdp"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
                 android:src="@drawable/reset"
-                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                />
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/priviousImg"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:padding="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:src="@drawable/previous"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
+
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/word"
                 style="@style/semiboldfont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:layout_marginEnd="@dimen/_20sdp"
                 android:textSize="@dimen/_200sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,9 +77,9 @@
                 style="@style/semiboldfont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:padding="@dimen/_10sdp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,16 +108,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/word"
                 app:layout_constraintVertical_bias="0.609"
                 tools:layout_editor_absoluteX="0dp" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginbutton"
-            style="@style/mainbutton"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="Next"
-            android:textAllCaps="false"
+        <include
+            android:id="@+id/common_button"
+            layout="@layout/common_sub_pre_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,5 +125,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

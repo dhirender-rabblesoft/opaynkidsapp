@@ -16,7 +16,8 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
     private lateinit var binder: ActivityMcqactivityBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
-
+    val listofarray = ArrayList<Char>()
+    var i = 0
 
     fun setBinder(binder: ActivityMcqactivityBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
@@ -25,7 +26,7 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
         this.binder.viewModel = this
         setclicks()
         settoolbar()
-        setAdapter()
+        setMCQAdapter()
     }
 
     private fun settoolbar() {
@@ -34,16 +35,14 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
         binder.toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
     }
 
-    private fun setAdapter() {
+    private fun setMCQAdapter() {
 
-        val listofarray = ArrayList<Char>()
+
         listofarray.add('A')
         listofarray.add('B')
         listofarray.add('C')
         listofarray.add('D')
-        listofarray.add('E')
-        listofarray.add('F')
-        listofarray.add('G')
+
 
         val mcqAdapter = MCQButtonAdapter(baseActivity) {
 
@@ -67,17 +66,11 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
             binder.speakerlotties.playAnimation()
         }
         binder.loginbutton.setOnClickListener {
+            i++
+            if (listofarray.size > i){
+                binder.tvquestion.setText("Select B")
+            }
 
-
-            binder.toolbar.tvtitle.setText("Fill In The Blank")
-            binder.tvquestion.setText("Select Right Word")
-
-
-
-            setAdapter()
-
-
-            binder.rvFillBlankButton.visible()
 
         }
 

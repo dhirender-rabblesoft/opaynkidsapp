@@ -39,20 +39,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:maxLines="2"
-                    android:text="How many Apple Show"
+                    android:text="Select A"
                     android:textAlignment="center"
                     android:textSize="@dimen/_16sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/speakerlotties"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/speakerlotties"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvquestion"
                     app:lottie_autoPlay="false"
                     app:lottie_loop="false"
                     app:lottie_rawRes="@raw/spekaer" />
@@ -60,26 +59,11 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivQuesImg"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_250sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_height="@dimen/_200sdp"
                     android:src="@drawable/apple"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvquestion" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvFillBlankButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@+id/ivQuesImg"
-                    app:spanCount="4"
-                    tools:listitem="@layout/item_fill_blank_test" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/speakerlotties" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvMcqButton"
@@ -89,9 +73,8 @@
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toTopOf="@+id/loginbutton"
-                    app:layout_constraintTop_toBottomOf="@+id/rvFillBlankButton"
-                    app:spanCount="4"
-                    tools:layout_editor_absoluteX="0dp"
+                    app:layout_constraintTop_toBottomOf="@+id/ivQuesImg"
+                    app:spanCount="2"
                     tools:listitem="@layout/item_mcq_button" />
 
                 <androidx.appcompat.widget.AppCompatButton

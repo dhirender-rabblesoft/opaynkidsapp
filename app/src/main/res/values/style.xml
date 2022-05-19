@@ -188,7 +188,7 @@
 
     <style name="mainbutton">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/_35sdp</item>
+        <item name="android:layout_height">@dimen/_40sdp</item>
         <item name="android:textColor">@color/white</item>
         <item name="fontFamily">@font/asapsemibold</item>
         <item name="android:background">@drawable/color_round</item>

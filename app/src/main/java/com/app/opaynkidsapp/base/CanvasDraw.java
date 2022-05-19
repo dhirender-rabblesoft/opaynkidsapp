@@ -55,6 +55,12 @@ public class CanvasDraw extends View {
         canvas.drawPath(mPath, mPaint);
     }
 
+
+    //set color
+    public void setcolor(int  color){
+        mPaint.setColor(color);
+    }
+
     // when ACTION_DOWN start touch according to the x,y values
     private void startTouch(float x, float y) {
         mPath.moveTo(x, y);

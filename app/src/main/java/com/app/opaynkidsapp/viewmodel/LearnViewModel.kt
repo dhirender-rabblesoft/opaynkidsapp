@@ -143,7 +143,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         binder.toolbar.icmenu2.setOnClickListener {
             baseActivity.onBackPressed()
         }
-        binder.loginbutton.setOnClickListener {
+        binder.commonButton.commonNextButton.setOnClickListener {
 
             i++
             if (listofword.size >i ){
@@ -156,7 +156,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         binder.resetImg.setOnClickListener {
             setAnimation()
         }
-        binder.priviousImg.setOnClickListener {
+        binder.commonButton.commonPreButton.setOnClickListener {
             if (i>0){
                 --i
                 binder.word.setText(listofword[i])    // body of loop
