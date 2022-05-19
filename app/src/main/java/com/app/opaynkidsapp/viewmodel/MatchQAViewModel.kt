@@ -1,41 +1,47 @@
 package com.app.opaynkidsapp.viewmodel
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import android.os.Looper
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.ABMatchAdapter
 import com.app.opaynkidsapp.adapter.ABMatchAdapter2
+import com.app.opaynkidsapp.adapter.RecyclerTouchListener
+import com.app.opaynkidsapp.adapter.RecyclerTouchListener.ClickListener
 import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.CanvasDraw2
 import com.app.opaynkidsapp.base.KotlinBaseActivity
+import com.app.opaynkidsapp.base.KotlinCanvas
 import com.app.opaynkidsapp.databinding.ActivityMatchQaactivityBinding
-import com.app.opaynkidsapp.extensions.gone
+import com.app.opaynkidsapp.extensions.isNotNull
 import com.app.opaynkidsapp.extensions.visible
+import com.app.opaynkidsapp.listner.ItemClick
+
 import com.app.opaynkidsapp.listner.Listener
-import com.app.opaynkidsapp.ui.HomeScreen
 import com.app.opaynkidsapp.utils.Keys
 import kotlinx.coroutines.*
 import java.util.*
-import java.util.logging.Handler
-import kotlin.collections.ArrayList
 
 
-class MatchQAViewModel(application: Application) : AppViewModel(application), Listener {
+class MatchQAViewModel(application: Application) : AppViewModel(application), Listener, ItemClick {
     private lateinit var binder: ActivityMatchQaactivityBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
     var isFlag = false
-    lateinit var canvasView: CanvasDraw2
+    lateinit var canvasView: KotlinCanvas
     val activityScope = CoroutineScope(Dispatchers.Main)
-    var topListAdapter:ABMatchAdapter? = null
-    var bottomListAdapter:ABMatchAdapter2? = null
+    var topListAdapter: ABMatchAdapter? = null
+    var bottomListAdapter: ABMatchAdapter2? = null
+    var startx = 0f
+    var starty = 0f
+    var endx = 0f
+    var endy = 0f
+
 
     fun setBinder(binder: ActivityMatchQaactivityBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
@@ -48,13 +54,14 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         setcanas()
         settoolbar()
         binder.loginbutton.setOnClickListener {
-            Toast.makeText(baseActivity,"You submit your test",Toast.LENGTH_LONG).show()
+            Toast.makeText(baseActivity, "You submit your test", Toast.LENGTH_LONG).show()
             Keys.isSubmit = true
             topListAdapter?.notifyDataSetChanged()
             bottomListAdapter?.notifyDataSetChanged()
         }
     }
-    private fun settoolbar(){
+
+    private fun settoolbar() {
         binder.toolbar.tvtitle.setText("Drag and Drop")
         binder.toolbar.icmenu2.visible()
         binder.toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
@@ -65,12 +72,11 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
     }
 
     private fun setcanas() {
-        canvasView = CanvasDraw2(baseActivity)
-        canvasView.width = 50
-        canvasView.height = 50
+        canvasView = KotlinCanvas(baseActivity, this)
+        canvasView.mwidth = 50
+        canvasView.mheight = 50
         binder.drawcanavs.addView(canvasView)
     }
-
 
 
     private fun initLeftRecyclerView() {
@@ -82,7 +88,23 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         leftlist.add(MatchListingModel('B'))
         leftlist.add(MatchListingModel('C'))
         leftlist.add(MatchListingModel('D'))
-          topListAdapter = ABMatchAdapter(leftlist, this, baseActivity){
+        topListAdapter = ABMatchAdapter(leftlist, this, baseActivity) {
+
+            val child =
+                binder.rvAmatcher.findChildViewUnder(startx, starty)
+
+
+                if (child.isNotNull()) {
+                    val pos = binder.rvAmatcher.getChildAdapterPosition(child!!)
+
+                    Log.e(
+                        "childpositon",
+                        binder.rvAmatcher.getChildAdapterPosition(child!!).toString()
+                    )
+                    Log.e("childpositon", leftlist[pos].name.toString())
+                }
+
+
 //            if (leftlist[it].ans.equals(0)){
 //                binder.animContianer.visibility =View.VISIBLE
 //                binder.crylottiesanim.playAnimation()
@@ -93,9 +115,42 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
 //                    binder.crylottiesanim.resumeAnimation()
 //                }
 //            }
-
         }
         binder.rvAmatcher!!.adapter = topListAdapter
+
+//        binder.rvAmatcher.addOnItemTouchListener(object :RecyclerView.OnItemTouchListener{
+//            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+//                val child: View? = rv.findChildViewUnder(e.x, e.y)
+//                if (child != null) {
+//                    val view = child
+//                    val posotion  = rv.getChildAdapterPosition(child)
+//
+//                    Log.e("85dfdfdfdf","85888888")
+//                    Log.e("85dfdfdfdf",posotion.toString())
+//                    Log.e("85dfdfdfdf***",view.x.toString())
+//                    Log.e("85dfdfdfdf===",view.y.toString())
+//                    canvasView.startTouch(view.x,view.y)
+//                }
+//                return true
+//            }
+//
+//            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+//                val child: View? = rv.findChildViewUnder(e.x, e.y)
+//                if (child != null) {
+//                    val view = child
+//                    val posotion  = rv.getChildAdapterPosition(child)
+//
+//                    Log.e("85dfdfdfdf","85888888")
+//                }
+//
+//            }
+//
+//            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+//
+//
+//            }
+//
+//        })
 
         binder.rvAmatcher!!.setOnDragListener(topListAdapter?.dragInstance)
 
@@ -112,8 +167,41 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         rightList.add(MatchListingModel('C'))
         rightList.add(MatchListingModel('D'))
 
-         bottomListAdapter = ABMatchAdapter2(rightList, this, baseActivity)
+        bottomListAdapter = ABMatchAdapter2(rightList, this, baseActivity)
         binder.rvBMatcher.adapter = bottomListAdapter
+//        binder.rvBMatcher.addOnItemTouchListener(object :RecyclerView.OnItemTouchListener{
+//            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+//                val child: View? = rv.findChildViewUnder(e.x, e.y)
+//                if (child != null) {
+//                    val view = child
+//                    val posotion  = rv.getChildAdapterPosition(child)
+//
+//                    Log.e("85dfdfdfdf","85888888")
+//                    Log.e("85dfdfdfdf",posotion.toString())
+//                    Log.e("85dfdfdfdf***",view.x.toString())
+//                    Log.e("85dfdfdfdf===",view.y.toString())
+//                    canvasView.upTouch(view.x,view.y)
+//                }
+//                return true
+//            }
+//
+//            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+//                val child: View? = rv.findChildViewUnder(e.x, e.y)
+//                if (child != null) {
+//                    val view = child
+//                    val posotion  = rv.getChildAdapterPosition(child)
+//
+//                    Log.e("85dfdfdfdf","85888888")
+//                }
+//
+//            }
+//
+//            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+//
+//
+//            }
+//
+//        })
 //        binder.rvBMatcher.setOnDragListener(bottomListAdapter.dragInstance)
     }
 
@@ -126,7 +214,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
     }
 
     override fun setEmptyListTop(visibility: Boolean) {
-         binder.rvAmatcher?.setVisibility(if (visibility) View.GONE else View.VISIBLE)
+        binder.rvAmatcher?.setVisibility(if (visibility) View.GONE else View.VISIBLE)
 
     }
 
@@ -137,5 +225,21 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
 
     override fun setpostion(position: Boolean) {
     }
+
+    override fun onItemViewClicked(startx: Float, starty: Float) {
+
+        Log.e("checkstartxy", "startx  $startx start y  $starty")
+        this.startx = startx
+        this.starty = starty
+
+    }
+
+    override fun onItemViewClicked2(endx: Float, endy: Float) {
+        Log.e("checkstartxy", "endx  $endx end y  $endy")
+        this.endx = endx
+        this.endy = endy
+
+    }
+
 
 }

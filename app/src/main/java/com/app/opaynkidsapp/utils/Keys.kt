@@ -2,8 +2,10 @@ package com.app.opaynkidsapp.utils
 object Keys
 {
 
+
     var isSubmit: Boolean = false
     var startx: Float = 0.0f
+
     var starty: Float = 0.0f
     var endx: Float = 0.0f
     var endy: Float = 0.0f
@@ -43,8 +45,11 @@ object Keys
     /*saved keys*/
     const val USERDATA = "userdata"
     const val  TOKEN = "token"
+
     const val GUESTUSER = "guestuser"
     const val USERID = "userid"
+
+
 
 
     /*parms Keys*/

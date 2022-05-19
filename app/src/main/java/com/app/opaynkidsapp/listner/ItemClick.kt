@@ -1,6 +1,7 @@
 package com.app.opaynkidsapp.listner
 
 interface ItemClick {
-    fun onItemViewClicked( position: Int,  type:String )
+    fun onItemViewClicked( startx: Float,  starty:Float )
+    fun onItemViewClicked2( endx: Float,  endy:Float )
 
 }

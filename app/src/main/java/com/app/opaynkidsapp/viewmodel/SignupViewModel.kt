@@ -8,14 +8,13 @@ import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivitySignupBinding
 import com.app.opaynkidsapp.extensions.hideKeyboard
 import com.app.opaynkidsapp.extensions.isEmailValid
-import com.app.opaynkidsapp.listner.ItemClick
-import com.app.opaynkidsapp.ui.OTPVerify
+ import com.app.opaynkidsapp.ui.OTPVerify
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import java.lang.StringBuilder
 
-class SignupViewModel (application: Application) : AppViewModel(application), ItemClick {
+class SignupViewModel (application: Application) : AppViewModel(application)  {
 
     private lateinit var binder: ActivitySignupBinding
     lateinit var baseActivity: KotlinBaseActivity
@@ -122,7 +121,5 @@ class SignupViewModel (application: Application) : AppViewModel(application), It
     }
 
 
-    override fun onItemViewClicked(position: Int, type: String) {
 
-    }
 }

@@ -19,19 +19,19 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.DragListener
-import com.app.opaynkidsapp.listner.Listener
+ import com.app.opaynkidsapp.listner.Listener
 import com.app.opaynkidsapp.utils.Keys
 import com.app.opaynkidsapp.viewmodel.MatchListingModel
 
 
-     class ABMatchAdapter(
+class ABMatchAdapter(
     var list: List<MatchListingModel>,
-      val listener: Listener?,
+    val listener: Listener?,
     val context: Context,
     val itemClick: (Int) -> Unit
 
 ) :
-    RecyclerView.Adapter<ABMatchAdapter.ListViewHolder>(), View.OnTouchListener {
+    RecyclerView.Adapter<ABMatchAdapter.ListViewHolder>(), View.OnTouchListener  {
     var ischeck = false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(
@@ -41,14 +41,15 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        itemClick(position)
         holder.text!!.text = list[position].name.toString()
         holder.frameLayout!!.tag = position
         holder.frameLayout!!.setOnTouchListener(this)
         holder.frameLayout!!.setOnDragListener(DragListener(listener!!, context))
 
         if (list[position].isclick) {
-            if (Keys.isSubmit){
-                if (list[position].isclick){
+            if (Keys.isSubmit) {
+                if (list[position].isclick) {
                     holder.frameLayout!!.setBackgroundColor(Color.GREEN)
                 }
 
@@ -57,20 +58,20 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
 //            itemClick(position)
         } else {
 
-            if (Keys.isSubmit){
-                if (!list[position].isclick){
+            if (Keys.isSubmit) {
+                if (!list[position].isclick) {
                     holder.frameLayout!!.setBackgroundColor(Color.RED)
                 }
 
             }
-            if (list[position].ans.equals(0)){
+            if (list[position].ans.equals(0)) {
                 itemClick(position)
             }
 
             Handler(Looper.getMainLooper()).postDelayed({
-                if (!list[position].isdrag){
+                if (!list[position].isdrag) {
                     holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
-                }else {
+                } else {
                     holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.main_color))
                 }
 
@@ -84,7 +85,7 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-    val tag = v.tag
+        val tag = v.tag
         if (list[tag as Int].isdrag) {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -124,5 +125,6 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
         var llcontainer: ConstraintLayout? = itemView?.findViewById(R.id.llcontainer)
 
     }
+
 
 }

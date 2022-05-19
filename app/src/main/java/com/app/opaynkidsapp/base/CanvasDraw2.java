@@ -9,21 +9,20 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.app.opaynkidsapp.listner.CanvasListner;
-import com.app.opaynkidsapp.utils.Keys;
 
-
-public class CanvasDraw2  extends View {
+public class CanvasDraw2  extends View  {
 
     private static final float TOLERANCE = 5;
     public int width;
     public int height;
+
     Context context;
     private Bitmap mBitmap;
     private Canvas mCanvas;
     private Path mPath;
     private Paint mPaint;
     private float mX, mY;
+    public Float startx,starty;
 
 
     public CanvasDraw2(Context c) {
@@ -62,6 +61,8 @@ public class CanvasDraw2  extends View {
 
     // when ACTION_DOWN start touch according to the x,y values
    public void startTouch(float x, float y) {
+//        checkItemClick.onItemViewClicked(x,y);
+
         mPath.moveTo(x, y);
         mX = x;
         mY = y;
@@ -86,12 +87,19 @@ public class CanvasDraw2  extends View {
         invalidate();
     }
 
+//    // when ACTION_UP stop touch
+//    private void upTouch() {
+//        mPath.lineTo(mX, mY);
+//
+//    }
     // when ACTION_UP stop touch
-    private void upTouch() {
-        mPath.lineTo(mX, mY);
+     public void upTouch(float x, float y) {
+
+        mPath.lineTo(x, y);
 
     }
     public void addtargetline(float x, float y) {
+//        checkItemClick.onItemViewClicked2(x,y);
         mX = x;
         mY = y;
         mPath.lineTo(x, y);
@@ -106,6 +114,8 @@ public class CanvasDraw2  extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                startx = x;
+                starty = y;
                 startTouch(x, y);
 
                 invalidate();
@@ -117,6 +127,7 @@ public class CanvasDraw2  extends View {
             case MotionEvent.ACTION_UP:
 //                upTouch();
                 addtargetline(x,y);
+
                 invalidate();
                 break;
         }
