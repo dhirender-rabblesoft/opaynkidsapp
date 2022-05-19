@@ -41,6 +41,8 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
     var starty = 0f
     var endx = 0f
     var endy = 0f
+    val leftlist: MutableList<MatchListingModel> = ArrayList()
+    val rightList: MutableList<MatchListingModel> = ArrayList()
 
 
     fun setBinder(binder: ActivityMatchQaactivityBinding, baseActivity: KotlinBaseActivity) {
@@ -53,6 +55,8 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         initRightRecyclerView()
         setcanas()
         settoolbar()
+
+
         binder.loginbutton.setOnClickListener {
             Toast.makeText(baseActivity, "You submit your test", Toast.LENGTH_LONG).show()
             Keys.isSubmit = true
@@ -83,7 +87,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         binder.rvAmatcher!!.layoutManager = LinearLayoutManager(
             baseActivity, LinearLayoutManager.VERTICAL, false
         )
-        val leftlist: MutableList<MatchListingModel> = ArrayList()
+
         leftlist.add(MatchListingModel('A'))
         leftlist.add(MatchListingModel('B'))
         leftlist.add(MatchListingModel('C'))
@@ -91,26 +95,10 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         topListAdapter = ABMatchAdapter(leftlist, this, baseActivity) {
 
 
-            val child =
-                binder.rvAmatcher.findChildViewUnder(startx, starty)
-
-
-                if (child.isNotNull()) {
-                    val pos = binder.rvAmatcher.getChildAdapterPosition(child!!)
-
-                    Log.e(
-                        "childpositon",
-                        binder.rvAmatcher.getChildAdapterPosition(child!!).toString()
-                    )
-                    Log.e("childpositon", leftlist[pos].name.toString())
-                }
-
-
         }
         binder.rvAmatcher!!.adapter = topListAdapter
 
         binder.rvAmatcher!!.setOnDragListener(topListAdapter?.dragInstance)
-
 
     }
 
@@ -118,7 +106,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         binder.rvBMatcher!!.layoutManager = LinearLayoutManager(
             baseActivity, LinearLayoutManager.VERTICAL, false
         )
-        val rightList: MutableList<MatchListingModel> = ArrayList()
+
         rightList.add(MatchListingModel('A'))
         rightList.add(MatchListingModel('B'))
         rightList.add(MatchListingModel('C'))
@@ -157,12 +145,34 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         this.startx = startx
         this.starty = starty
 
+        val child =
+            binder.rvAmatcher.findChildViewUnder(startx, starty)
+
+
+        if (child.isNotNull()) {
+            val pos = binder.rvAmatcher.getChildAdapterPosition(child!!)
+
+            Log.e(
+                "childpositon",
+                binder.rvAmatcher.getChildAdapterPosition(child!!).toString()
+            )
+            Log.e("childpositon", leftlist[pos].name.toString())
+        }
+
     }
 
     override fun onItemViewClicked2(endx: Float, endy: Float) {
-        Log.e("checkstartxy", "endx  $endx end y  $endy")
+        Log.e("checkstartxy222", "endx  $endx end y  $endy")
         this.endx = endx
         this.endy = endy
+
+
+        val child2 = binder.rvBMatcher.findChildViewUnder(849.0f, 501.0f)
+        if (child2.isNotNull()) {
+            val positon = binder.rvBMatcher.getChildAdapterPosition(child2!!)
+            Log.e("childpositon", positon.toString())
+        }
+
 
     }
 

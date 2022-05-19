@@ -7,7 +7,7 @@ import android.view.View
 import com.app.opaynkidsapp.listner.ItemClick
 
 
-class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
+class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
     mcontext
 ) {
     var mwidth = 0
@@ -63,14 +63,14 @@ class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
     }
 
     //    // when ACTION_UP stop touch
-    //    private void upTouch() {
-    //        mPath.lineTo(mX, mY);
-    //
-    //    }
-    // when ACTION_UP stop touch
-    fun upTouch(x: Float, y: Float) {
-        mPath.lineTo(x, y)
+    private fun upTouch() {
+        mPath.lineTo(mX, mY);
+
     }
+    // when ACTION_UP stop touch
+//    fun upTouch(x: Float, y: Float) {
+//        mPath.lineTo(x, y)
+//    }
 
     fun addtargetline(x: Float, y: Float) {
 //        checkItemClick.onItemViewClicked2(x,y);
@@ -87,7 +87,7 @@ class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
             MotionEvent.ACTION_DOWN -> {
                 startx = x
                 starty = y
-                itemClick.onItemViewClicked(x,y)
+                itemClick.onItemViewClicked(x, y)
                 startTouch(x, y)
                 invalidate()
             }
@@ -96,9 +96,10 @@ class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
                 invalidate()
             }
             MotionEvent.ACTION_UP -> {
-                //                upTouch();
-                itemClick.onItemViewClicked2(x,y)
-                addtargetline(x, y)
+                itemClick.onItemViewClicked2(x, y)
+                upTouch();
+
+//                addtargetline(x, y)
                 invalidate()
             }
         }
