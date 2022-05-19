@@ -90,6 +90,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         leftlist.add(MatchListingModel('D'))
         topListAdapter = ABMatchAdapter(leftlist, this, baseActivity) {
 
+
             val child =
                 binder.rvAmatcher.findChildViewUnder(startx, starty)
 
