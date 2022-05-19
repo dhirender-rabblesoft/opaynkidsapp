@@ -106,52 +106,8 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
                 }
 
 
-//            if (leftlist[it].ans.equals(0)){
-//                binder.animContianer.visibility =View.VISIBLE
-//                binder.crylottiesanim.playAnimation()
-//
-//                activityScope.launch {
-//                    delay(1500)
-//                    binder.animContianer.visibility =View.GONE
-//                    binder.crylottiesanim.resumeAnimation()
-//                }
-//            }
         }
         binder.rvAmatcher!!.adapter = topListAdapter
-
-//        binder.rvAmatcher.addOnItemTouchListener(object :RecyclerView.OnItemTouchListener{
-//            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-//                val child: View? = rv.findChildViewUnder(e.x, e.y)
-//                if (child != null) {
-//                    val view = child
-//                    val posotion  = rv.getChildAdapterPosition(child)
-//
-//                    Log.e("85dfdfdfdf","85888888")
-//                    Log.e("85dfdfdfdf",posotion.toString())
-//                    Log.e("85dfdfdfdf***",view.x.toString())
-//                    Log.e("85dfdfdfdf===",view.y.toString())
-//                    canvasView.startTouch(view.x,view.y)
-//                }
-//                return true
-//            }
-//
-//            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
-//                val child: View? = rv.findChildViewUnder(e.x, e.y)
-//                if (child != null) {
-//                    val view = child
-//                    val posotion  = rv.getChildAdapterPosition(child)
-//
-//                    Log.e("85dfdfdfdf","85888888")
-//                }
-//
-//            }
-//
-//            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-//
-//
-//            }
-//
-//        })
 
         binder.rvAmatcher!!.setOnDragListener(topListAdapter?.dragInstance)
 
@@ -170,39 +126,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
 
         bottomListAdapter = ABMatchAdapter2(rightList, this, baseActivity)
         binder.rvBMatcher.adapter = bottomListAdapter
-//        binder.rvBMatcher.addOnItemTouchListener(object :RecyclerView.OnItemTouchListener{
-//            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-//                val child: View? = rv.findChildViewUnder(e.x, e.y)
-//                if (child != null) {
-//                    val view = child
-//                    val posotion  = rv.getChildAdapterPosition(child)
-//
-//                    Log.e("85dfdfdfdf","85888888")
-//                    Log.e("85dfdfdfdf",posotion.toString())
-//                    Log.e("85dfdfdfdf***",view.x.toString())
-//                    Log.e("85dfdfdfdf===",view.y.toString())
-//                    canvasView.upTouch(view.x,view.y)
-//                }
-//                return true
-//            }
-//
-//            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
-//                val child: View? = rv.findChildViewUnder(e.x, e.y)
-//                if (child != null) {
-//                    val view = child
-//                    val posotion  = rv.getChildAdapterPosition(child)
-//
-//                    Log.e("85dfdfdfdf","85888888")
-//                }
-//
-//            }
-//
-//            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-//
-//
-//            }
-//
-//        })
+
 //        binder.rvBMatcher.setOnDragListener(bottomListAdapter.dragInstance)
     }
 
