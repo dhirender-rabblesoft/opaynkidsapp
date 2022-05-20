@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorFilter
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.CanvasDraw
+import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.extensions.visible
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_otpverify.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import java.util.*
 
-class DrawPractice : AppCompatActivity() {
+class DrawPractice : KotlinBaseActivity() {
 
     var textToSpeech: TextToSpeech? = null
 
@@ -37,11 +38,12 @@ class DrawPractice : AppCompatActivity() {
         canvasView.height = 50
         parentView.addView(canvasView)
 
-        setanimation()
+
         drawWord.visible()
 
 
         selectcolor.setOnClickListener {
+            setCommonButtonClickEffect(it)
             MaterialColorPickerDialog
                 .Builder(this)                            // Pass Activity Instance
                 .setTitle("Pick Theme")                // Default "Choose Color"
@@ -59,6 +61,7 @@ class DrawPractice : AppCompatActivity() {
 
 
         cleanCanvas.setOnClickListener {
+            setCommonButtonClickEffect(it)
             canvasView.clearCanvas()
         }
 
@@ -80,10 +83,12 @@ class DrawPractice : AppCompatActivity() {
 
 
 
-    private fun setanimation() {
 
-        drawWord.animate().translationXBy(300f).translationY(50f).duration = 1000
-    }
+    // animation base on x and y axis screen and move according to given x and y values
+//    private fun setanimation() {
+//
+//        drawWord.animate().translationXBy(300f).translationY(50f).duration = 1000
+//    }
 
 
 
@@ -91,7 +96,8 @@ class DrawPractice : AppCompatActivity() {
         backbutton.setOnClickListener {
             onBackPressed()
         }
-        speakerlotties.setOnClickListener {
+        drawspeaker.setOnClickListener {
+            setCommonButtonClickEffect(it)
 //            speakerlotties.playAnimation()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 textToSpeech?.speak("A", TextToSpeech.QUEUE_FLUSH, null, null)

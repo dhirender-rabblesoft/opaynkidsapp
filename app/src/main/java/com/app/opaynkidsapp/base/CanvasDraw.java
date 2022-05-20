@@ -34,7 +34,7 @@ public class CanvasDraw extends View {
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeWidth(20f);
+        mPaint.setStrokeWidth(30f);
     }
 
     // override onSizeChanged

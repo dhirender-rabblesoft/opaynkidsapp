@@ -17,6 +17,7 @@ import android.text.style.ImageSpan
 import android.text.style.URLSpan
 import android.util.Log
 import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
@@ -637,6 +638,10 @@ open class KotlinBaseActivity(@IdRes private val container: Int = 0) : AppCompat
     }
    override fun showAlert(message: String) {
 
+    }
+    fun setCommonButtonClickEffect(view: View){
+        val animationefeect = AnimationUtils.loadAnimation(this,R.anim.fade_in)
+        view.startAnimation(animationefeect)
     }
 
 }
