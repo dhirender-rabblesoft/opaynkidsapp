@@ -80,6 +80,28 @@
 
 
 
+    //color listing
+    <color name="red_color">#FF0000</color>
+    <color name="cyan_color">#00FFFF</color>
+    <color name="ligh_blue_color">#ADD8E6</color>
+    <color name="blue_color">#0000FF</color>
+    <color name="purple_color">#800080</color>
+    <color name="yellow_color">#FFFF00</color>
+    <color name="lime_color">#00FF00</color>
+    <color name="megenta_color">#FF00FF</color>
+    <color name="pink_color">#FFC0CB</color>
+    <color name="silver_color">#C0C0C0</color>
+    <color name="grey_color">#808080</color>
+    <color name="black_color">#000000</color>
+    <color name="orange_color">#FFA500</color>
+    <color name="brown_color">#A52A2A</color>
+    <color name="maroon_color">#800000</color>
+    <color name="green_color">#008000</color>
+    <color name="olive_color">#808000</color>
+    <color name="aquamarine_color">#7FFFD4</color>
+
+
+
 
 
 </resources>

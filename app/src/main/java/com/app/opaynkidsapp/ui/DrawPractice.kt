@@ -13,8 +13,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorFilter
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.CanvasDraw
+import com.app.opaynkidsapp.base.ColorPicker
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.extensions.visible
+import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
@@ -41,23 +43,30 @@ class DrawPractice : KotlinBaseActivity() {
 
         drawWord.visible()
 
-
         selectcolor.setOnClickListener {
-            setCommonButtonClickEffect(it)
-            MaterialColorPickerDialog
-                .Builder(this)                            // Pass Activity Instance
-                .setTitle("Pick Theme")                // Default "Choose Color"
-                .setColorShape(ColorShape.SQAURE)    // Default ColorShape.CIRCLE
-                .setColorSwatch(ColorSwatch._300)    // Default ColorSwatch._500
-                .setDefaultColor(R.color.black)        // Pass Default Color
-                .setColorListener { color, colorHex ->
-                    // Handle Color Selection
-                    selectcolor.setBackgroundColor(color)
-
-                    canvasView.setcolor(color)
-                }
-                .show()
+            val colorDailog = ColorPicker(this) {
+                selectcolor.setBackgroundColor(resources.getColor(it))
+                canvasView.setcolor(resources.getColor(it))
+            }
+            colorDailog.show(supportFragmentManager, colorDailog.tag)
         }
+
+//        selectcolor.setOnClickListener {
+//            setCommonButtonClickEffect(it)
+//            MaterialColorPickerDialog
+//                .Builder(this)                            // Pass Activity Instance
+//                .setTitle("Pick Theme")                // Default "Choose Color"
+//                .setColorShape(ColorShape.SQAURE)    // Default ColorShape.CIRCLE
+//                .setColorSwatch(ColorSwatch._300)    // Default ColorSwatch._500
+//                .setDefaultColor(R.color.black)        // Pass Default Color
+//                .setColorListener { color, colorHex ->
+//                    // Handle Color Selection
+//                    selectcolor.setBackgroundColor(color)
+//
+//                    canvasView.setcolor(color)
+//                }
+//                .show()
+//        }
 
 
         cleanCanvas.setOnClickListener {
@@ -82,14 +91,11 @@ class DrawPractice : KotlinBaseActivity() {
     }
 
 
-
-
     // animation base on x and y axis screen and move according to given x and y values
 //    private fun setanimation() {
 //
 //        drawWord.animate().translationXBy(300f).translationY(50f).duration = 1000
 //    }
-
 
 
     private fun setClick() {
