@@ -1,34 +1,26 @@
 package com.app.opaynkidsapp.adapter
 
 
-import android.content.ClipData
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
-import com.app.opaynkidsapp.base.DragListener
-import com.app.opaynkidsapp.listner.Listener
 import com.app.opaynkidsapp.utils.Keys
-import com.app.opaynkidsapp.viewmodel.MatchListingModel
+import com.app.opaynkidsapp.viewmodel.RightMatchListingModel
 
 
-  class ABMatchAdapter2(
-    var list: List<MatchListingModel>,
-    private val listener: Listener?,
+class ABMatchAdapterRight(
+    var list: List<RightMatchListingModel>,
+
     val context: Context
 ) :
-    RecyclerView.Adapter<ABMatchAdapter2.ListViewHolder>(), View.OnTouchListener {
+    RecyclerView.Adapter<ABMatchAdapterRight.ListViewHolder>(), View.OnTouchListener {
     var ischeck = false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(
@@ -38,33 +30,16 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+
         holder.text!!.text = list[position].name.toString()
         holder.frameLayout!!.tag = position
-        holder.frameLayout!!.setOnTouchListener(this)
-        holder.frameLayout!!.setOnDragListener(DragListener(listener!!, context))
+        if (Keys.isSubmit && list[position].isRight) {
 
-        if (list[position].isclick) {
-            if (Keys.isSubmit){
-                holder.frameLayout!!.setBackgroundColor(Color.GREEN)
-            }
-            holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
-
-        } else {
-            if (Keys.isSubmit){
-                if (!list[position].isclick){
-                    holder.frameLayout!!.setBackgroundColor(Color.RED)
-                }
-
-            }
-            Handler(Looper.getMainLooper()).postDelayed({
-                if (!list[position].isenable){
-                    holder.llcontainer!!.setBackgroundColor(context.resources.getColor(R.color.black_30))
-                }else {
-                    holder.frameLayout!!.setBackgroundColor(context.resources.getColor(R.color.main_color))
-                }
-            }, 500)
+            holder.frameLayout!!.setBackgroundColor(Color.GREEN)
 
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -89,17 +64,10 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
         return false
     }
 
-    fun updateList(list: List<MatchListingModel>) {
+    fun updateList(list: List<RightMatchListingModel>) {
         this.list = list
     }
 
-    val dragInstance: DragListener?
-        get() = if (listener != null) {
-            DragListener(listener, context)
-        } else {
-            Log.e("ListAdapter", "Listener wasn't initialized!")
-            null
-        }
 
     inner class ListViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
 

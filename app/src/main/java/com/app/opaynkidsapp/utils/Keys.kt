@@ -3,6 +3,8 @@ object Keys
 {
 
 
+    var endpoint: Boolean = false
+    var startpoint: Boolean = false
     var isSubmit: Boolean = false
     var startx: Float = 0.0f
 

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.app.opaynkidsapp.listner.ItemClick
+import com.app.opaynkidsapp.utils.Keys
 
 
 class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
@@ -15,12 +16,15 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
     var mheight = 0
     private var mBitmap: Bitmap? = null
     private var mCanvas: Canvas? = null
-    private val mPath: Path
-    private val mPaint: Paint
+    val mPath: Path
+      val mPaint: Paint
     private var mX = 0f
     private var mY = 0f
     var startx: Float? = null
     var starty: Float? = null
+
+
+
 
     // override onSizeChanged
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -88,8 +92,12 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
             MotionEvent.ACTION_DOWN -> {
                 startx = x
                 starty = y
-                itemClick.onItemViewClicked(x, y)
-                startTouch(x, y)
+                itemClick.onItemViewClickedLeft(x, y)
+                if (Keys.startpoint){
+                    startTouch(x, y)
+                    Keys.startpoint = false
+                }
+
                 invalidate()
             }
             MotionEvent.ACTION_MOVE -> {
@@ -97,9 +105,13 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
                 invalidate()
             }
             MotionEvent.ACTION_UP -> {
-                Log.e("ppppppppppppppppppp00",x.toString() + " and y - "+ y.toString())
-                itemClick.onItemViewClicked2(x, y)
-                upTouch();
+                Log.e("ppppppppppppppppppp00", x.toString() + " and y - " + y.toString())
+                itemClick.onItemViewClickedRight(x, y)
+                if (Keys.endpoint){
+                    upTouch();
+                    Keys.endpoint = false
+                }
+
 
 //                addtargetline(x, y)
                 invalidate()
