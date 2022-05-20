@@ -2,6 +2,7 @@ package com.app.opaynkidsapp.base
 
 import android.content.Context
 import android.graphics.*
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.app.opaynkidsapp.listner.ItemClick
@@ -96,6 +97,7 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
                 invalidate()
             }
             MotionEvent.ACTION_UP -> {
+                Log.e("ppppppppppppppppppp00",x.toString() + " and y - "+ y.toString())
                 itemClick.onItemViewClicked2(x, y)
                 upTouch();
 

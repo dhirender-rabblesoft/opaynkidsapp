@@ -3,25 +3,19 @@ package com.app.opaynkidsapp.viewmodel
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.ABMatchAdapter
 import com.app.opaynkidsapp.adapter.ABMatchAdapter2
-import com.app.opaynkidsapp.adapter.RecyclerTouchListener
-import com.app.opaynkidsapp.adapter.RecyclerTouchListener.ClickListener
 import com.app.opaynkidsapp.base.AppViewModel
-import com.app.opaynkidsapp.base.CanvasDraw2
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.base.KotlinCanvas
 import com.app.opaynkidsapp.databinding.ActivityMatchQaactivityBinding
 import com.app.opaynkidsapp.extensions.isNotNull
 import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.listner.ItemClick
-
 import com.app.opaynkidsapp.listner.Listener
 import com.app.opaynkidsapp.utils.Keys
 import kotlinx.coroutines.*
@@ -148,31 +142,31 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         val child =
             binder.rvAmatcher.findChildViewUnder(startx, starty)
 
-
         if (child.isNotNull()) {
             val pos = binder.rvAmatcher.getChildAdapterPosition(child!!)
-
-            Log.e(
-                "childpositon",
-                binder.rvAmatcher.getChildAdapterPosition(child!!).toString()
-            )
+            Log.e("childpositon", binder.rvAmatcher.getChildAdapterPosition(child!!).toString())
             Log.e("childpositon", leftlist[pos].name.toString())
         }
-
     }
 
     override fun onItemViewClicked2(endx: Float, endy: Float) {
+
         Log.e("checkstartxy222", "endx  $endx end y  $endy")
         this.endx = endx
         this.endy = endy
+        val originalPos = IntArray(2)
+        binder.rvBMatcher.getLocationInWindow(originalPos)
+        val x = originalPos[0]
+        val y = originalPos[1]
 
+        Log.e("02020202202",x.toString())
 
-        val child2 = binder.rvBMatcher.findChildViewUnder(849.0f, 501.0f)
+        val child2 = binder.rvBMatcher.findChildViewUnder(endx, endy)
+
         if (child2.isNotNull()) {
             val positon = binder.rvBMatcher.getChildAdapterPosition(child2!!)
-            Log.e("childpositon", positon.toString())
+            Log.e("uuuuuu87878787878887",binder.rvAmatcher.getChildAdapterPosition(child2!!).toString())
         }
-
 
     }
 
