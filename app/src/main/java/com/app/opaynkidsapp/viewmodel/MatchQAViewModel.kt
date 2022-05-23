@@ -43,7 +43,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
-    Keys.isSubmit = false
+        Keys.isSubmit = false
         initLeftRecyclerView()
         initRightRecyclerView()
         setcanas()
@@ -93,9 +93,6 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 
         leftListAdapter = ABMatchAdapterLeft(leftlist, baseActivity) {
 
-
-
-
         }
         binder.rvAmatcher.adapter = leftListAdapter
 
@@ -133,14 +130,12 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 
 
         if (leftchild.isNotNull()) {
-
-
             val pos = binder.rvAmatcher.getChildAdapterPosition(leftchild!!)
             sourcePosition = pos
 
-            if (leftlist[sourcePosition].selectedID.equals(-1)){
+            if (leftlist[sourcePosition].selectedID.equals(-1)) {
                 Keys.startpoint = true
-            }else{
+            } else {
                 Keys.startpoint = false
             }
 
@@ -168,13 +163,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
             val positon = binder.rvBMatcher.getChildAdapterPosition(rightchild!!)
             targetPosition = positon
 
-
-
-
             var badaptername = rightList[positon].name
-
-
-
 
 
 //                if (!leftlist[sourcePosition].selectedID.equals(rightList[targetPosition].id)){
@@ -183,25 +172,30 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 //                    Keys.endpoint = false
 //                }
 
-            leftlist[sourcePosition].selectedID = rightList[positon].id
+            
 
             leftlist.forEach {
-                if (it.selectedID.equals(rightList[positon].id)){
+
+                if (it.selectedID.equals(-1)) {
+                    leftlist[sourcePosition].selectedID = rightList[positon].id
+                }
+
+                if (it.selectedID.equals(rightList[positon].id)) {
+
+
 //                    Keys.endpoint = false
-                }else{
+                } else {
+                    Log.e("endtaskselection B - ", "BBBBBBBBBBB")
+
                     Keys.endpoint = true
 
                 }
             }
 
-
-
             if (leftlist[sourcePosition].selectedID.equals(leftlist[sourcePosition].answerID)) {
                 rightList[targetPosition].isRight = true
                 rightListAdapter?.notifyDataSetChanged()
             }
-
-
             leftListAdapter?.notifyDataSetChanged()
 
 

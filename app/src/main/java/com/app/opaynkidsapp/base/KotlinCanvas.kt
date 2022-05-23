@@ -95,9 +95,8 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
                 itemClick.onItemViewClickedLeft(x, y)
                 if (Keys.startpoint){
                     startTouch(x, y)
-                    Keys.startpoint = false
+//                    Keys.startpoint = false
                 }
-
                 invalidate()
             }
             MotionEvent.ACTION_MOVE -> {
@@ -107,7 +106,8 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
             MotionEvent.ACTION_UP -> {
                 Log.e("ppppppppppppppppppp00", x.toString() + " and y - " + y.toString())
                 itemClick.onItemViewClickedRight(x, y)
-                if (Keys.endpoint){
+                // TODO: if left and right recycler view get position by x and y values only then startpoint and endpoint will be ture 
+                if (Keys.endpoint && Keys.startpoint){
                     upTouch();
                     Keys.endpoint = false
                 }
