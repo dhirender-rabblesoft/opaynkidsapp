@@ -33,10 +33,12 @@ class ABMatchAdapterRight(
 
         holder.text!!.text = list[position].name.toString()
         holder.frameLayout!!.tag = position
-        if (Keys.isSubmit && list[position].isRight) {
-
-            holder.frameLayout!!.setBackgroundColor(Color.GREEN)
-
+        if (Keys.isSubmit ) {
+            if (list[position].isRight){
+                holder.frameLayout!!.setBackgroundColor(Color.GREEN)
+            }else{
+                holder.frameLayout!!.setBackgroundColor(Color.RED)
+            }
         }
 
 

@@ -17,13 +17,11 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
     private var mBitmap: Bitmap? = null
     private var mCanvas: Canvas? = null
     val mPath: Path
-      val mPaint: Paint
+    val mPaint: Paint
     private var mX = 0f
     private var mY = 0f
     var startx: Float? = null
     var starty: Float? = null
-
-
 
 
     // override onSizeChanged
@@ -93,7 +91,7 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
                 startx = x
                 starty = y
                 itemClick.onItemViewClickedLeft(x, y)
-                if (Keys.startpoint){
+                if (Keys.startpoint) {
                     startTouch(x, y)
 //                    Keys.startpoint = false
                 }
@@ -107,18 +105,18 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
                 Log.e("ppppppppppppppppppp00", x.toString() + " and y - " + y.toString())
                 itemClick.onItemViewClickedRight(x, y)
                 // TODO: if left and right recycler view get position by x and y values only then startpoint and endpoint will be ture 
-                if (Keys.endpoint && Keys.startpoint){
+                if (Keys.endpoint && Keys.startpoint) {
                     upTouch();
                     Keys.endpoint = false
                 }
-
-
 //                addtargetline(x, y)
                 invalidate()
             }
         }
         return true
     }
+
+
 
     companion object {
         private const val TOLERANCE = 5f
@@ -130,6 +128,7 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
 
         // and we set a new Paint with the desired attributes
         mPaint = Paint()
+
         mPaint.isAntiAlias = true
         mPaint.color = Color.BLUE
         mPaint.style = Paint.Style.STROKE

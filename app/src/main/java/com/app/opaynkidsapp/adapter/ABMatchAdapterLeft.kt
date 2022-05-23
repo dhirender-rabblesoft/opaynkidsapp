@@ -36,6 +36,8 @@ class ABMatchAdapterLeft(
         if (Keys.isSubmit){
             if (list[position].selectedID.equals(list[position].answerID)){
                 holder.frameLayout?.setBackgroundColor(Color.GREEN)
+            } else{
+                holder.frameLayout?.setBackgroundColor(Color.RED)
             }
         }
 

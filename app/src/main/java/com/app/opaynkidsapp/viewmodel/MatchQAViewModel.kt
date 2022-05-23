@@ -129,11 +129,14 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 
 
 
+
         if (leftchild.isNotNull()) {
             val pos = binder.rvAmatcher.getChildAdapterPosition(leftchild!!)
             sourcePosition = pos
 
+
             if (leftlist[sourcePosition].selectedID.equals(-1)) {
+
                 Keys.startpoint = true
             } else {
                 Keys.startpoint = false
@@ -153,6 +156,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
         val point = Point(endx.toInt(), endy.toInt())
         val convertedpoint = convertPoint(point, binder.matchcontainer, binder.rvBMatcher)
 
+
         val rightchild = binder.rvBMatcher.findChildViewUnder(
             convertedpoint!!.x.toFloat(),
             convertedpoint.y.toFloat()
@@ -163,6 +167,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
             val positon = binder.rvBMatcher.getChildAdapterPosition(rightchild!!)
             targetPosition = positon
 
+
             var badaptername = rightList[positon].name
 
 
@@ -172,25 +177,30 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 //                    Keys.endpoint = false
 //                }
 
-            
 
-            leftlist.forEach {
+            if (!rightList[positon].isSelect) {
 
-                if (it.selectedID.equals(-1)) {
-                    leftlist[sourcePosition].selectedID = rightList[positon].id
-                }
+                leftlist.forEach {
 
-                if (it.selectedID.equals(rightList[positon].id)) {
+                    if (it.selectedID.equals(-1)) {
+                        leftlist[sourcePosition].selectedID = rightList[positon].id
+                        rightList[positon].isSelect = true
+                    }
+
+                    if (it.selectedID.equals(rightList[positon].id)) {
 
 
 //                    Keys.endpoint = false
-                } else {
-                    Log.e("endtaskselection B - ", "BBBBBBBBBBB")
+                    } else {
+                        Log.e("endtaskselection B - ", "BBBBBBBBBBB")
 
-                    Keys.endpoint = true
+                        Keys.endpoint = true
 
+                    }
                 }
             }
+
+
 
             if (leftlist[sourcePosition].selectedID.equals(leftlist[sourcePosition].answerID)) {
                 rightList[targetPosition].isRight = true
