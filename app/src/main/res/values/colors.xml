@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="teal_200">#FF03DAC5</color>
-    <color name="main_color">#FCF5F3</color>
-    <color name="main_color_button">#D97254</color>
+    <color name="main_color">#68abff</color>
+    <color name="main_color_button">#68abff</color>
     <color name="background_blur">#80FCF5F3</color>
     <color name="button_color">#EBA049</color>
     <color name="teal_700">#FF018786</color>
@@ -20,6 +20,8 @@
     <color name="pink2">#FFCBD7</color>
     <color name="pink3">#F987A6</color>
     <color name="pink5">#F9678F</color>
+    <color name="pink6">#ffdbdb</color>
+    <color name="pink7">#fa7474</color>
     <color name="shimmer_placeholder">#dddddd</color>
     <color name="pink">#F6265F</color>
     <color name="pink4">#F6265F</color>
@@ -65,6 +67,8 @@
     <color name="grey25">#757575</color>
     <color name="grey26">#E5E5E5</color>
     <color name="grey_27">#CC65728A</color>
+    <color name="grey28">#f5f5f5</color>
+    <color name="grey29">#e1e1e1</color>
     <color name="colorOverlay">#78ffffff</color>
 
     <color name="red">#F6265F</color>
@@ -77,6 +81,18 @@
     <color name="lt_pink">#f4306d</color>
     <color name="dk_cyan">#3aaab8</color>
     <color name="dk_green">#38ba9e</color>
+    <color name="card_inner_color">#e6f1ff</color>
+    <color name="card_border_line_color">#cbe1ff</color>
+
+
+
+    <color name="green">#e4f2e6</color>
+    <color name="green_1">#8fbd92</color>
+
+
+
+
+
 
 
 

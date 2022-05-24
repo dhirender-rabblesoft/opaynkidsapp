@@ -35,9 +35,10 @@ class ABMatchAdapterLeft(
         holder.frameLayout!!.tag = position
         if (Keys.isSubmit){
             if (list[position].selectedID.equals(list[position].answerID)){
-                holder.frameLayout?.setBackgroundColor(Color.GREEN)
+
+                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_green)
             } else{
-                holder.frameLayout?.setBackgroundColor(Color.RED)
+                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_red)
             }
         }
 
@@ -61,7 +62,7 @@ class ABMatchAdapterLeft(
         var text: TextView? = itemView?.findViewById(R.id.tvButtontext)
 
 
-        var frameLayout: ConstraintLayout? = itemView?.findViewById(R.id.frame_layout_item)
+        var frameLayout: ConstraintLayout? = itemView?.findViewById(R.id.llcontainer)
         var llcontainer: ConstraintLayout? = itemView?.findViewById(R.id.llcontainer)
 
     }

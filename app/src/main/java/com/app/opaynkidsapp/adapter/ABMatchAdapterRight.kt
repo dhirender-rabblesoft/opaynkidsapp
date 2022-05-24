@@ -37,9 +37,9 @@ class ABMatchAdapterRight(
         holder.frameLayout!!.tag = position
         if (Keys.isSubmit ) {
             if (list[position].isRight){
-                holder.frameLayout!!.setBackgroundColor(Color.GREEN)
+                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_green)
             }else{
-                holder.frameLayout!!.setBackgroundColor(Color.RED)
+                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_red)
             }
         }
 

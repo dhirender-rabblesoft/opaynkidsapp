@@ -57,5 +57,6 @@
     <string name="shapes">Shapes</string>
     <string name="animals">Animals</string>
     <string name="objects">Objects</string>
+    <string name="matching_test">Matching Test</string>
 
 </resources>

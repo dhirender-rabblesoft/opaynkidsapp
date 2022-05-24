@@ -59,16 +59,13 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
         binder.loginbutton.setOnClickListener {
             Toast.makeText(baseActivity, "You submit your test", Toast.LENGTH_LONG).show()
             Keys.isSubmit = true
-
-
             rightListAdapter?.notifyDataSetChanged()
             leftListAdapter?.notifyDataSetChanged()
-
         }
     }
 
     private fun settoolbar() {
-        binder.toolbar.tvtitle.setText("Drag and Drop")
+        binder.toolbar.tvtitle.text = baseActivity.getString(R.string.matching_test)
         binder.toolbar.icmenu2.visible()
         binder.toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
         binder.toolbar.icmenu2.setOnClickListener {
@@ -91,7 +88,6 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
         binder.rvAmatcher.layoutManager = LinearLayoutManager(
             baseActivity, LinearLayoutManager.VERTICAL, false
         )
-
         leftlist.add(LeftMatchListingModel(1, "A", 11))
         leftlist.add(LeftMatchListingModel(2, "B", 12))
         leftlist.add(LeftMatchListingModel(3, "C", 13))
@@ -200,7 +196,6 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 //                    textToSpeech?.speak(selectedname, TextToSpeech.QUEUE_FLUSH, null)
 //                }
                 //==============end set voice right hand side ================//
-
 
 
                 if (!rightList[positon].isSelect) {
