@@ -25,7 +25,7 @@ class ABMatchAdapterLeft(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(
             parent.context
-        ).inflate(R.layout.item_match, parent, false)
+        ).inflate(R.layout.item_match_a, parent, false)
         return ListViewHolder(view)
     }
 

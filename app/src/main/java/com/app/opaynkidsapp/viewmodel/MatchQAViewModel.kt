@@ -87,8 +87,8 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
         )
 
         leftlist.add(LeftMatchListingModel(1, "A", 11))
-        leftlist.add(LeftMatchListingModel(2, "B", 13))
-        leftlist.add(LeftMatchListingModel(3, "C", 12))
+        leftlist.add(LeftMatchListingModel(2, "B", 12))
+        leftlist.add(LeftMatchListingModel(3, "C", 13))
         leftlist.add(LeftMatchListingModel(4, "D", 14))
 
         leftListAdapter = ABMatchAdapterLeft(leftlist, baseActivity) {
@@ -104,10 +104,10 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
             baseActivity, LinearLayoutManager.VERTICAL, false
         )
 
-        rightList.add(RightMatchListingModel(11, "A"))
-        rightList.add(RightMatchListingModel(12, "C"))
-        rightList.add(RightMatchListingModel(13, "B"))
-        rightList.add(RightMatchListingModel(14, "D"))
+        rightList.add(RightMatchListingModel(11, R.drawable.apple,"A"))
+        rightList.add(RightMatchListingModel(12,R.drawable.ball, "C"))
+        rightList.add(RightMatchListingModel(13,R.drawable.cat, "B"))
+        rightList.add(RightMatchListingModel(14,R.drawable.dog, "D"))
 
 
         rightListAdapter = ABMatchAdapterRight(rightList, baseActivity)

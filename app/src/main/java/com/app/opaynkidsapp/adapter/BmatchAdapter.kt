@@ -5,11 +5,11 @@ import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.BaseAdapter
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.utils.Keys
-import kotlinx.android.synthetic.main.item_match.view.*
+import kotlinx.android.synthetic.main.item_match_a.view.*
 
 
 class BmatchAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
-    BaseAdapter<String>(R.layout.item_match) {
+    BaseAdapter<String>(R.layout.item_match_a) {
 
     var isSelect = false
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
