@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_10sdp">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/mainlayout"
         android:layout_width="match_parent"
@@ -21,20 +22,41 @@
             android:id="@+id/llcontainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_20sdp">
+      >
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvButtontext"
-                            style="@style/semiboldfont"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Apple"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/_24sdp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_20sdp">
 
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvButtontext"
+                style="@style/semiboldfont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Apple"
+                android:textAlignment="center"
+                android:textSize="@dimen/_24sdp"
+                  />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/voice_listen"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/speaker_black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

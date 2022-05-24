@@ -2,8 +2,10 @@ package com.app.opaynkidsapp.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Point
+import android.os.Build
+import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -19,7 +21,9 @@ import com.app.opaynkidsapp.extensions.isNotNull
 import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.listner.ItemClick
 import com.app.opaynkidsapp.utils.Keys
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -36,6 +40,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
     val rightList: MutableList<RightMatchListingModel> = ArrayList()
     var sourcePosition = -1
     var targetPosition = -1
+    var textToSpeech: TextToSpeech? = null
 
 
     fun setBinder(binder: ActivityMatchQaactivityBinding, baseActivity: KotlinBaseActivity) {
@@ -48,6 +53,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
         initRightRecyclerView()
         setcanas()
         settoolbar()
+        initTextToSpeach()
 
 
         binder.loginbutton.setOnClickListener {
@@ -104,10 +110,10 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
             baseActivity, LinearLayoutManager.VERTICAL, false
         )
 
-        rightList.add(RightMatchListingModel(11, R.drawable.apple,"A"))
-        rightList.add(RightMatchListingModel(12,R.drawable.ball, "C"))
-        rightList.add(RightMatchListingModel(13,R.drawable.cat, "B"))
-        rightList.add(RightMatchListingModel(14,R.drawable.dog, "D"))
+        rightList.add(RightMatchListingModel(11, R.drawable.apple, "Apple"))
+        rightList.add(RightMatchListingModel(12, R.drawable.ball, "Ball"))
+        rightList.add(RightMatchListingModel(13, R.drawable.cat, "Cat"))
+        rightList.add(RightMatchListingModel(14, R.drawable.dog, "Dog"))
 
 
         rightListAdapter = ABMatchAdapterRight(rightList, baseActivity)
@@ -127,12 +133,18 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
                 convertedApoint.y.toFloat()
             )
 
-
-
-
         if (leftchild.isNotNull()) {
             val pos = binder.rvAmatcher.getChildAdapterPosition(leftchild!!)
             sourcePosition = pos
+
+            val selectedname = leftlist[pos].name
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                textToSpeech?.speak(selectedname, TextToSpeech.QUEUE_FLUSH, null, null)
+
+            } else {
+                textToSpeech?.speak(selectedname, TextToSpeech.QUEUE_FLUSH, null)
+            }
+
 
 
             if (leftlist[sourcePosition].selectedID.equals(-1)) {
@@ -164,11 +176,12 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 
         if (rightchild.isNotNull()) {
 
-            val positon = binder.rvBMatcher.getChildAdapterPosition(rightchild!!)
-            targetPosition = positon
+            if (sourcePosition != -1) {
+                val positon = binder.rvBMatcher.getChildAdapterPosition(rightchild!!)
+                targetPosition = positon
 
 
-            var badaptername = rightList[positon].name
+                var badaptername = rightList[positon].name
 
 
 //                if (!leftlist[sourcePosition].selectedID.equals(rightList[targetPosition].id)){
@@ -178,46 +191,80 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), It
 //                }
 
 
-            if (!rightList[positon].isSelect) {
+                // set voice on right hand side
+//                val selectedname = rightList[positon].name
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    textToSpeech?.speak(selectedname, TextToSpeech.QUEUE_FLUSH, null, null)
+//
+//                } else {
+//                    textToSpeech?.speak(selectedname, TextToSpeech.QUEUE_FLUSH, null)
+//                }
+                //==============end set voice right hand side ================//
 
-                leftlist.forEach {
 
-                    if (it.selectedID.equals(-1)) {
-                        leftlist[sourcePosition].selectedID = rightList[positon].id
-                        rightList[positon].isSelect = true
-                    }
 
-                    if (it.selectedID.equals(rightList[positon].id)) {
+                if (!rightList[positon].isSelect) {
+
+
+                    leftlist.forEach {
+
+                        if (it.selectedID.equals(-1)) {
+
+
+                            leftlist[sourcePosition].selectedID = rightList[positon].id
+                            rightList[positon].isSelect = true
+
+
+                        }
+
+                        if (it.selectedID.equals(rightList[positon].id)) {
 
 
 //                    Keys.endpoint = false
-                    } else {
-                        Log.e("endtaskselection B - ", "BBBBBBBBBBB")
+                        } else {
+                            Log.e("endtaskselection B - ", "BBBBBBBBBBB")
+                            Keys.endpoint = true
 
-                        Keys.endpoint = true
-
+                        }
                     }
+
                 }
-            }
+
+                if (leftlist[sourcePosition].selectedID.equals(leftlist[sourcePosition].answerID)) {
+                    rightList[targetPosition].isRight = true
+                    rightListAdapter?.notifyDataSetChanged()
+                }
+                leftListAdapter?.notifyDataSetChanged()
 
 
-
-            if (leftlist[sourcePosition].selectedID.equals(leftlist[sourcePosition].answerID)) {
-                rightList[targetPosition].isRight = true
-                rightListAdapter?.notifyDataSetChanged()
-            }
-            leftListAdapter?.notifyDataSetChanged()
-
-
-            Log.e("8156971526", leftlist.toString())
+                Log.e("8156971526", leftlist.toString())
 
 //            Log.e(
 //                "b adatper value ",
 //                binder.rvBMatcher.getChildAdapterPosition(child2!!).toString()
 //            )
 //            Log.e("childpositon posotuion ", rightList[positon].name.toString())
+            } else {
+                Toast.makeText(baseActivity, "First Selected Right hand", Toast.LENGTH_LONG).show()
+            }
         }
 
+    }
+
+
+    private fun initTextToSpeach() {
+        //text to speak
+        textToSpeech = TextToSpeech(baseActivity, object : TextToSpeech.OnInitListener {
+            override fun onInit(status: Int) {
+                if (status != TextToSpeech.ERROR) {
+
+//                    textToSpeech?.setLanguage(Locale.UK);
+
+                    textToSpeech?.setLanguage(Locale("hin", "IND"));
+                }
+            }
+
+        })
     }
 
 
