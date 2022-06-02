@@ -22,6 +22,8 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
     private var mY = 0f
     var startx: Float? = null
     var starty: Float? = null
+    var endx: Float? = null
+    var endy: Float? = null
 
 
     // override onSizeChanged
@@ -69,6 +71,35 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
     private fun upTouch() {
         mPath.lineTo(mX, mY);
 
+
+        mPath.lineTo(mX, mY)
+        val deltaX: Float = endx!! - startx!!
+        val deltaY: Float = endy!! - starty!!
+        val frac = 0.1.toFloat()
+
+        val point_x_1: Float = startx!! + ((1 - frac) * deltaX + frac * deltaY)
+        val point_y_1: Float = starty!! + ((1 - frac) * deltaY - frac * deltaX)
+
+        val point_x_2: Float = endx!!
+        val point_y_2: Float = endy!!
+
+        val point_x_3: Float = startx!! + ((1 - frac) * deltaX - frac * deltaY)
+        val point_y_3: Float = starty!!+ ((1 - frac) * deltaY + frac * deltaX)
+
+
+
+        mPath.moveTo(point_x_1, point_y_1)
+        mPath.lineTo(point_x_2, point_y_2)
+        mPath.lineTo(point_x_3, point_y_3)
+//        mPath.lineTo(point_x_1, point_y_1)
+//        mPath.lineTo(point_x_1, point_y_1)
+
+        mCanvas!!.drawPath(mPath, mPaint)
+
+        invalidate()
+
+
+
     }
     // when ACTION_UP stop touch
 //    fun upTouch(x: Float, y: Float) {
@@ -104,6 +135,8 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
             MotionEvent.ACTION_UP -> {
                 Log.e("ppppppppppppppppppp00", x.toString() + " and y - " + y.toString())
                 itemClick.onItemViewClickedRight(x, y)
+                endx = x
+                endy = y
                 // TODO: if left and right recycler view get position by x and y values only then startpoint and endpoint will be ture 
                 if (Keys.endpoint && Keys.startpoint) {
                     upTouch();
@@ -130,7 +163,7 @@ class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
         mPaint = Paint()
 
         mPaint.isAntiAlias = true
-        mPaint.color = Color.BLUE
+        mPaint.color = Color.DKGRAY
         mPaint.style = Paint.Style.STROKE
         mPaint.strokeJoin = Paint.Join.ROUND
         mPaint.strokeWidth = 10f
