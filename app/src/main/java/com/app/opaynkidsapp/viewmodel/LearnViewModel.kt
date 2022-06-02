@@ -4,7 +4,9 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.animation.AnimationUtils
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.AppViewModel
@@ -12,7 +14,12 @@ import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivityLearnBinding
 import com.app.opaynkidsapp.extensions.gone
 import com.app.opaynkidsapp.extensions.visible
+import com.app.opaynkidsapp.model.NumberJson
+import com.app.opaynkidsapp.repository.CommonRepository
 import com.app.opaynkidsapp.utils.Keys
+import com.squareup.picasso.Picasso
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class LearnViewModel(application: Application) : AppViewModel(application) {
@@ -28,17 +35,34 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
     var listofAplhabet = ArrayList<String>()
     var listofNumber = ArrayList<String>()
     var i = 0
+    var commonRepository: CommonRepository = CommonRepository(application)
+    var numberlist=ArrayList<NumberJson.Data>()
+    var textToSpeech: TextToSpeech? = null
+
     fun setBinder(binder: ActivityLearnBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
         getBundle = (baseActivity as Activity).intent.extras!!
-        setStaticdata()
+
         setdata()
         setclicks()
         setAnimation()
+        initTextToSpeach()
 
+    }
+    private fun initTextToSpeach() {
+        //text to speak
+        textToSpeech = TextToSpeech(baseActivity, object : TextToSpeech.OnInitListener {
+            override fun onInit(status: Int) {
+                if (status != TextToSpeech.ERROR) {
+                    textToSpeech
+                    textToSpeech?.setLanguage(Locale.UK);
+                }
+            }
+
+        })
     }
 
     private fun setAnimation() {
@@ -55,10 +79,12 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 binder.learnImg.visible()
                 listofword.clear()
                 listofword = listofAplhabet
-                binder.word.setText("A")
+
                 settoolbar(baseActivity.getString(R.string.alphabet))
                 binder.learnImg.setImageResource(R.drawable.apple)
                 setmedia(R.raw.aaudio)
+
+                getnumberapi(Keys.GETALPHABET)
 
 
             }
@@ -66,12 +92,9 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 binder.learnImg.gone()
                 binder.shapeview.gone()
                 binder.learnImg.gone()
-                binder.word.setText("1")
-                listofword.clear()
-                binder.learnTitle.setText("One")
-                listofword = listofNumber
                 settoolbar(baseActivity.getString(R.string.numbers))
                 binder.learnImg.setImageResource(R.drawable.apple)
+                getnumberapi(Keys.GETNUMBER)
 
             }
 
@@ -84,9 +107,10 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 settoolbar(baseActivity.getString(R.string.shapes))
                 binder.shapeview.visible()
                 binder.learnImg.gone()
-                binder.shapeview.setImageResource(R.drawable.cube)
-                binder.learnTitle.setText("Cude")
+              //  binder.shapeview.setImageResource(R.drawable.cube)
+               // binder.learnTitle.setText("Cude")
                 setmedia(R.raw.aaudio)
+                getnumberapi(Keys.SHAPES)
 
             }
             baseActivity.getString(R.string.animals) -> {
@@ -103,41 +127,42 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
 
     }
 
-    private fun setStaticdata(){
-        listofAplhabet.add("A")
-        listofAplhabet.add("B")
-        listofAplhabet.add("C")
-        listofAplhabet.add("D")
-        listofAplhabet.add("E")
-        listofAplhabet.add("F")
-        listofAplhabet.add("G")
-        listofAplhabet.add("H")
-        listofAplhabet.add("I")
 
-        //number
-        listofNumber.add("1")
-        listofNumber.add("2")
-        listofNumber.add("3")
-        listofNumber.add("4")
-        listofNumber.add("5")
-        listofNumber.add("6")
-        listofNumber.add("7")
-        listofNumber.add("8")
-        listofNumber.add("9")
-        listofNumber.add("10")
+    private  fun getnumberapi(url:String)
+    {
+        commonRepository.getnumbers(baseActivity,url = url){
+             if (it.data.size>0)
+             {
+                 numberlist.addAll(it.data)
 
+                 if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
+                 {
+                     binder.word.setText(numberlist[0].number)
+                     binder.learnTitle.setText(numberlist[0].number+" for "+numberlist[0].data)
+                 }
+                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
+                 {
+                     Picasso.get().load(numberlist[0].image).into(binder.shapeview)
+                     binder.learnTitle.setText(numberlist[0].data)
+                 }
+                 else{
+                     binder.word.setText(numberlist[0].number)
+                     binder.learnTitle.setText(numberlist[0].data)
 
-
-
+                 }
+                 setAnimation()
+             }
+        }
     }
 
     private fun setclicks() {
 
 
         binder.speakerlotties.setOnClickListener {
-            mp.start()
+           // mp.start()
             setAnimation()
             binder.speakerlotties.playAnimation()
+            textToSpeech?.speak(binder.learnTitle.text.toString(), TextToSpeech.SUCCESS, null, null)
         }
 
         binder.toolbar.icmenu2.setOnClickListener {
@@ -145,9 +170,25 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         }
         binder.commonButton.commonNextButton.setOnClickListener {
 
-            i++
-            if (listofword.size >i ){
-                binder.word.setText(listofword[i])    // body of loop
+
+            if (numberlist.size-1>i ){
+                ++i
+                if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
+                {
+                    binder.word.setText(numberlist[i].number)
+                    binder.learnTitle.setText(numberlist[i].number+" for "+numberlist[i].data)    // body of loop
+                }
+                else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
+                {
+                    Picasso.get().load(numberlist[i].image).into(binder.shapeview)
+                    binder.learnTitle.setText(numberlist[i].data)
+                }
+                else{
+                    binder.word.setText(numberlist[i].number)
+                    binder.learnTitle.setText(numberlist[i].data)    // body of loop
+                }
+
+                // body of loop
                 setAnimation()
             }
 
@@ -159,8 +200,25 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         binder.commonButton.commonPreButton.setOnClickListener {
             if (i>0){
                 --i
-                binder.word.setText(listofword[i])    // body of loop
-                setAnimation()
+
+
+                if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
+                {
+                    binder.word.setText(numberlist[i].number)
+                    binder.learnTitle.setText(numberlist[i].number+" for "+numberlist[i].data)    // body of loop
+                }
+                else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
+                {
+                    Picasso.get().load(numberlist[i].image).into(binder.shapeview)
+                    binder.learnTitle.setText(numberlist[i].data)
+                }
+                else{
+                    binder.word.setText(numberlist[i].number)
+                    binder.learnTitle.setText(numberlist[i].data)    // body of loop
+                }
+
+                    // body of loop
+
 
             }
 

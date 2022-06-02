@@ -113,6 +113,13 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
                 R.drawable.`object`
             )
         )
+        levelList.add(
+            LevelModel(
+                "Drag and Drop Match",
+                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+                R.drawable.`object`
+            )
+        )
 
 
         val topicAdapter = TopicAdapter(baseActivity) {
@@ -130,6 +137,8 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             }
             else if (levelList[it].title.equals("Match Test")) {
                 baseActivity.openA(MatchQAActivity::class)
+            } else if (levelList[it].title.equals("Drag and Drop Match")) {
+                baseActivity.openA(DragandDropMatch::class)
             } else {
                 val bundle2 = Bundle()
                 bundle2.putString(Keys.FROM, levelList[it].title)
