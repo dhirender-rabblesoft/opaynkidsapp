@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_fill_blank_test.view.*
 
 
 class FillBlankTestAdapter(
-    val addlist: ArrayList<Char>,
+    val addlist: ArrayList<String>,
     val baseActivity: KotlinBaseActivity,
     val itemClick: (Int) -> Unit
 ) :
@@ -23,20 +23,15 @@ class FillBlankTestAdapter(
 
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
-            var ans2 = ArrayList<Char>()
-            ans2.add(' ')
-            ans2.add(' ')
-            ans2.add(' ')
-            ans2.add(' ')
-            ans2.add(' ')
 
-            if (addlist.size > 0) {
-                if (position <addlist.size){
-                    ans2.set(position,addlist[position])
-                    tvshowword.setText(ans2[position].toString())
-                }
-
-            }
+            tvshowword.setText(addlist[position].toString())
+//            if (addlist.size > 0) {
+//                if (position <addlist.size){
+//                    ans2.set(position,addlist[position])
+//
+//                }
+//
+//            }
 
 
         }

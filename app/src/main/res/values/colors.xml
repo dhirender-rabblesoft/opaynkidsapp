@@ -77,8 +77,14 @@
     <color name="lt_pink">#f4306d</color>
     <color name="dk_cyan">#3aaab8</color>
     <color name="dk_green">#38ba9e</color>
-
-
+    <color name="card_inner_color">#e6f1ff</color>
+    <color name="card_border_line_color">#cbe1ff</color>
+    <color name="green">#e4f2e6</color>
+    <color name="green_1">#8fbd92</color>
+    <color name="pink6">#ffdbdb</color>
+    <color name="pink7">#fa7474</color>
+    <color name="grey28">#f5f5f5</color>
+    <color name="grey29">#e1e1e1</color>
 
 
 

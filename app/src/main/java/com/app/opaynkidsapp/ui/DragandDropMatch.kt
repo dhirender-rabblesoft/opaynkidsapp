@@ -1,6 +1,7 @@
 package com.app.opaynkidsapp.ui
 
  import android.animation.Animator
+ import android.app.Application
  import android.os.Build
  import android.os.Bundle
  import android.speech.tts.TextToSpeech
@@ -11,12 +12,15 @@ package com.app.opaynkidsapp.ui
  import androidx.recyclerview.widget.LinearLayoutManager
  import com.app.opaynkidsapp.R
  import com.app.opaynkidsapp.adapter.DragDropAdapter
+ import com.app.opaynkidsapp.applications.KidsApplication
  import com.app.opaynkidsapp.base.KotlinBaseActivity
  import com.app.opaynkidsapp.extensions.visible
  import com.app.opaynkidsapp.listner.DragDropCheckListner
  import com.app.opaynkidsapp.listner.Listener
  import com.app.opaynkidsapp.model.ModelClass
+ import com.app.opaynkidsapp.repository.CommonRepository
  import com.app.opaynkidsapp.utils.Keys
+ import com.squareup.picasso.Picasso
  import kotlinx.android.synthetic.main.activity_dragand_drop_match.*
  import kotlinx.android.synthetic.main.common_toolbar.view.*
  import java.util.*
@@ -25,24 +29,43 @@ package com.app.opaynkidsapp.ui
 class DragandDropMatch : KotlinBaseActivity(), Listener, DragDropCheckListner {
     var textToSpeech: TextToSpeech? = null
 
+
+
+
+    var commonRepository:CommonRepository?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dragand_drop_match)
-        intializeRecycle()
+        commonRepository= CommonRepository(KidsApplication.myApp!!)
+
         settoolbar()
         initTextToSpeach()
+        callapi()
     }
-    private fun intializeRecycle()
+    private  fun callapi()
+    {
+        val topList: MutableList<ModelClass> = ArrayList()
+        commonRepository?.dragmatch(this,"dragmatch")
+        {
+            CorrectAns=it.data.correct_ans
+            Picasso.get().load(it.data.image).placeholder(R.drawable.progress_animation).into(ivmatch)
+            it.data.selectanswer.forEach {
+                topList.add(ModelClass(it.ans))
+            }
+            intializeRecycle(topList = topList)
+        }
+    }
+    companion object{
+        var CorrectAns=""
+    }
+    private fun intializeRecycle(topList: MutableList<ModelClass> = ArrayList())
     {
 //        rvTop!!.layoutManager = LinearLayoutManager(
 //            this, LinearLayoutManager.HORIZONTAL, false
 //        )
-        val topList: MutableList<ModelClass> = ArrayList()
-        topList.add(ModelClass("Apple"))
-        topList.add(ModelClass("Mango"))
-        topList.add(ModelClass("Banana"))
-        topList.add(ModelClass("Kiwi"))
         val topListAdapter = DragDropAdapter(topList, this,this,this)
+
         rvTop!!.adapter = topListAdapter
 
     }

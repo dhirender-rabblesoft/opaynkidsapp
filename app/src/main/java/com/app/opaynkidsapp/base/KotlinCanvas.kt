@@ -2,24 +2,29 @@ package com.app.opaynkidsapp.base
 
 import android.content.Context
 import android.graphics.*
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.app.opaynkidsapp.listner.ItemClick
+import com.app.opaynkidsapp.utils.Keys
 
 
-class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
+class KotlinCanvas(var mcontext: Context, val itemClick: ItemClick) : View(
     mcontext
 ) {
     var mwidth = 0
     var mheight = 0
     private var mBitmap: Bitmap? = null
     private var mCanvas: Canvas? = null
-    private val mPath: Path
-    private val mPaint: Paint
+    val mPath: Path
+    val mPaint: Paint
     private var mX = 0f
     private var mY = 0f
     var startx: Float? = null
     var starty: Float? = null
+    var endx: Float? = null
+    var endy: Float? = null
+
 
     // override onSizeChanged
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -63,14 +68,43 @@ class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
     }
 
     //    // when ACTION_UP stop touch
-    //    private void upTouch() {
-    //        mPath.lineTo(mX, mY);
-    //
-    //    }
-    // when ACTION_UP stop touch
-    fun upTouch(x: Float, y: Float) {
-        mPath.lineTo(x, y)
+    private fun upTouch() {
+        mPath.lineTo(mX, mY);
+
+
+        mPath.lineTo(mX, mY)
+        val deltaX: Float = endx!! - startx!!
+        val deltaY: Float = endy!! - starty!!
+        val frac = 0.1.toFloat()
+
+        val point_x_1: Float = startx!! + ((1 - frac) * deltaX + frac * deltaY)
+        val point_y_1: Float = starty!! + ((1 - frac) * deltaY - frac * deltaX)
+
+        val point_x_2: Float = endx!!
+        val point_y_2: Float = endy!!
+
+        val point_x_3: Float = startx!! + ((1 - frac) * deltaX - frac * deltaY)
+        val point_y_3: Float = starty!!+ ((1 - frac) * deltaY + frac * deltaX)
+
+
+
+        mPath.moveTo(point_x_1, point_y_1)
+        mPath.lineTo(point_x_2, point_y_2)
+        mPath.lineTo(point_x_3, point_y_3)
+//        mPath.lineTo(point_x_1, point_y_1)
+//        mPath.lineTo(point_x_1, point_y_1)
+
+        mCanvas!!.drawPath(mPath, mPaint)
+
+        invalidate()
+
+
+
     }
+    // when ACTION_UP stop touch
+//    fun upTouch(x: Float, y: Float) {
+//        mPath.lineTo(x, y)
+//    }
 
     fun addtargetline(x: Float, y: Float) {
 //        checkItemClick.onItemViewClicked2(x,y);
@@ -87,8 +121,11 @@ class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
             MotionEvent.ACTION_DOWN -> {
                 startx = x
                 starty = y
-                itemClick.onItemViewClicked(x,y)
-                startTouch(x, y)
+                itemClick.onItemViewClickedLeft(x, y)
+                if (Keys.startpoint) {
+                    startTouch(x, y)
+//                    Keys.startpoint = false
+                }
                 invalidate()
             }
             MotionEvent.ACTION_MOVE -> {
@@ -96,14 +133,23 @@ class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
                 invalidate()
             }
             MotionEvent.ACTION_UP -> {
-                //                upTouch();
-                itemClick.onItemViewClicked2(x,y)
-                addtargetline(x, y)
+                Log.e("ppppppppppppppppppp00", x.toString() + " and y - " + y.toString())
+                itemClick.onItemViewClickedRight(x, y)
+                endx = x
+                endy = y
+                // TODO: if left and right recycler view get position by x and y values only then startpoint and endpoint will be ture
+                if (Keys.endpoint && Keys.startpoint) {
+                    upTouch();
+                    Keys.endpoint = false
+                }
+//                addtargetline(x, y)
                 invalidate()
             }
         }
         return true
     }
+
+
 
     companion object {
         private const val TOLERANCE = 5f
@@ -115,8 +161,9 @@ class KotlinCanvas(var mcontext: Context,val itemClick: ItemClick) : View(
 
         // and we set a new Paint with the desired attributes
         mPaint = Paint()
+
         mPaint.isAntiAlias = true
-        mPaint.color = Color.BLUE
+        mPaint.color = Color.DKGRAY
         mPaint.style = Paint.Style.STROKE
         mPaint.strokeJoin = Paint.Join.ROUND
         mPaint.strokeWidth = 10f

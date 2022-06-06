@@ -13,7 +13,7 @@ class SplashScreenActivity : KotlinBaseActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             openA(HomeScreen::class)
-
+            finishAffinity()
         }, 1000)
     }
 }

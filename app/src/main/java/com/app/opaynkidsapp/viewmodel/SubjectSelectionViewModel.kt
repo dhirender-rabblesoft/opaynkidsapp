@@ -66,17 +66,11 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             )
         )
 
-        levelList.add(
-            LevelModel(
-                "Animals",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.animal
-            )
-        )
+
 
         levelList.add(
             LevelModel(
-                "Objects",
+                "Classification",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
                 R.drawable.`object`
             )
@@ -127,22 +121,36 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
 
             val bundle = Bundle()
             bundle.getString(Keys.FROM, keyword)
-            if (levelList[it].title.equals("Draw Practice")) {
-                baseActivity.openA(DrawPractice::class)
 
-            } else if (levelList[it].title.equals("Testing")) {
-                baseActivity.openA(MCQActivity::class)
-            } else if (levelList[it].title.equals("Fill Blanks")) {
-                baseActivity.openA(FillBlankActivity::class)
-            }
-            else if (levelList[it].title.equals("Match Test")) {
-                baseActivity.openA(MatchQAActivity::class)
-            } else if (levelList[it].title.equals("Drag and Drop Match")) {
-                baseActivity.openA(DragandDropMatch::class)
-            } else {
-                val bundle2 = Bundle()
-                bundle2.putString(Keys.FROM, levelList[it].title)
-                baseActivity.openA(LearnActivity::class, bundle2)
+
+            when(levelList[it].title)
+            {
+                "Draw Practice"->{
+                    baseActivity.openA(DrawPractice::class)
+                }
+                "Colors"->{
+                    baseActivity.openA(LineMatching::class)
+                }
+                "Testing"->{
+                    baseActivity.openA(MCQActivity::class)
+                }
+                "Fill Blanks"->{
+                    baseActivity.openA(FillBlankActivity::class)
+                }
+                "Match Test"->{
+                    baseActivity.openA(MatchQAActivity::class)
+                }
+                "Classification"->{
+                    baseActivity.openA(ObjectsA::class)
+                }
+                "Drag and Drop Match"->{
+                    baseActivity.openA(DragandDropMatch::class)
+                }
+                else->{
+                    val bundle2 = Bundle()
+                    bundle2.putString(Keys.FROM, levelList[it].title)
+                    baseActivity.openA(LearnActivity::class, bundle2)
+                }
             }
 
 

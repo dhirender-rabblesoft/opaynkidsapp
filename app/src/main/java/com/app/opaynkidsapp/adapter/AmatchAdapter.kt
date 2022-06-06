@@ -14,7 +14,7 @@ class AmatchAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -
     var isSelect = false
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
-            tvButtontext.setText(list[position])
+           // tvButtontext.setText(list[position])
 
             mainlayout.setOnClickListener {
                 itemClick(position)

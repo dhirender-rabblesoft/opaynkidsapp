@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.KotlinBaseActivity
-import com.app.opaynkidsapp.model.NumberJson
+import com.app.opaynkidsapp.model.*
 import com.app.opaynkidsapp.network.APIInterface
 import com.app.opaynkidsapp.network.RetrofitClient
 import com.app.opaynkidsapp.utils.Keys
@@ -69,6 +69,208 @@ class CommonRepository(private val baseActivity: Application)
                 }
 
                 override fun onFailure(call: Call<NumberJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                 }
+            })
+        }
+
+    }
+    fun match(baseActivity: KotlinBaseActivity,   url:String,ishowloader:Boolean=false, itemClick: (MatchJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            if (ishowloader)
+            {
+
+                baseActivity.startProgressDialog()
+            }
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+
+            retrofitClient?.match(
+                APP_BASE_URL1+url
+                )!!.enqueue(object : Callback<MatchJson>
+            {
+                override fun onResponse(
+                    call: Call<MatchJson?>,
+                    response: Response<MatchJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                            baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                             // faqmutableLiveData.setValue(response.body())
+                        }
+                        in 500..512->{
+                            baseActivity.customSnackBar(baseActivity.getString(R.string.somthingwentwrong),true)
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<MatchJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                 }
+            })
+        }
+
+    }
+    fun onjects(baseActivity: KotlinBaseActivity,   url:String,ishowloader:Boolean=false, itemClick: (ObjectsJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            if (ishowloader)
+            {
+
+                baseActivity.startProgressDialog()
+            }
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+
+            retrofitClient?.objects(
+                APP_BASE_URL1+url
+                )!!.enqueue(object : Callback<ObjectsJson>
+            {
+                override fun onResponse(
+                    call: Call<ObjectsJson?>,
+                    response: Response<ObjectsJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                            baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                             // faqmutableLiveData.setValue(response.body())
+                        }
+                        in 500..512->{
+                            baseActivity.customSnackBar(baseActivity.getString(R.string.somthingwentwrong),true)
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<ObjectsJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                 }
+            })
+        }
+
+    }
+    fun fillup(baseActivity: KotlinBaseActivity,   url:String,ishowloader:Boolean=false, itemClick: (Fillupjson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            if (ishowloader)
+            {
+
+                baseActivity.startProgressDialog()
+            }
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+            retrofitClient?.fillup(APP_BASE_URL1+url)!!.enqueue(object : Callback<Fillupjson>
+            {
+                override fun onResponse(
+                    call: Call<Fillupjson?>,
+                    response: Response<Fillupjson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                            baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                             // faqmutableLiveData.setValue(response.body())
+                        }
+                        in 500..512->{
+                            baseActivity.customSnackBar(baseActivity.getString(R.string.somthingwentwrong),true)
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<Fillupjson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                 }
+            })
+        }
+
+    }
+    fun dragmatch(baseActivity: KotlinBaseActivity,   url:String,ishowloader:Boolean=false, itemClick: (DragDropMatch) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            if (ishowloader)
+            {
+
+                baseActivity.startProgressDialog()
+            }
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+            retrofitClient?.dragmatch(APP_BASE_URL1+url)!!.enqueue(object : Callback<DragDropMatch>
+            {
+                override fun onResponse(
+                    call: Call<DragDropMatch?>,
+                    response: Response<DragDropMatch?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                            baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                             // faqmutableLiveData.setValue(response.body())
+                        }
+                        in 500..512->{
+                            baseActivity.customSnackBar(baseActivity.getString(R.string.somthingwentwrong),true)
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<DragDropMatch?>, t: Throwable)
                 {
                     baseActivity.stopProgressDialog()
                  }

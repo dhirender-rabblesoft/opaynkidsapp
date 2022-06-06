@@ -71,22 +71,18 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         binder.learnImg.startAnimation(animationBounce)
         binder.word.startAnimation(animationfadeout)
     }
-    private fun setdata() {
+    private fun setdata()
+    {
         when (getBundle.get(Keys.FROM.toString())) {
             baseActivity.getString(R.string.alphabet) -> {
-
                 binder.shapeview.gone()
                 binder.learnImg.visible()
                 listofword.clear()
                 listofword = listofAplhabet
-
                 settoolbar(baseActivity.getString(R.string.alphabet))
                 binder.learnImg.setImageResource(R.drawable.apple)
                 setmedia(R.raw.aaudio)
-
                 getnumberapi(Keys.GETALPHABET)
-
-
             }
             baseActivity.getString(R.string.numbers) -> {
                 binder.learnImg.gone()
@@ -142,7 +138,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                  }
                  else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
                  {
-                     Picasso.get().load(numberlist[0].image).into(binder.shapeview)
+                     Picasso.get().load(numberlist[0].image).placeholder( R.drawable.progress_animation ).into(binder.shapeview)
                      binder.learnTitle.setText(numberlist[0].data)
                  }
                  else{
@@ -180,7 +176,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 }
                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
                 {
-                    Picasso.get().load(numberlist[i].image).into(binder.shapeview)
+                    Picasso.get().load(numberlist[i].image)  .placeholder( R.drawable.progress_animation ).into(binder.shapeview)
                     binder.learnTitle.setText(numberlist[i].data)
                 }
                 else{
@@ -209,7 +205,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 }
                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
                 {
-                    Picasso.get().load(numberlist[i].image).into(binder.shapeview)
+                    Picasso.get().load(numberlist[i].image)  .placeholder( R.drawable.progress_animation ).into(binder.shapeview)
                     binder.learnTitle.setText(numberlist[i].data)
                 }
                 else{

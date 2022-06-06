@@ -15,7 +15,7 @@ class BmatchAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
 
-            tvButtontext.setText(list[position])
+        //    tvButtontext.setText(list[position])
 
             mainlayout.setOnClickListener {
 

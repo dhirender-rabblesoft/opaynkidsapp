@@ -19,7 +19,8 @@ class SharedPreferenceManager(private val context: Context)
 
     fun removeValue(key: String) = getEditor().remove(key).commit()
 
-    companion object {
+    companion object
+    {
         private const val SHARED_PREF_NAME = "ielts"
     }
 }

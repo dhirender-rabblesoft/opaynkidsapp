@@ -2,6 +2,7 @@ package com.app.opaynkidsapp.viewmodel
 
 import android.app.Application
 import android.content.Context
+import com.app.opaynkidsapp.MCQTestAdapter
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.FillBlankTestAdapter
 import com.app.opaynkidsapp.adapter.MCQButtonAdapter
@@ -16,7 +17,7 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
     private lateinit var binder: ActivityMcqactivityBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
-    val listofarray = ArrayList<Char>()
+    val listofarray = ArrayList<String>()
     var i = 0
 
     fun setBinder(binder: ActivityMcqactivityBinding, baseActivity: KotlinBaseActivity) {
@@ -38,13 +39,13 @@ class MCQViewModel(application: Application) : AppViewModel(application) {
     private fun setMCQAdapter() {
 
 
-        listofarray.add('A')
-        listofarray.add('B')
-        listofarray.add('C')
-        listofarray.add('D')
+        listofarray.add("A")
+        listofarray.add("B")
+        listofarray.add("C")
+        listofarray.add("D")
 
 
-        val mcqAdapter = MCQButtonAdapter(baseActivity) {
+        val mcqAdapter = MCQTestAdapter(baseActivity) {
 
 
         }

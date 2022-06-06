@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.ABMatchAdapter
 import com.app.opaynkidsapp.adapter.ABMatchAdapter2
-import com.app.opaynkidsapp.adapter.RecyclerTouchListener
-import com.app.opaynkidsapp.adapter.RecyclerTouchListener.ClickListener
-import com.app.opaynkidsapp.base.AppViewModel
+  import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.CanvasDraw2
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.base.KotlinCanvas
@@ -75,7 +73,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
         canvasView = KotlinCanvas(baseActivity, this)
         canvasView.mwidth = 50
         canvasView.mheight = 50
-        binder.drawcanavs.addView(canvasView)
+       // binder.drawcanavs.addView(canvasView)
     }
 
 
@@ -151,7 +149,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
     override fun setpostion(position: Boolean) {
     }
 
-    override fun onItemViewClicked(startx: Float, starty: Float) {
+    override fun onItemViewClickedLeft(startx: Float, starty: Float) {
 
         Log.e("checkstartxy", "startx  $startx start y  $starty")
         this.startx = startx
@@ -159,7 +157,7 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
 
     }
 
-    override fun onItemViewClicked2(endx: Float, endy: Float) {
+    override fun onItemViewClickedRight(endx: Float, endy: Float) {
         Log.e("checkstartxy", "endx  $endx end y  $endy")
         this.endx = endx
         this.endy = endy

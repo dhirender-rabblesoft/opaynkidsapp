@@ -48,8 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_250sdp"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:src="@drawable/apple"
-                    app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

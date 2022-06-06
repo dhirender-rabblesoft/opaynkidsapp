@@ -37,10 +37,10 @@ class HomeScreenViewModel(application: Application) : AppViewModel(application) 
     private fun setlevelAdapter() {
 
         val levelList = ArrayList<LevelModel>()
-        levelList.add(LevelModel("Pre Nursery","This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",R.drawable.child1 ))
-        levelList.add(LevelModel("Nursery","This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",R.drawable.child2 ))
-        levelList.add(LevelModel("LKG","This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",R.drawable.child3 ))
-        levelList.add(LevelModel("UKG","This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",R.drawable.child4 ))
+        levelList.add(LevelModel("Kinder Garden","This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knowledge of animals",R.drawable.child1 ))
+        levelList.add(LevelModel("1st to 3rd","This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",R.drawable.child2 ))
+        levelList.add(LevelModel("4th to 6th","This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",R.drawable.child3 ))
+
         val levelAdapter = KidLevelAdapter(baseActivity) {
 //            val bundle = Bundle()
 //            bundle.putString(Keys.FROM , levelList[it].title)

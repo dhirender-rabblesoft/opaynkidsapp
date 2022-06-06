@@ -59,5 +59,6 @@
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="somthingwentwrong">Something went wrong</string>
+    <string name="matching_test">Matching Test</string>
 
 </resources>
