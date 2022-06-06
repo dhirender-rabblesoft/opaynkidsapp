@@ -22,7 +22,8 @@ class SelectionScreen : KotlinBaseActivity() {
         binding.toolbar.tvtitle.setText("Selection")
     }
 
-    private fun setlevelAdapter() {
+    private fun setlevelAdapter()
+    {
 
         val levelList = ArrayList<LevelModel>()
         levelList.add(

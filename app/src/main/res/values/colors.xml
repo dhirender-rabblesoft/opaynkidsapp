@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="teal_200">#FF03DAC5</color>
-    <color name="main_color">#FCF5F3</color>
+    <color name="main_color">#F9F9F9</color>
     <color name="main_color_button">#D97254</color>
     <color name="background_blur">#80FCF5F3</color>
     <color name="button_color">#EBA049</color>
     <color name="teal_700">#FF018786</color>
     <color name="orange">#FB6D2A</color>
     <color name="black">#FF000000</color>
+    <color name="steelblue">#2786FF</color>
+    <color name="darkblue">#4792F1</color>
+    <color name="steelblue2">#68ABFF</color>
 
     <color name="black_1">#80000000</color>
     <color name="white">#ffffff</color>
@@ -37,6 +40,7 @@
     <color name="black_8">#A5A5A5</color>
     <color name="black_6">#2B2D42</color>
     <color name="black_9">#151526</color>
+    <color name="black_10">#262626</color>
     <color name="black_30">#4D030303</color>
 
     <color name="black_15">#26000000</color>
@@ -65,9 +69,11 @@
     <color name="grey25">#757575</color>
     <color name="grey26">#E5E5E5</color>
     <color name="grey_27">#CC65728A</color>
+    <color name="grey_30">#d1d1d1</color>
+    <color name="grey_31">#f1f1f1</color>
     <color name="colorOverlay">#78ffffff</color>
 
-    <color name="red">#F6265F</color>
+    <color name="red">#F94848</color>
     <color name="red_2">#ff0000</color>
     <color name="cyan">#1DB2B2</color>
     <!-- Light UI colors -->

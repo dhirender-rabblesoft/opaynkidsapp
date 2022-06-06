@@ -22,29 +22,29 @@ class ObjectAdapter (val baseActivity: KotlinBaseActivity, val itemClick:(Int) -
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
            // topicimg.setImageResource(list[position].img)
-            Picasso.get().load(list[position].image).placeholder(R.drawable.progress_animation).into(topicimg)
+            Picasso.get().load(list[position].image).into(topicimg)
             tvtopictitle.setText(list[position].data)
 
             mainlayout.setOnClickListener {
                 itemClick(position)
             }
 
-            if (HomeScreen.packagecolorlist.size > 0) {
-                val layout: View = mainlayout
-
-                val gd = GradientDrawable(
-                    GradientDrawable.Orientation.BL_TR, intArrayOf(
-                        Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]),
-                        Color.parseColor(HomeScreen.packagesubcolorlist[position % HomeScreen.packagesubcolorlist.count()])
-                    )
-                )
-                layout.background = gd
-//                tvtopictitle.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
-//                tvleveldetail.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
-                tvtopictitle.setTextColor(Color.WHITE)
-
-
-            }
+//            if (HomeScreen.packagecolorlist.size > 0) {
+//                val layout: View = mainlayout
+//
+//                val gd = GradientDrawable(
+//                    GradientDrawable.Orientation.BL_TR, intArrayOf(
+//                        Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]),
+//                        Color.parseColor(HomeScreen.packagesubcolorlist[position % HomeScreen.packagesubcolorlist.count()])
+//                    )
+//                )
+//                layout.background = gd
+////                tvtopictitle.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
+////                tvleveldetail.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
+//                tvtopictitle.setTextColor(Color.WHITE)
+//
+//
+//            }
         }
 
 

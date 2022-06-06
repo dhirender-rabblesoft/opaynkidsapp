@@ -39,12 +39,15 @@ object Keys
     const val device_id = "device_id"
     const val screen_name = "screen_name"
     const val FROM = "from"
+    const val POSTID = "post_id"
+    const val POSTNAME = "post_name"
     var email_verify = "email-verify"
     /*End points*/
     const val GETNUMBER="api/get-digits"
     const val GETALPHABET="api/get-alphabets"
     const val OBJECTS="api/get-objects"
     const val SHAPES="api/get-shapes"
+    const val CLASSDETAIL="api/get-class-detail/"
     const val FILLUP="api/get-fillup"
     const val MATCHES="api/get-matches"
 

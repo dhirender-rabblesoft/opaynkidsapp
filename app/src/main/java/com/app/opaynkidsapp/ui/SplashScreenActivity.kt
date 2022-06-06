@@ -12,7 +12,7 @@ class SplashScreenActivity : KotlinBaseActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            openA(HomeScreen::class)
+            openA(SubjectSelectionActivity::class)
             finishAffinity()
         }, 1000)
     }

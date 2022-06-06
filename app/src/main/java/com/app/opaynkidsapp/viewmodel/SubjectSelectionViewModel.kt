@@ -4,12 +4,15 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.view.Gravity
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.TopicAdapter
 import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivitySubjectSelectionBinding
+import com.app.opaynkidsapp.extensions.gone
 import com.app.opaynkidsapp.extensions.putStrings
+import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.model.LevelModel
 import com.app.opaynkidsapp.ui.*
 import com.app.opaynkidsapp.utils.Keys
@@ -31,6 +34,17 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
         keyword = getbundle.getString(Keys.FROM).toString()
         settoolbar()
         setAdpater()
+        setclicks()
+    }
+    private  fun  setclicks()
+    {
+        binder.toolbar.icmenu2.gone()
+        binder.toolbar.ivback.visible()
+        binder.toolbar.ivback.setImageResource(R.drawable.menu)
+        binder.toolbar.ivback.setOnClickListener {
+            binder.drawerLayout.openDrawer(Gravity.START)
+        }
+
     }
 
 
@@ -85,13 +99,13 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
         )
 
 
-        levelList.add(
-            LevelModel(
-                "Testing",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.`object`
-            )
-        )
+//        levelList.add(
+//            LevelModel(
+//                "Testing",
+//                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+//                R.drawable.`object`
+//            )
+//        )
         levelList.add(
             LevelModel(
                 "Fill Blanks",
@@ -102,7 +116,7 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
 
         levelList.add(
             LevelModel(
-                "Match Test",
+                "Match Words",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
                 R.drawable.`object`
             )

@@ -13,6 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorFilter
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.base.CanvasDraw
+import com.app.opaynkidsapp.extensions.gone
+import com.app.opaynkidsapp.extensions.setLeftMargin
+import com.app.opaynkidsapp.extensions.setTopMargin
 import com.app.opaynkidsapp.extensions.visible
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
@@ -32,6 +35,7 @@ class DrawPractice : AppCompatActivity() {
         setToolbar()
         setClick()
         initTextToSpeach()
+
         val canvasView = CanvasDraw(this)
         canvasView.width = 50
         canvasView.height = 50
@@ -87,12 +91,13 @@ class DrawPractice : AppCompatActivity() {
 
     private fun setToolbar() {
         toolbar.tvtitle.setText("Draw Practice")
-        toolbar.icmenu2.visible()
-        toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+        toolbar.ivback.visible()
+        toolbar.icmenu2.gone()
+         toolbar.ivback.setImageResource(R.drawable.ic_baseline_arrow_back_24)
     }
 
     private fun setClick() {
-        toolbar.icmenu2.setOnClickListener {
+        toolbar.ivback.setOnClickListener {
             onBackPressed()
         }
 

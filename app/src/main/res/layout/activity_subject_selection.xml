@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout>
 
     <data>
@@ -14,128 +13,173 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_color"
         tools:context=".ui.SubjectSelectionActivity">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/common_toolbar"
-            android:visibility="gone"/>
-
-        <!--        <com.airbnb.lottie.LottieAnimationView-->
-        <!--            android:layout_width="@dimen/_150sdp"-->
-        <!--            android:layout_height="@dimen/_150sdp"-->
-        <!--            app:lottie_rawRes="@raw/child_groth"-->
-        <!--            app:lottie_autoPlay="true"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
-        <!--            app:lottie_loop="true"/>-->
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvContianer"
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/main_color"
-            app:cardCornerRadius="@dimen/_3sdp"
-            app:cardElevation="@dimen/_5sdp"
-            android:visibility="gone"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp">
+                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/llscroe"
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/common_toolbar"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvtopictitle"
+                    style="@style/mediumfont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/round_shape"
-                    android:gravity="center"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingTop="@dimen/_20sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_20sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Hello"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_10"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/topicimg" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/semiboldfont"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvname"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="Allen Mask"
+                    android:textColor="@color/steelblue"
+                    android:textAlignment="center"
+                     android:textSize="@dimen/_20sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/topicimg" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTopic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_select_topic" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <!--        <com.airbnb.lottie.LottieAnimationView-->
+            <!--            android:layout_width="@dimen/_150sdp"-->
+            <!--            android:layout_height="@dimen/_150sdp"-->
+            <!--            app:lottie_rawRes="@raw/child_groth"-->
+            <!--            app:lottie_autoPlay="true"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
+            <!--            app:lottie_loop="true"/>-->
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvContianer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/main_color"
+                app:cardCornerRadius="@dimen/_3sdp"
+                app:cardElevation="@dimen/_5sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llscroe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="60%"
+                        android:background="@drawable/round_shape"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_20sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/semiboldfont"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="60%"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_20sdp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvscroetitle"
+                        style="@style/semiboldfont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Your Child Scroe"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_20sdp" />
+                        android:textSize="@dimen/_18sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/llscroe"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/regularfont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:text="@string/logn_des1"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/llscroe"
+                        app:layout_constraintTop_toBottomOf="@+id/tvscroetitle" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
+            </androidx.cardview.widget.CardView>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvscroetitle"
-                    style="@style/semiboldfont"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Your Child Scroe"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_18sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/llscroe"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <!--        <androidx.appcompat.widget.AppCompatTextView-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:id="@+id/tvtopic"-->
+            <!--            android:text="Let's Go"-->
+            <!--            style="@style/semiboldfont"-->
+            <!--            android:visibility="gone"-->
+            <!--            android:layout_marginTop="@dimen/_10sdp"-->
+            <!--            android:textSize="@dimen/_24sdp"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
+            <!--            />-->
+            <!--        -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start">
+            <include
+                android:id="@+id/showDrawer"
+                layout="@layout/custom_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/regularfont"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:maxLines="3"
-                    android:text="@string/logn_des1"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_11sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/llscroe"
-                    app:layout_constraintTop_toBottomOf="@+id/tvscroetitle" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-<!--        <androidx.appcompat.widget.AppCompatTextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/tvtopic"-->
-<!--            android:text="Let's Go"-->
-<!--            style="@style/semiboldfont"-->
-<!--            android:visibility="gone"-->
-<!--            android:layout_marginTop="@dimen/_10sdp"-->
-<!--            android:textSize="@dimen/_24sdp"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
-<!--            />-->
-<!--        -->
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
-            android:src="@drawable/letsgo"
-            android:id="@+id/tvtopic"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTopic"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvtopic"
-            tools:listitem="@layout/item_select_topic" />
+        </androidx.drawerlayout.widget.DrawerLayout>
 
         <!--        android:layoutAnimation="@anim/layout_animation"-->
         <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior"-->

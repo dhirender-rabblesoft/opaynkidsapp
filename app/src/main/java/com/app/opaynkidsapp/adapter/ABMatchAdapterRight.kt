@@ -4,6 +4,7 @@ package com.app.opaynkidsapp.adapter
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -12,8 +13,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
+import com.app.opaynkidsapp.extensions.isNotNull
 import com.app.opaynkidsapp.model.RightMatchListingModel
 import com.app.opaynkidsapp.utils.Keys
+import com.squareup.picasso.Picasso
 
 
 class ABMatchAdapterRight(
@@ -33,8 +36,10 @@ class ABMatchAdapterRight(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
 
 //        holder.text!!.text = list[position].name.toString()
-        holder.objectImage?.setImageResource(list[position].img_url)
-        holder.frameLayout!!.tag = position
+        Picasso.get().load(list[position].img_url).into(holder.objectImage)
+         Log.e("imageurllll",list[position].img_url)
+         Log.e("imagesssid",list[position].id.toString())
+         holder.frameLayout!!.tag = position
         if (Keys.isSubmit ) {
             if (list[position].isRight){
                 holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_green)

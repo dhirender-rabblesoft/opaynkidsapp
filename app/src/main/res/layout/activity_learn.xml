@@ -34,12 +34,12 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/speakerlotties"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_margin="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lottie_autoPlay="false"
+                 app:lottie_autoPlay="false"
                 app:lottie_loop="false"
                 app:lottie_rawRes="@raw/spekaer" />
 
@@ -65,11 +65,12 @@
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_200sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                app:layout_constraintTop_toBottomOf="@id/learnTitle"
+                android:textSize="@dimen/_160sdp"
+                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                 />
 
 
             <ImageView
@@ -87,12 +88,13 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/learnImg"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:padding="@dimen/_10sdp"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_180sdp"
+                 android:layout_marginTop="@dimen/_30sdp"
+                app:layout_constraintTop_toBottomOf="@id/learnTitle"
+                app:layout_constraintStart_toStartOf="parent"
                 android:src="@drawable/apple"
-                app:layout_constraintBottom_toBottomOf="@+id/word"
-                app:layout_constraintEnd_toEndOf="parent" />
+                 app:layout_constraintEnd_toEndOf="parent" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -100,12 +102,11 @@
                 style="@style/semiboldfont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Apple"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_28sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/word"
+                 android:textAlignment="center"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:textColor="@color/red"
+                android:textSize="@dimen/_30sdp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.609"
                 tools:layout_editor_absoluteX="0dp" />
 

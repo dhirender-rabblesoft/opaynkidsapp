@@ -9,6 +9,7 @@ import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 
 import com.app.opaynkidsapp.databinding.ActivityObjectsBinding
+import com.app.opaynkidsapp.extensions.gone
 
 import com.app.opaynkidsapp.extensions.visible
 
@@ -39,9 +40,10 @@ class ObjectsViewModel (application: Application) : AppViewModel(application) {
 
     private fun settoolbar() {
         binder.header.tvtitle.text = "Classification"
-        binder.header.icmenu2.visible()
-        binder.header.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
-        binder.header.icmenu2.setOnClickListener {
+        binder.header.ivback.visible()
+        binder.header.icmenu2.gone()
+        binder.header.ivback.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+        binder.header.ivback.setOnClickListener {
             Keys.isSubmit = false
             baseActivity.onBackPressed()
         }
@@ -57,6 +59,8 @@ class ObjectsViewModel (application: Application) : AppViewModel(application) {
         val  adapterViewFlipper = ObjectAdapter(baseActivity){
             val bundle2 = Bundle()
             bundle2.putString(Keys.FROM, "Shapes")
+            bundle2.putString(Keys.POSTID, list[it].id.toString())
+            bundle2.putString(Keys.POSTNAME, list[it].data.toString())
             baseActivity.openA(LearnActivity::class, bundle2)
         }
         adapterViewFlipper.addNewList(list)

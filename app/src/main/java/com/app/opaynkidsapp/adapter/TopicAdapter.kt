@@ -26,22 +26,22 @@ class TopicAdapter (val baseActivity: KotlinBaseActivity, val itemClick:(Int) ->
                 itemClick(position)
             }
 
-            if (HomeScreen.packagecolorlist.size > 0) {
-                val layout: View = mainlayout
-
-                val gd = GradientDrawable(
-                    GradientDrawable.Orientation.BL_TR, intArrayOf(
-                        Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]),
-                        Color.parseColor(HomeScreen.packagesubcolorlist[position % HomeScreen.packagesubcolorlist.count()])
-                    )
-                )
-                layout.background = gd
-//                tvtopictitle.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
-//                tvleveldetail.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
-                tvtopictitle.setTextColor(Color.WHITE)
-
-
-            }
+//            if (HomeScreen.packagecolorlist.size > 0) {
+//                val layout: View = mainlayout
+//
+//                val gd = GradientDrawable(
+//                    GradientDrawable.Orientation.BL_TR, intArrayOf(
+//                        Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]),
+//                        Color.parseColor(HomeScreen.packagesubcolorlist[position % HomeScreen.packagesubcolorlist.count()])
+//                    )
+//                )
+//                layout.background = gd
+////                tvtopictitle.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
+////                tvleveldetail.setTextColor(Color.parseColor(HomeScreen.packagecolorlist[position % HomeScreen.packagecolorlist.count()]))
+//                tvtopictitle.setTextColor(Color.WHITE)
+//
+//
+//            }
         }
 
 

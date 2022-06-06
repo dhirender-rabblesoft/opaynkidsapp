@@ -12,6 +12,7 @@ data class MatchJson(
         data class Answer(
             val answer: String,
             val id: Int,
+            val match_question_id: Int,
             val image: String
         )
 

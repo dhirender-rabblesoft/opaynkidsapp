@@ -13,6 +13,7 @@ import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivityLearnBinding
 import com.app.opaynkidsapp.extensions.gone
+import com.app.opaynkidsapp.extensions.isNotNull
 import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.model.NumberJson
 import com.app.opaynkidsapp.repository.CommonRepository
@@ -48,7 +49,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
 
         setdata()
         setclicks()
-        setAnimation()
+       // setAnimation()
         initTextToSpeach()
 
     }
@@ -76,6 +77,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         when (getBundle.get(Keys.FROM.toString())) {
             baseActivity.getString(R.string.alphabet) -> {
                 binder.shapeview.gone()
+                binder.word.gone()
                 binder.learnImg.visible()
                 listofword.clear()
                 listofword = listofAplhabet
@@ -100,22 +102,32 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
 
             }
             baseActivity.getString(R.string.shapes) -> {
-                settoolbar(baseActivity.getString(R.string.shapes))
+                if (getBundle.get(Keys.POSTID).toString().isNotNull()&& !getBundle.get(Keys.POSTID).toString().equals("null"))
+                {
+                    settoolbar(getBundle.get(Keys.POSTNAME).toString())
+                    getnumberapi(Keys.CLASSDETAIL+getBundle.get(Keys.POSTID).toString())
+                }
+                else{
+
+
+                    settoolbar(baseActivity.getString(R.string.shapes))
+                    getnumberapi(Keys.SHAPES)
+                }
+                setmedia(R.raw.aaudio)
+
                 binder.shapeview.visible()
                 binder.learnImg.gone()
               //  binder.shapeview.setImageResource(R.drawable.cube)
                // binder.learnTitle.setText("Cude")
-                setmedia(R.raw.aaudio)
-                getnumberapi(Keys.SHAPES)
-
-            }
-            baseActivity.getString(R.string.animals) -> {
-                settoolbar(baseActivity.getString(R.string.animals))
 
 
             }
+
             baseActivity.getString(R.string.objects) -> {
                 settoolbar(baseActivity.getString(R.string.objects))
+
+            }
+            else->{
 
             }
 
@@ -138,12 +150,22 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                  }
                  else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
                  {
-                     Picasso.get().load(numberlist[0].image).placeholder( R.drawable.progress_animation ).into(binder.shapeview)
+
+                     Picasso.get().load(numberlist[0].image).into(binder.shapeview)
                      binder.learnTitle.setText(numberlist[0].data)
                  }
                  else{
-                     binder.word.setText(numberlist[0].number)
-                     binder.learnTitle.setText(numberlist[0].data)
+                     if (getBundle.get(Keys.POSTID).toString().isNotNull()&&!getBundle.get(Keys.POSTID).toString().equals("null"))
+                     {
+
+                         Picasso.get().load(numberlist[0].image).into(binder.shapeview)
+                         binder.learnTitle.setText(numberlist[0].data)
+                     }
+                     else{
+                         binder.word.setText(numberlist[0].number)
+                         binder.learnTitle.setText(numberlist[0].data)
+
+                     }
 
                  }
                  setAnimation()
@@ -161,7 +183,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
             textToSpeech?.speak(binder.learnTitle.text.toString(), TextToSpeech.SUCCESS, null, null)
         }
 
-        binder.toolbar.icmenu2.setOnClickListener {
+        binder.toolbar.ivback.setOnClickListener {
             baseActivity.onBackPressed()
         }
         binder.commonButton.commonNextButton.setOnClickListener {
@@ -176,12 +198,20 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 }
                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
                 {
-                    Picasso.get().load(numberlist[i].image)  .placeholder( R.drawable.progress_animation ).into(binder.shapeview)
+                    Picasso.get().load(numberlist[i].image) .into(binder.shapeview)
                     binder.learnTitle.setText(numberlist[i].data)
                 }
                 else{
-                    binder.word.setText(numberlist[i].number)
-                    binder.learnTitle.setText(numberlist[i].data)    // body of loop
+                    if (getBundle.get(Keys.POSTID).toString().isNotNull()&& !getBundle.get(Keys.POSTID).toString().equals("null"))
+                    {
+                        Picasso.get().load(numberlist[i].image) .into(binder.shapeview)
+                        binder.learnTitle.setText(numberlist[i].data)
+                    }
+                    else{
+                        binder.word.setText(numberlist[i].number)
+                        binder.learnTitle.setText(numberlist[i].data)
+                    }
+                  // body of loop
                 }
 
                 // body of loop
@@ -205,12 +235,20 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 }
                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
                 {
-                    Picasso.get().load(numberlist[i].image)  .placeholder( R.drawable.progress_animation ).into(binder.shapeview)
+                    Picasso.get().load(numberlist[i].image) .into(binder.shapeview)
                     binder.learnTitle.setText(numberlist[i].data)
                 }
                 else{
-                    binder.word.setText(numberlist[i].number)
-                    binder.learnTitle.setText(numberlist[i].data)    // body of loop
+                    if (getBundle.get(Keys.POSTID).toString().isNotNull()&& !getBundle.get(Keys.POSTID).toString().equals("null"))
+                    {
+                        Picasso.get().load(numberlist[i].image) .into(binder.shapeview)
+                        binder.learnTitle.setText(numberlist[i].data)
+                    }
+                    else{
+                        binder.word.setText(numberlist[i].number)
+                        binder.learnTitle.setText(numberlist[i].data)
+                    }
+                    // body of loop
                 }
 
                     // body of loop
@@ -230,8 +268,9 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
 
     private fun settoolbar(title: String) {
         binder.toolbar.tvtitle.setText(title)
-        binder.toolbar.icmenu2.visible()
-        binder.toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+        binder.toolbar.ivback.visible()
+        binder.toolbar.icmenu2.gone()
+        binder.toolbar.ivback.setImageResource(R.drawable.ic_baseline_arrow_back_24)
     }
 
 

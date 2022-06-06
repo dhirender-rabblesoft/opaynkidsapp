@@ -16,6 +16,7 @@ import com.app.opaynkidsapp.base.CanvasDraw2
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.base.KotlinCanvas
 import com.app.opaynkidsapp.databinding.ActivityMatchQaactivityBinding
+import com.app.opaynkidsapp.extensions.gone
 import com.app.opaynkidsapp.extensions.isNotNull
 import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.listner.ItemClick
@@ -61,9 +62,10 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
 
     private fun settoolbar() {
         binder.toolbar.tvtitle.setText("Drag and Drop")
-        binder.toolbar.icmenu2.visible()
-        binder.toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
-        binder.toolbar.icmenu2.setOnClickListener {
+        binder.toolbar.icmenu2.gone()
+        binder.toolbar.ivback.visible()
+        binder.toolbar.ivback.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+        binder.toolbar.ivback.setOnClickListener {
             Keys.isSubmit = false
             baseActivity.onBackPressed()
         }

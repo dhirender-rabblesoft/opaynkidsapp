@@ -18,7 +18,9 @@ class MCQButtonAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int
             tvButtontext.setText(list[position].name)
             if ( list[position].isclick)
             {
-                mainlayout.setBackgroundColor(ContextCompat.getColor(context,R.color.main_color))
+                tvButtontext.setTextColor(ContextCompat.getColor(baseActivity,R.color.white))
+                mainlayout.setBackgroundResource(R.drawable.bluedottedline)
+                //mainlayout.background(ContextCompat.getColor(context,R.color.main_color))
             }
 
             mainlayout.setOnClickListener {

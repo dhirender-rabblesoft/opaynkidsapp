@@ -17,6 +17,7 @@ import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.base.KotlinCanvas
 import com.app.opaynkidsapp.databinding.ActivityLineMatchingBinding
 import com.app.opaynkidsapp.databinding.ActivityMatchQaactivityBinding
+import com.app.opaynkidsapp.extensions.gone
 import com.app.opaynkidsapp.extensions.isNotNull
 import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.listner.ItemClick
@@ -28,6 +29,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.w3c.dom.Text
 import java.util.*
+import kotlin.collections.ArrayList
+
 class LineMatchViewModel (application: Application) : AppViewModel(application), ItemClick {
     private lateinit var binder: ActivityLineMatchingBinding
     private lateinit var mContext: Context
@@ -51,13 +54,10 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
         this.binder.viewModel = this
         Keys.isSubmit = false
 
-
         setcanas()
         settoolbar()
         initTextToSpeach()
         getmatches()
-
-
         binder.loginbutton.setOnClickListener {
             Toast.makeText(baseActivity, "You submit your test", Toast.LENGTH_LONG).show()
             Keys.isSubmit = true
@@ -67,10 +67,11 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
     }
 
     private fun settoolbar() {
-        binder.toolbar.tvtitle.text = baseActivity.getString(R.string.matching_test)
-        binder.toolbar.icmenu2.visible()
-        binder.toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
-        binder.toolbar.icmenu2.setOnClickListener {
+        binder.toolbar.tvtitle.text = "Colors Matching"
+        binder.toolbar.ivback.visible()
+        binder.toolbar.icmenu2.gone()
+        binder.toolbar.ivback.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+        binder.toolbar.ivback.setOnClickListener {
             Keys.isSubmit = false
             baseActivity.onBackPressed()
         }
@@ -101,21 +102,26 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
     private  fun getmatches()
     {
         commonRepository.match(baseActivity,Keys.MATCHES){
-            if (it.data.question.size>0)
-            {
-                it.data.question.forEach {
-                    leftlist.add(LeftMatchListingModel(it.id.toInt(), it.question, it.answer_id.toInt()))
+            var tempAns=ArrayList<String>()
 
-                }
-
-                initLeftRecyclerView()
-            }
             if (it.data.answer.size>0)
             {
                 it.data.answer.forEach {
-                    rightList.add(RightMatchListingModel(it.id.toInt(), R.drawable.apple, it.answer))
+                    tempAns.add(it.match_question_id.toString())
+                    rightList.add(RightMatchListingModel(it.id.toInt(), it.image, it.answer,matchquestionid = it.match_question_id))
                 }
                 initRightRecyclerView()
+                if (it.data.question.size>0)
+                {
+                    for (i in  it.data.question.indices)
+                    {
+                        Log.e("hehehehe",tempAns[i])
+                        leftlist.add(LeftMatchListingModel(it.data.question[i].id.toInt(), it.data.question[i].question, rightList[i].id))
+                    }
+
+
+                    initLeftRecyclerView()
+                }
             }
         }
     }
@@ -142,7 +148,7 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
         if (leftchild.isNotNull()) {
             val pos = binder.rvAmatcher.getChildAdapterPosition(leftchild!!)
             sourcePosition = pos
-
+            Log.e("sourcePosition",sourcePosition.toString())
             val selectedname = leftlist[pos].name
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 textToSpeech?.speak(selectedname, TextToSpeech.QUEUE_FLUSH, null, null)
@@ -217,6 +223,7 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
 
 
                             leftlist[sourcePosition].selectedID = rightList[positon].id
+                            rightList[positon].selectquestionid =  leftlist[sourcePosition].id
                             rightList[positon].isSelect = true
 
 
@@ -227,7 +234,7 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
 
 //                    Keys.endpoint = false
                         } else {
-                            Log.e("endtaskselection B - ", "BBBBBBBBBBB")
+                            Log.e("endtaskselection B - ", targetPosition.toString())
                             Keys.endpoint = true
 
                         }

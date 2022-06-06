@@ -36,6 +36,7 @@
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/speakerlotties"
                     android:layout_width="@dimen/_50sdp"
+                    android:visibility="gone"
                     android:layout_height="@dimen/_50sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

@@ -10,6 +10,7 @@ import com.app.opaynkidsapp.adapter.MCQButtonAdapter
 import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivityFillBlankBinding
+import com.app.opaynkidsapp.extensions.gone
 import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.model.ModelClass
 import com.app.opaynkidsapp.repository.CommonRepository
@@ -44,12 +45,12 @@ class FillBlankTestViewModel(application: Application) : AppViewModel(applicatio
         callapi()
 
     }
-
     private fun settoolbar() {
         binder.toolbar.tvtitle.setText("Fill In The Blanks")
-        binder.toolbar.icmenu2.visible()
-        binder.toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
-        binder.toolbar.icmenu2.setOnClickListener {
+        binder.toolbar.ivback.visible()
+        binder.toolbar.icmenu2.gone()
+        binder.toolbar.ivback.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+        binder.toolbar.ivback.setOnClickListener {
             baseActivity.onBackPressed()
         }
     }
@@ -72,7 +73,7 @@ class FillBlankTestViewModel(application: Application) : AppViewModel(applicatio
 
             setFillBlankAdapter()
             setAdapter()
-            Picasso.get().load(it.data[0].image).placeholder(R.drawable.progress_animation).into(binder.ivQuesImg)
+            Picasso.get().load(it.data[0].image).into(binder.ivQuesImg)
         }
     }
 
