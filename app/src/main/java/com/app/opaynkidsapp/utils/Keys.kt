@@ -20,7 +20,7 @@ object Keys
     //http://5f91-210-89-39-70.ngrok.io/opaynly-api/public/api/app-info
 //    const val  BASEURL="https://d077-210-89-39-190.ngrok.io/ielts-app/public/api/"
     // https://486b-2405-201-5007-b08b-d476-b940-bc96-620.in.ngrok.io -> http://localhost:8080
-    const val  BASEURL="http://830e-2405-201-5007-b08b-acc5-8548-c680-358a.ngrok.io/kids-api/public/"
+    const val  BASEURL="http://e152-2405-201-5007-b08b-ddd7-9c87-6979-5367.ngrok.io/kids-api/public/"
     // const val  BASEURL="http://staging-api.opayl.com/api/"
    // const val  BASEURL="https://api.opayl.com/api/"
     const val  STAGINGBASEURL="http://staging-api.opayl.com/api/"

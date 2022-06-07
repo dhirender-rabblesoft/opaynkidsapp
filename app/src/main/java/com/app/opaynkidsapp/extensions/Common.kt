@@ -41,6 +41,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.google.android.material.snackbar.Snackbar
  import com.squareup.picasso.Picasso
@@ -105,6 +107,41 @@ fun AppCompatImageView.loadPngwithoucdn(url: String?)
 fun CircleImageView.loadPngwithoucdn(url: String?)
 {
      Picasso.get().load(url).into(this)
+}
+
+fun AppCompatImageView.loadImage(uri: String) {
+
+    this.post {
+
+        val myOptions = RequestOptions()
+            .override(this.width, this.height)
+            .centerCrop()
+
+        Glide
+            .with(this.context)
+            .load(uri)
+            .apply(myOptions)
+            .into(this)
+
+    }
+
+}
+fun ImageView.loadImage(uri: String) {
+
+    this.post {
+
+        val myOptions = RequestOptions()
+            .override(this.width, this.height)
+            .centerCrop()
+
+        Glide
+            .with(this.context)
+            .load(uri)
+            .apply(myOptions)
+            .into(this)
+
+    }
+
 }
 
 fun Activity.displayMetrics(): DisplayMetrics {

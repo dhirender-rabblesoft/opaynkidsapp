@@ -56,18 +56,21 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                 adapterSource.list as ArrayList<MatchListingModel>
                             listSource[positionSource].isdrag = false
                             adapterSource.notifyDataSetChanged() //notifiy left adapter that item is selected or not and then change color
-                            if (sourceId == targetid){
+
+                            if (sourceId == targetid || targetid == -1){
                                 listSource[positionSource].isdrag = true
 
                                 return false
                             }
+
+
 
                             val adapterTarget: ABMatchAdapter2? = target.adapter as ABMatchAdapter2?
                             val customListTarget: MutableList<MatchListingModel> =
                                 adapterTarget?.list as MutableList<MatchListingModel>
                             if (positionTarget >= 0) {
                                 when (list.name) {
-                                    'A' -> {
+                                    "A" -> {
                                         if (positionTarget.equals(0)) {
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
@@ -87,7 +90,7 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                         }
 
                                     }
-                                    'B' -> {
+                                    "B" -> {
                                         if (positionTarget.equals(1)) {
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
@@ -109,7 +112,7 @@ class DragListener internal constructor(listener: Listener, val context: Context
 
                                     }
 
-                                    'C' -> {
+                                    "C" -> {
                                         if (positionTarget.equals(2)) {
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()
@@ -130,7 +133,7 @@ class DragListener internal constructor(listener: Listener, val context: Context
                                         }
 
                                     }
-                                    'D' -> {
+                                    "D" -> {
                                         if (positionTarget.equals(3)) {
                                             val toast = Toast.makeText(context,"Right Match",Toast.LENGTH_LONG)
                                             toast.show()

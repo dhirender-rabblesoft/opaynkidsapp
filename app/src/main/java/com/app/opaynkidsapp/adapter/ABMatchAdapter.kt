@@ -12,8 +12,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.TextView
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +38,7 @@ class ABMatchAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(
             parent.context
-        ).inflate(R.layout.item_match, parent, false)
+        ).inflate(R.layout.item_match2, parent, false)
         return ListViewHolder(view)
     }
 

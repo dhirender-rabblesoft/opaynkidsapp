@@ -9,6 +9,7 @@ import com.app.opaynkidsapp.R
 
 import com.app.opaynkidsapp.base.BaseAdapter
 import com.app.opaynkidsapp.base.KotlinBaseActivity
+import com.app.opaynkidsapp.extensions.loadImage
 import com.app.opaynkidsapp.model.LevelModel
 import com.app.opaynkidsapp.model.ObjectsJson
 import com.app.opaynkidsapp.ui.HomeScreen
@@ -22,7 +23,8 @@ class ObjectAdapter (val baseActivity: KotlinBaseActivity, val itemClick:(Int) -
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
            // topicimg.setImageResource(list[position].img)
-            Picasso.get().load(list[position].image).into(topicimg)
+        //    topicimg.loadImage(list[position].image)
+            Picasso.get().load(list[position].image).resize(200,200).into(topicimg)
             tvtopictitle.setText(list[position].data)
 
             mainlayout.setOnClickListener {

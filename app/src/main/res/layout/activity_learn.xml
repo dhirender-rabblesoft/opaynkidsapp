@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:textAlignment="center"
+                android:text=""
                 android:textColor="@color/black"
                 android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintTop_toBottomOf="@id/learnTitle"
@@ -79,6 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:padding="@dimen/_10sdp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -88,13 +90,13 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/learnImg"
-                android:layout_width="@dimen/_180sdp"
-                android:layout_height="@dimen/_180sdp"
-                 android:layout_marginTop="@dimen/_30sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 app:layout_constraintBottom_toBottomOf="parent"
+
                 app:layout_constraintTop_toBottomOf="@id/learnTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/apple"
-                 app:layout_constraintEnd_toEndOf="parent" />
+                  app:layout_constraintEnd_toEndOf="parent" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -105,10 +107,9 @@
                  android:textAlignment="center"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:textColor="@color/red"
-                android:textSize="@dimen/_30sdp"
+                 android:textSize="@dimen/_30sdp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.609"
-                tools:layout_editor_absoluteX="0dp" />
+                 tools:layout_editor_absoluteX="0dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

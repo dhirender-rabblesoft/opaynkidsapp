@@ -84,10 +84,10 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
             baseActivity, LinearLayoutManager.VERTICAL, false
         )
         val leftlist: MutableList<MatchListingModel> = ArrayList()
-        leftlist.add(MatchListingModel('A'))
-        leftlist.add(MatchListingModel('B'))
-        leftlist.add(MatchListingModel('C'))
-        leftlist.add(MatchListingModel('D'))
+        leftlist.add(MatchListingModel("A"))
+        leftlist.add(MatchListingModel("B"))
+        leftlist.add(MatchListingModel("C"))
+        leftlist.add(MatchListingModel("D"))
         topListAdapter = ABMatchAdapter(leftlist, this, baseActivity) {
 
 
@@ -119,10 +119,10 @@ class MatchQAViewModel(application: Application) : AppViewModel(application), Li
             baseActivity, LinearLayoutManager.VERTICAL, false
         )
         val rightList: MutableList<MatchListingModel> = ArrayList()
-        rightList.add(MatchListingModel('A'))
-        rightList.add(MatchListingModel('B'))
-        rightList.add(MatchListingModel('C'))
-        rightList.add(MatchListingModel('D'))
+        rightList.add(MatchListingModel("Apple"))
+        rightList.add(MatchListingModel("Ball"))
+        rightList.add(MatchListingModel("Cat"))
+        rightList.add(MatchListingModel("Dog"))
 
         bottomListAdapter = ABMatchAdapter2(rightList, this, baseActivity)
         binder.rvBMatcher.adapter = bottomListAdapter

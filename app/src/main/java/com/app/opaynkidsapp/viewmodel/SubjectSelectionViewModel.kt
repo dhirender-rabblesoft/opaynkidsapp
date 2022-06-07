@@ -86,7 +86,7 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             LevelModel(
                 "Classification",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.`object`
+                R.drawable.hierarchy
             )
         )
 
@@ -94,7 +94,7 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             LevelModel(
                 "Draw Practice",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.`object`
+                R.drawable.father
             )
         )
 
@@ -110,7 +110,7 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             LevelModel(
                 "Fill Blanks",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.`object`
+                R.drawable.filldrag
             )
         )
 
@@ -118,14 +118,14 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
             LevelModel(
                 "Match Words",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.`object`
+                R.drawable.jigsaw
             )
         )
         levelList.add(
             LevelModel(
                 "Drag and Drop Match",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.`object`
+                R.drawable.drag
             )
         )
 
@@ -151,7 +151,7 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
                 "Fill Blanks"->{
                     baseActivity.openA(FillBlankActivity::class)
                 }
-                "Match Test"->{
+                "Match Words"->{
                     baseActivity.openA(MatchQAActivity::class)
                 }
                 "Classification"->{

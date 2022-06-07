@@ -33,14 +33,15 @@ class ABMatchAdapterLeft(
 
         holder.text!!.text = list[position].name.toString()
         holder.frameLayout!!.tag = position
-        if (Keys.isSubmit){
-            if (list[position].selectedID.equals(list[position].answerID)){
-
-                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_green)
-            } else{
-                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_red)
-            }
-        }
+//        if (Keys.isSubmit){
+//            if (list[position].selectedID.equals(list[position].answerID))
+//            {
+//
+//                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_green)
+//            } else{
+//                holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_red)
+//            }
+//        }
 
 
     }

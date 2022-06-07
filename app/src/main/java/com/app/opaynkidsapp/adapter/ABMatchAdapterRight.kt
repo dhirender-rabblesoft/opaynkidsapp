@@ -41,7 +41,7 @@ class ABMatchAdapterRight(
          Log.e("imagesssid",list[position].id.toString())
          holder.frameLayout!!.tag = position
         if (Keys.isSubmit ) {
-            if (list[position].isRight){
+            if (list[position].selectquestionid.equals(list[position].matchquestionid)){
                 holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_green)
             }else{
                 holder.frameLayout?.background = context.getDrawable( R.drawable.rectangle_shape_light_red)

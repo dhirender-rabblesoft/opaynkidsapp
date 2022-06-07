@@ -1,19 +1,16 @@
 package com.app.opaynkidsapp.adapter
 
 
-import android.content.ClipData
-import android.content.Context
+ import android.content.Context
 import android.graphics.Color
-import android.os.Build
-import android.os.Handler
+ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.TextView
+
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +34,7 @@ import com.app.opaynkidsapp.viewmodel.MatchListingModel
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(
             parent.context
-        ).inflate(R.layout.item_match, parent, false)
+        ).inflate(R.layout.item_match2, parent, false)
         return ListViewHolder(view)
     }
 

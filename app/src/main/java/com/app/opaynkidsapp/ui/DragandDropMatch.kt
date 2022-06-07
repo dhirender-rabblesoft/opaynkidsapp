@@ -14,6 +14,7 @@ package com.app.opaynkidsapp.ui
  import com.app.opaynkidsapp.adapter.DragDropAdapter
  import com.app.opaynkidsapp.applications.KidsApplication
  import com.app.opaynkidsapp.base.KotlinBaseActivity
+ import com.app.opaynkidsapp.extensions.gone
  import com.app.opaynkidsapp.extensions.visible
  import com.app.opaynkidsapp.listner.DragDropCheckListner
  import com.app.opaynkidsapp.listner.Listener
@@ -41,7 +42,13 @@ class DragandDropMatch : KotlinBaseActivity(), Listener, DragDropCheckListner {
 
         settoolbar()
         initTextToSpeach()
-        callapi()
+     //   callapi()
+        val topList: MutableList<ModelClass> = ArrayList()
+        topList.add(ModelClass("Apple"))
+        topList.add(ModelClass("Ball"))
+        topList.add(ModelClass("Cat"))
+        topList.add(ModelClass("Elephant"))
+        intializeRecycle(topList = topList)
     }
     private  fun callapi()
     {
@@ -83,9 +90,10 @@ class DragandDropMatch : KotlinBaseActivity(), Listener, DragDropCheckListner {
     }
     private fun settoolbar() {
         toolbar.tvtitle.setText("Drag and Drop")
-        toolbar.icmenu2.visible()
-        toolbar.icmenu2.setImageResource(R.drawable.ic_baseline_arrow_back_24)
-        toolbar.icmenu2.setOnClickListener {
+        toolbar.icmenu2.gone()
+        toolbar.ivback.visible()
+        toolbar.ivback.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+        toolbar.ivback.setOnClickListener {
             Keys.isSubmit = false
             onBackPressed()
 

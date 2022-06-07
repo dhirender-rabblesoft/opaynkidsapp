@@ -223,6 +223,7 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
 
 
                             leftlist[sourcePosition].selectedID = rightList[positon].id
+                            leftlist[sourcePosition].answerID = rightList[positon].matchquestionid
                             rightList[positon].selectquestionid =  leftlist[sourcePosition].id
                             rightList[positon].isSelect = true
 
@@ -230,6 +231,7 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
                         }
 
                         if (it.selectedID.equals(rightList[positon].id)) {
+                            Log.e("ondrawpathss","trueee")
 
 
 //                    Keys.endpoint = false

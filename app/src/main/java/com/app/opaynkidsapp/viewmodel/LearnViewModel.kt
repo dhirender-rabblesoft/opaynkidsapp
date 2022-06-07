@@ -21,8 +21,6 @@ import com.app.opaynkidsapp.utils.Keys
 import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.collections.ArrayList
-
-
 class LearnViewModel(application: Application) : AppViewModel(application) {
     private lateinit var binder: ActivityLearnBinding
     private lateinit var mContext: Context
@@ -66,7 +64,8 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         })
     }
 
-    private fun setAnimation() {
+    private fun setAnimation()
+    {
         val animationBounce = AnimationUtils.loadAnimation(baseActivity, R.anim.bounce)
         val animationfadeout = AnimationUtils.loadAnimation(baseActivity, R.anim.fade_in)
         binder.learnImg.startAnimation(animationBounce)
@@ -82,7 +81,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 listofword.clear()
                 listofword = listofAplhabet
                 settoolbar(baseActivity.getString(R.string.alphabet))
-                binder.learnImg.setImageResource(R.drawable.apple)
+              //  binder.learnImg.setImageResource(R.drawable.apple)
                 setmedia(R.raw.aaudio)
                 getnumberapi(Keys.GETALPHABET)
             }
@@ -132,7 +131,6 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
             }
 
         }
-
     }
 
 
@@ -146,6 +144,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                  if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
                  {
                      binder.word.setText(numberlist[0].number)
+                     Picasso.get().load(numberlist[0].image).into(binder.learnImg)
                      binder.learnTitle.setText(numberlist[0].number+" for "+numberlist[0].data)
                  }
                  else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
@@ -194,6 +193,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
                 {
                     binder.word.setText(numberlist[i].number)
+                    Picasso.get().load(numberlist[i].image).into(binder.learnImg)
                     binder.learnTitle.setText(numberlist[i].number+" for "+numberlist[i].data)    // body of loop
                 }
                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
@@ -231,6 +231,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                 if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
                 {
                     binder.word.setText(numberlist[i].number)
+                    Picasso.get().load(numberlist[i].image).into(binder.learnImg)
                     binder.learnTitle.setText(numberlist[i].number+" for "+numberlist[i].data)    // body of loop
                 }
                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
