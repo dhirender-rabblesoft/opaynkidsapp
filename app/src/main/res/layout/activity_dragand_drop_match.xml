@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:layout_width="match_parent"
         android:src="@drawable/apple"
-        android:layout_height="@dimen/_200sdp"/>
+        android:layout_height="@dimen/_150sdp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTop"
         app:spanCount="2"
@@ -31,10 +31,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="0dp" />
+        android:layout_marginBottom="@dimen/_5sdp"
+        app:layout_constraintBottom_toTopOf="@id/loginbutton"
+         android:layout_marginStart="0dp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginbutton"
+        style="@style/mainbutton"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+         android:layout_marginBottom="@dimen/_10sdp"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

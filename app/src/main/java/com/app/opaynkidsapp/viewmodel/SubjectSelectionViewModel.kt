@@ -5,12 +5,14 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
+import androidx.drawerlayout.widget.DrawerLayout
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.TopicAdapter
 import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivitySubjectSelectionBinding
 import com.app.opaynkidsapp.extensions.gone
+import com.app.opaynkidsapp.extensions.invisible
 import com.app.opaynkidsapp.extensions.putStrings
 import com.app.opaynkidsapp.extensions.visible
 import com.app.opaynkidsapp.model.LevelModel
@@ -39,11 +41,14 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
     private  fun  setclicks()
     {
         binder.toolbar.icmenu2.gone()
-        binder.toolbar.ivback.visible()
-        binder.toolbar.ivback.setImageResource(R.drawable.menu)
-        binder.toolbar.ivback.setOnClickListener {
-            binder.drawerLayout.openDrawer(Gravity.START)
-        }
+        binder.toolbar.ivback.invisible()
+        binder.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+        //binder.toolbar.ivback.setImageResource(R.drawable.menu)
+
+//        binder.toolbar.ivback.setOnClickListener {
+//            binder.drawerLayout.openDrawer(Gravity.START)
+//        }
 
     }
 
@@ -53,81 +58,81 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
         val levelList = ArrayList<LevelModel>()
         levelList.add(
             LevelModel(
-                "Numbers",
+                "Learn",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.number
+                R.drawable.learn
             )
         )
         levelList.add(
             LevelModel(
-                "Alphabet",
+                "Practise Test",
                 "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.alphabet
+                R.drawable.checklist
             )
         )
-        levelList.add(
-            LevelModel(
-                "Colors",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.colors
-            )
-        )
-        levelList.add(
-            LevelModel(
-                "Shapes",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.shapes
-            )
-        )
-
-
-
-        levelList.add(
-            LevelModel(
-                "Classification",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.hierarchy
-            )
-        )
-
-        levelList.add(
-            LevelModel(
-                "Draw Practice",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.father
-            )
-        )
-
-
 //        levelList.add(
 //            LevelModel(
-//                "Testing",
+//                "Colors",
 //                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-//                R.drawable.`object`
+//                R.drawable.colors
 //            )
 //        )
-        levelList.add(
-            LevelModel(
-                "Fill Blanks",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.filldrag
-            )
-        )
-
-        levelList.add(
-            LevelModel(
-                "Match Words",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.jigsaw
-            )
-        )
-        levelList.add(
-            LevelModel(
-                "Drag and Drop Match",
-                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
-                R.drawable.drag
-            )
-        )
+//        levelList.add(
+//            LevelModel(
+//                "Shapes",
+//                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+//                R.drawable.shapes
+//            )
+//        )
+//
+//
+//
+//        levelList.add(
+//            LevelModel(
+//                "Classification",
+//                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+//                R.drawable.hierarchy
+//            )
+//        )
+//
+//        levelList.add(
+//            LevelModel(
+//                "Draw Practice",
+//                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+//                R.drawable.father
+//            )
+//        )
+//
+//
+////        levelList.add(
+////            LevelModel(
+////                "Testing",
+////                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+////                R.drawable.`object`
+////            )
+////        )
+//        levelList.add(
+//            LevelModel(
+//                "Fill Blanks",
+//                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+//                R.drawable.filldrag
+//            )
+//        )
+//
+//        levelList.add(
+//            LevelModel(
+//                "Match Words",
+//                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+//                R.drawable.jigsaw
+//            )
+//        )
+//        levelList.add(
+//            LevelModel(
+//                "Drag and Drop Match",
+//                "This section is used to identity the icon, shapes, and colors and also learn your child of alphabet and numbers and little bit knwolengs of animales",
+//                R.drawable.drag
+//            )
+//        )
 
 
         val topicAdapter = TopicAdapter(baseActivity) {
@@ -159,6 +164,18 @@ class SubjectSelectionViewModel(application: Application) : AppViewModel(applica
                 }
                 "Drag and Drop Match"->{
                     baseActivity.openA(DragandDropMatch::class)
+                }
+                "Practise Test"->{
+                    val bundle2 = Bundle()
+                    bundle2.putString(Keys.FROM, levelList[it].title)
+                    bundle2.putString(Keys.POSTID, "2")
+                     baseActivity.openA(ObjectsA::class,bundle2)
+                }
+                "Learn"->{
+                    val bundle2 = Bundle()
+                    bundle2.putString(Keys.FROM, levelList[it].title)
+                    bundle2.putString(Keys.POSTID, "1")
+                     baseActivity.openA(ObjectsA::class,bundle2)
                 }
                 else->{
                     val bundle2 = Bundle()

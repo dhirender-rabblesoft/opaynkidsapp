@@ -1,5 +1,4 @@
 package com.app.opaynkidsapp.network
-
 import com.app.opaynkidsapp.model.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -15,8 +14,8 @@ interface APIInterface
     @GET
     fun fillup(@Url url: String?): Call<Fillupjson>?
     @GET
-    fun dragmatch(@Url url: String?): Call<DragDropMatch>?
-
-
+    fun dragmatch(@Url url: String?): Call<McqJson>?
+ @GET
+    fun drawing(@Url url: String?): Call<DrawingJson>?
 
 }

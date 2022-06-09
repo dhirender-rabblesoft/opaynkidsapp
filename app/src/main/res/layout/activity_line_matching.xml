@@ -16,37 +16,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.MatchQAActivity">
-
         <include
             android:id="@+id/toolbar"
             layout="@layout/common_toolbar" />
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/matchcontainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
-
+            app:layout_constraintBottom_toTopOf="@+id/loginbutton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAmatcher"
-                android:layout_width="@dimen/_100sdp"
+                android:layout_width="@dimen/_120sdp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/loginbutton"
-                app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_match_a" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBMatcher"
-                android:layout_width="@dimen/_100sdp"
+                android:layout_width="@dimen/_120sdp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/loginbutton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_match" />
@@ -59,17 +54,7 @@
                 />
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/loginbutton"
-                style="@style/mainbutton"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:text="Submit"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,7 +96,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/crylottiesanim" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginbutton"
+            style="@style/mainbutton"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:text="Submit"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

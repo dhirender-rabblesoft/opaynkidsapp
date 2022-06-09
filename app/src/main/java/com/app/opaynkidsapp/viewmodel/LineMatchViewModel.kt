@@ -1,8 +1,10 @@
 package com.app.opaynkidsapp.viewmodel
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.graphics.Point
 import android.os.Build
+import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
@@ -45,7 +47,8 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
     var sourcePosition = -1
     var targetPosition = -1
     var textToSpeech: TextToSpeech? = null
-
+    var getBundle= Bundle()
+    var i=0
 
     fun setBinder(binder: ActivityLineMatchingBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
@@ -53,6 +56,8 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
         this.baseActivity = baseActivity
         this.binder.viewModel = this
         Keys.isSubmit = false
+        getBundle = (baseActivity as Activity).intent.extras!!
+
 
         setcanas()
         settoolbar()
@@ -63,6 +68,12 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
             Keys.isSubmit = true
             rightListAdapter?.notifyDataSetChanged()
             leftListAdapter?.notifyDataSetChanged()
+        }
+    }
+    private  fun setclicks()
+    {
+        binder.loginbutton.setOnClickListener {
+
         }
     }
 
@@ -85,7 +96,10 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
 
 
     }
+    private  fun setdata()
+    {
 
+    }
 
     private fun initLeftRecyclerView() {
         binder.rvAmatcher.layoutManager = LinearLayoutManager(
@@ -101,7 +115,7 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
     }
     private  fun getmatches()
     {
-        commonRepository.match(baseActivity,Keys.MATCHES){
+        commonRepository.match(baseActivity,Keys.MATCHES+"/"+getBundle.getString(Keys.POSTID)){
             var tempAns=ArrayList<String>()
 
             if (it.data.answer.size>0)
@@ -191,11 +205,7 @@ class LineMatchViewModel (application: Application) : AppViewModel(application),
             if (sourcePosition != -1) {
                 val positon = binder.rvBMatcher.getChildAdapterPosition(rightchild!!)
                 targetPosition = positon
-
-
                 var badaptername = rightList[positon].name
-
-
 //                if (!leftlist[sourcePosition].selectedID.equals(rightList[targetPosition].id)){
 //                    Keys.endpoint = true
 //                }else{

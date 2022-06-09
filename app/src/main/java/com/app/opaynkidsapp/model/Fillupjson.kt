@@ -6,5 +6,5 @@ data class Fillupjson(
     val vode: Int
 )
 {
-    data class Data(val id:Int,var image:String,val  answer:String,val  incorrect_answer:String)
+    data class Data(val id:Int,var image:String,val name:String,val  answer:String,val  incorrect_answer:String,var description:String)
 }

@@ -9,7 +9,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mainlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_100sdp"
         app:cardCornerRadius="@dimen/_3sdp"
         app:cardElevation="@dimen/_3sdp"
         app:cardUseCompatPadding="true"
@@ -36,13 +36,11 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tvButtontext"
                 style="@style/semiboldfont"
-                android:layout_width="@dimen/_58sdp"
-                android:layout_height="@dimen/_58sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_75sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/apple"
-                android:textAlignment="center"
-                android:textSize="@dimen/_24sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -229,7 +229,7 @@ class CommonRepository(private val baseActivity: Application)
         }
 
     }
-    fun dragmatch(baseActivity: KotlinBaseActivity,   url:String,ishowloader:Boolean=false, itemClick: (DragDropMatch) -> Unit)
+    fun dragmatch(baseActivity: KotlinBaseActivity,   url:String,ishowloader:Boolean=false, itemClick: (McqJson) -> Unit)
     {
 
         if (!baseActivity.networkcheck.isNetworkAvailable())
@@ -245,11 +245,11 @@ class CommonRepository(private val baseActivity: Application)
             retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
                 APIInterface::class.java
             )
-            retrofitClient?.dragmatch(APP_BASE_URL1+url)!!.enqueue(object : Callback<DragDropMatch>
+            retrofitClient?.dragmatch(APP_BASE_URL1+url)!!.enqueue(object : Callback<McqJson>
             {
                 override fun onResponse(
-                    call: Call<DragDropMatch?>,
-                    response: Response<DragDropMatch?>
+                    call: Call<McqJson?>,
+                    response: Response<McqJson?>
                 ) {
                     baseActivity.stopProgressDialog()
                     when(response.code())
@@ -267,10 +267,57 @@ class CommonRepository(private val baseActivity: Application)
                             baseActivity.customSnackBar(baseActivity.getString(R.string.somthingwentwrong),true)
                         }
                     }
-
                 }
 
-                override fun onFailure(call: Call<DragDropMatch?>, t: Throwable)
+                override fun onFailure(call: Call<McqJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                 }
+            })
+        }
+
+    }
+  fun drawing(baseActivity: KotlinBaseActivity,   url:String,ishowloader:Boolean=false, itemClick: (DrawingJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            if (ishowloader)
+            {
+
+                baseActivity.startProgressDialog()
+            }
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+            retrofitClient?.drawing(APP_BASE_URL1+url)!!.enqueue(object : Callback<DrawingJson>
+            {
+                override fun onResponse(
+                    call: Call<DrawingJson?>,
+                    response: Response<DrawingJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                            baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                             // faqmutableLiveData.setValue(response.body())
+                        }
+                        in 500..512->{
+                            baseActivity.customSnackBar(baseActivity.getString(R.string.somthingwentwrong),true)
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<DrawingJson?>, t: Throwable)
                 {
                     baseActivity.stopProgressDialog()
                  }

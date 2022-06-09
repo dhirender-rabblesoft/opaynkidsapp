@@ -18,6 +18,7 @@ package com.app.opaynkidsapp.ui
  import com.app.opaynkidsapp.extensions.visible
  import com.app.opaynkidsapp.listner.DragDropCheckListner
  import com.app.opaynkidsapp.listner.Listener
+ import com.app.opaynkidsapp.model.McqJson
  import com.app.opaynkidsapp.model.ModelClass
  import com.app.opaynkidsapp.repository.CommonRepository
  import com.app.opaynkidsapp.utils.Keys
@@ -29,9 +30,8 @@ package com.app.opaynkidsapp.ui
 
 class DragandDropMatch : KotlinBaseActivity(), Listener, DragDropCheckListner {
     var textToSpeech: TextToSpeech? = null
-
-
-
+    var i=0
+    var list=ArrayList<McqJson.Data>()
 
     var commonRepository:CommonRepository?=null
 
@@ -43,25 +43,48 @@ class DragandDropMatch : KotlinBaseActivity(), Listener, DragDropCheckListner {
         settoolbar()
         initTextToSpeach()
      //   callapi()
-        val topList: MutableList<ModelClass> = ArrayList()
-        topList.add(ModelClass("Apple"))
-        topList.add(ModelClass("Ball"))
-        topList.add(ModelClass("Cat"))
-        topList.add(ModelClass("Elephant"))
-        intializeRecycle(topList = topList)
+
+        callapi()
+        setclicks()
+    }
+    private  fun setclicks()
+    {
+        loginbutton.setOnClickListener {
+            if (list.size-1>i )
+            {
+                ++i
+                if (list.size-1==i)
+                {
+                    loginbutton.text="Finish"
+                }
+                setdata()
+            }
+        }
     }
     private  fun callapi()
     {
-        val topList: MutableList<ModelClass> = ArrayList()
-        commonRepository?.dragmatch(this,"dragmatch")
+        commonRepository?.dragmatch(this,Keys.MULTICATEGORY_ANSWER+intent.extras?.getString(Keys.POSTID))
         {
-            CorrectAns=it.data.correct_ans
-            Picasso.get().load(it.data.image).placeholder(R.drawable.progress_animation).into(ivmatch)
-            it.data.selectanswer.forEach {
-                topList.add(ModelClass(it.ans))
+
+            if (it.data.size>0)
+            {
+                list.addAll(it.data)
+                setdata()
             }
-            intializeRecycle(topList = topList)
+
         }
+    }
+    private  fun setdata()
+    {
+        val topList: MutableList<ModelClass> = ArrayList()
+
+        CorrectAns=list[i].answer
+        Picasso.get().load(list[i].image).placeholder(R.drawable.progress_animation).into(ivmatch)
+        list[i].options.forEach {
+            topList.add(ModelClass(it.name))
+        }
+        intializeRecycle(topList = topList)
+
     }
     companion object{
         var CorrectAns=""

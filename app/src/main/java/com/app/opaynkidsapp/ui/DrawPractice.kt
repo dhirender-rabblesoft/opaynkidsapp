@@ -12,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorFilter
 import com.app.opaynkidsapp.R
+import com.app.opaynkidsapp.applications.KidsApplication
 import com.app.opaynkidsapp.base.CanvasDraw
-import com.app.opaynkidsapp.extensions.gone
-import com.app.opaynkidsapp.extensions.setLeftMargin
-import com.app.opaynkidsapp.extensions.setTopMargin
-import com.app.opaynkidsapp.extensions.visible
+import com.app.opaynkidsapp.base.KotlinBaseActivity
+import com.app.opaynkidsapp.extensions.*
+import com.app.opaynkidsapp.model.DrawingJson
+import com.app.opaynkidsapp.repository.CommonRepository
+import com.app.opaynkidsapp.utils.Keys
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
@@ -24,25 +26,29 @@ import kotlinx.android.synthetic.main.activity_draw_practice.*
 import kotlinx.android.synthetic.main.activity_otpverify.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
-class DrawPractice : AppCompatActivity() {
+class DrawPractice : KotlinBaseActivity() {
 
     var textToSpeech: TextToSpeech? = null
-
+    var commonRepository: CommonRepository?=null
+    var arrayList=ArrayList<DrawingJson.Data>()
+    var i = 0
+    var canvasView : CanvasDraw?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw_practice)
+        commonRepository= CommonRepository(KidsApplication.myApp!!)
         setToolbar()
         setClick()
         initTextToSpeach()
 
-        val canvasView = CanvasDraw(this)
-        canvasView.width = 50
-        canvasView.height = 50
+          canvasView = CanvasDraw(this)
+        canvasView?.width = 50
+        canvasView?.height = 50
         parentView.addView(canvasView)
 
-        setanimation()
-        drawWord.visible()
+        callapi()
 
 
         selectcolor.setOnClickListener {
@@ -56,14 +62,14 @@ class DrawPractice : AppCompatActivity() {
                     // Handle Color Selection
                     selectcolor.setBackgroundColor(color)
 
-                    canvasView.setcolor(color)
+                    canvasView?.setcolor(color)
                 }
                 .show()
         }
 
 
         cleanCanvas.setOnClickListener {
-            canvasView.clearCanvas()
+            canvasView?.clearCanvas()
         }
 
 
@@ -81,12 +87,30 @@ class DrawPractice : AppCompatActivity() {
 
         })
     }
+    private  fun callapi()
+    {
+        commonRepository?.drawing(this,Keys.DRAWPRACTICE ){
+            if (it.data.size>0)
+            {
+                arrayList.addAll(it.data)
+                setdata()
+            }
+        }
+    }
 
 
 
     private fun setanimation() {
 
         drawWord.animate().translationXBy(400f).translationY(100f).duration = 1000
+    }
+    private  fun setdata()
+    {
+        tvname.text=arrayList[i].name
+        ivsammimage.loadImage(arrayList[i].image)
+        drawWord.loadImage(arrayList[i].image_2)
+        //setanimation()
+        drawWord.visible()
     }
 
     private fun setToolbar() {
@@ -97,6 +121,16 @@ class DrawPractice : AppCompatActivity() {
     }
 
     private fun setClick() {
+        loginbutton1.setOnClickListener {
+            if (arrayList.size-1>i )
+            {
+                ++i
+                //drawWord.animate().translationXBy(0f).translationY(0f).duration = 1000
+                canvasView?.clearCanvas()
+                setdata()
+
+            }
+        }
         toolbar.ivback.setOnClickListener {
             onBackPressed()
         }

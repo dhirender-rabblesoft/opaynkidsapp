@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.app.opaynkidsapp.R
 import com.app.opaynkidsapp.adapter.DragDropAdapter
+import com.app.opaynkidsapp.model.DragDropMatch
 import com.app.opaynkidsapp.model.ModelClass
+import com.app.opaynkidsapp.ui.DragandDropMatch.Companion.CorrectAns
 import com.app.opaynkidsapp.utils.Keys
 
 class DragDropListener internal constructor(
@@ -68,7 +70,7 @@ class DragDropListener internal constructor(
                                         val listSource: ArrayList<ModelClass> =
                                             adapterSource?.list as ArrayList<ModelClass>
                                         // sample
-                                         if (listSource[positionSource].name.equals("Apple"))
+                                         if (listSource[positionSource].name.lowercase().equals(CorrectAns))
                                         {
                                              checkListner.isMatch(true)
                                         }

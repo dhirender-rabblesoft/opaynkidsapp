@@ -56,7 +56,6 @@ class RetrofitClient
         return Retrofit.Builder()
             .baseUrl(APP_BASE_URL1)
             .client(httpClient.build())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }

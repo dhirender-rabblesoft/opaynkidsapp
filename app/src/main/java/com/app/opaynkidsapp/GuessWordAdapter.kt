@@ -14,7 +14,12 @@ class GuessWordAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int
     ) {
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
-        //Picasso.get().load(list[position].image).into(ivQuesImg)
+        Picasso.get().load(list[position].image).into(ivQuesImg)
+            tvtitle.text=list[position].name
+            llmain.setOnClickListener {
+                itemClick(position)
+            }
+
 
         }
 

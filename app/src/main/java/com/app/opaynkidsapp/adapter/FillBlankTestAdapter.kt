@@ -11,11 +11,10 @@ import kotlinx.android.synthetic.main.item_fill_blank_test.view.*
 
 
 class FillBlankTestAdapter(
-    val addlist: ArrayList<String>,
-    val baseActivity: KotlinBaseActivity,
+     val baseActivity: KotlinBaseActivity,
     val itemClick: (Int) -> Unit
 ) :
-    BaseAdapter<Char>(R.layout.item_fill_blank_test) {
+    BaseAdapter<String>(R.layout.item_fill_blank_test) {
     val answer = "apple"
 
 
@@ -24,7 +23,7 @@ class FillBlankTestAdapter(
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
 
-            tvshowword.setText(addlist[position].toString())
+            tvshowword.setText(list[position])
 //            if (addlist.size > 0) {
 //                if (position <addlist.size){
 //                    ans2.set(position,addlist[position])
@@ -37,8 +36,5 @@ class FillBlankTestAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        return answer.length
-    }
 
 }

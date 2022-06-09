@@ -4,8 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.app.opaynkidsapp.MCQTestAdapter
 import com.app.opaynkidsapp.R
-import com.app.opaynkidsapp.adapter.FillBlankTestAdapter
-import com.app.opaynkidsapp.adapter.MCQButtonAdapter
+
 import com.app.opaynkidsapp.base.AppViewModel
 import com.app.opaynkidsapp.base.KotlinBaseActivity
 import com.app.opaynkidsapp.databinding.ActivityMcqactivityBinding

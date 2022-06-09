@@ -98,19 +98,27 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
             baseActivity.getString(R.string.colors) -> {
                 settoolbar(baseActivity.getString(R.string.colors))
 
-
+                getnumberapi(Keys.GETCOLORS)
             }
             baseActivity.getString(R.string.shapes) -> {
-                if (getBundle.get(Keys.POSTID).toString().isNotNull()&& !getBundle.get(Keys.POSTID).toString().equals("null"))
+
+                if (getBundle.get(Keys.FROM).toString().equals("Shapes"))
+                {
+                    settoolbar(baseActivity.getString(R.string.shapes))
+                    getnumberapi(Keys.SHAPES)
+                }
+
+               else  if (getBundle.get(Keys.POSTID).toString().isNotNull()&& !getBundle.get(Keys.POSTID).toString().equals("null"))
                 {
                     settoolbar(getBundle.get(Keys.POSTNAME).toString())
                     getnumberapi(Keys.CLASSDETAIL+getBundle.get(Keys.POSTID).toString())
                 }
                 else{
 
-
-                    settoolbar(baseActivity.getString(R.string.shapes))
-                    getnumberapi(Keys.SHAPES)
+                    settoolbar(getBundle.get(Keys.POSTNAME).toString())
+                    getnumberapi(Keys.CLASSDETAIL+getBundle.get(Keys.POSTID).toString())
+//                    settoolbar(baseActivity.getString(R.string.shapes))
+//                    getnumberapi(Keys.SHAPES)
                 }
                 setmedia(R.raw.aaudio)
 
@@ -127,7 +135,10 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
 
             }
             else->{
+                settoolbar(baseActivity.getString(R.string.objects))
 
+                settoolbar(getBundle.get(Keys.POSTNAME).toString())
+                getnumberapi(Keys.CLASSDETAIL+getBundle.get(Keys.POSTID).toString())
             }
 
         }
@@ -139,6 +150,7 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
         commonRepository.getnumbers(baseActivity,url = url){
              if (it.data.size>0)
              {
+                 binder.commonButton.commonPreButton.gone()
                  numberlist.addAll(it.data)
 
                  if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
@@ -150,6 +162,12 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                  else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
                  {
 
+                     Picasso.get().load(numberlist[0].image).into(binder.shapeview)
+                     binder.learnTitle.setText(numberlist[0].data)
+                 }
+                 else if (baseActivity.getString(R.string.colors).equals(binder.toolbar.tvtitle.text))
+                 {
+                     binder.shapeview.visible()
                      Picasso.get().load(numberlist[0].image).into(binder.shapeview)
                      binder.learnTitle.setText(numberlist[0].data)
                  }
@@ -189,7 +207,12 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
 
 
             if (numberlist.size-1>i ){
+                binder.commonButton.commonPreButton.visible()
                 ++i
+                if (numberlist.size-1==i)
+                {
+                    binder.commonButton.commonNextButton.gone()
+                }
                 if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
                 {
                     binder.word.setText(numberlist[i].number)
@@ -197,6 +220,11 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                     binder.learnTitle.setText(numberlist[i].number+" for "+numberlist[i].data)    // body of loop
                 }
                 else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
+                {
+                    Picasso.get().load(numberlist[i].image) .into(binder.shapeview)
+                    binder.learnTitle.setText(numberlist[i].data)
+                }
+                else if (baseActivity.getString(R.string.colors).equals(binder.toolbar.tvtitle.text))
                 {
                     Picasso.get().load(numberlist[i].image) .into(binder.shapeview)
                     binder.learnTitle.setText(numberlist[i].data)
@@ -227,6 +255,11 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
             if (i>0){
                 --i
 
+                if (i<numberlist.size-1)
+                {
+                    binder.commonButton.commonNextButton.visible()
+                }
+
 
                 if (baseActivity.getString(R.string.alphabet).equals(binder.toolbar.tvtitle.text))
                 {
@@ -234,7 +267,8 @@ class LearnViewModel(application: Application) : AppViewModel(application) {
                     Picasso.get().load(numberlist[i].image).into(binder.learnImg)
                     binder.learnTitle.setText(numberlist[i].number+" for "+numberlist[i].data)    // body of loop
                 }
-                else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text))
+                else if (baseActivity.getString(R.string.shapes).equals(binder.toolbar.tvtitle.text)
+                    ||baseActivity.getString(R.string.colors).equals(binder.toolbar.tvtitle.text))
                 {
                     Picasso.get().load(numberlist[i].image) .into(binder.shapeview)
                     binder.learnTitle.setText(numberlist[i].data)

@@ -20,7 +20,7 @@ object Keys
     //http://5f91-210-89-39-70.ngrok.io/opaynly-api/public/api/app-info
 //    const val  BASEURL="https://d077-210-89-39-190.ngrok.io/ielts-app/public/api/"
     // https://486b-2405-201-5007-b08b-d476-b940-bc96-620.in.ngrok.io -> http://localhost:8080
-    const val  BASEURL="http://e152-2405-201-5007-b08b-ddd7-9c87-6979-5367.ngrok.io/kids-api/public/"
+    const val  BASEURL="http://1227-2405-201-5007-b08b-eef8-5e0-b5c-31bd.ngrok.io/kids-api/public/"
     // const val  BASEURL="http://staging-api.opayl.com/api/"
    // const val  BASEURL="https://api.opayl.com/api/"
     const val  STAGINGBASEURL="http://staging-api.opayl.com/api/"
@@ -44,11 +44,19 @@ object Keys
     var email_verify = "email-verify"
     /*End points*/
     const val GETNUMBER="api/get-digits"
+    const val GETCOLORS="api/get-colors"
     const val GETALPHABET="api/get-alphabets"
     const val OBJECTS="api/get-objects"
+    const val FILLBLANKCATEGORY="api/fill-blanks-category"
+    const val MULTICATEGORY="api/multi-choice-category"
+    const val MATCHCATEGORY="api/get-match-category"
+    const val MULTICATEGORY_ANSWER="api/multi-choice-question-answer/"
+    const val SUBCATEGORY="api/app-sub-category/"
     const val SHAPES="api/get-shapes"
     const val CLASSDETAIL="api/get-class-detail/"
     const val FILLUP="api/get-fillup"
+    const val FILLUPBLANKS="api/fill-blanks/"
+    const val DRAWPRACTICE="api/draw-matches"
     const val MATCHES="api/get-matches"
 
     /*GUEST KEYS*/

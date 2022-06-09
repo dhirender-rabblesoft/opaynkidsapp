@@ -1,7 +1,9 @@
 package com.app.opaynkidsapp.viewmodel
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.app.opaynkidsapp.R
@@ -32,13 +34,17 @@ class FillBlankTestViewModel(application: Application) : AppViewModel(applicatio
     var ans=""
     var tempfilledlist=ArrayList<String>()
     var filledpo=0
+    var getBundle=Bundle()
 
     fun setBinder(binder: ActivityFillBlankBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
+        getBundle = (baseActivity as Activity).intent.extras!!
+
         setclicks()
+
 
         settoolbar()
 
@@ -57,7 +63,7 @@ class FillBlankTestViewModel(application: Application) : AppViewModel(applicatio
     private  fun  callapi()
     {
 
-        commonRepository.fillup(baseActivity,Keys.FILLUP)
+        commonRepository.fillup(baseActivity,Keys.FILLUPBLANKS+getBundle.getString(Keys.POSTID))
         {
            ans=it.data[0].answer
          val   incorrectans=it.data[0].incorrect_answer
@@ -70,6 +76,7 @@ class FillBlankTestViewModel(application: Application) : AppViewModel(applicatio
             for (i in 0 until incorrectans.length) {
                 shufflelist.add(ModelClass(incorrectans[i].toString(),isclick = false))
              }
+            Log.e("addlistarrray",addlistarrray.size.toString())
 
             setFillBlankAdapter()
             setAdapter()
@@ -111,12 +118,11 @@ class FillBlankTestViewModel(application: Application) : AppViewModel(applicatio
     private fun setFillBlankAdapter() {
 
 
-        fillbankAdapter = FillBlankTestAdapter(addlistarrray, baseActivity) {
-
+        fillbankAdapter = FillBlankTestAdapter( baseActivity) {
 
         }
 
-//        fillbankAdapter?.addNewList(addlistarrray)
+        fillbankAdapter?.addNewList(addlistarrray)
         binder.rvFillBlankButton.adapter = fillbankAdapter
 
     }
